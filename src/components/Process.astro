@@ -1,0 +1,76 @@
+---
+import { UI } from '../data/site';
+import type { Lang } from '../data/types';
+
+interface Props {
+  lang: Lang;
+  alt?: boolean;
+}
+const { lang, alt = false } = Astro.props;
+const t = UI[lang];
+---
+
+<section class:list={['section', { 'section--alt': alt }]}>
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">{t.process}</p>
+      <h2 set:html={lang === 'et' ? 'Neli sammu <em>ideest</em> valmis leheni' : 'Four steps from <em>idea</em> to launch'} />
+    </div>
+    <ol class="steps">
+      {
+        t.processSteps.map((s, i) => (
+          <li class="reveal" style={`transition-delay:${i * 80}ms`}>
+            <span class="num">0{i + 1}</span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  li {
+    border-top: 1px solid var(--ink);
+    padding-top: 1.4rem;
+  }
+  .num {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--clay);
+    font-size: 1.1rem;
+    margin-bottom: 2.4rem;
+  }
+  h3 {
+    margin-bottom: 0.8rem;
+  }
+  p {
+    color: var(--muted);
+    margin: 0;
+    font-size: 0.98rem;
+  }
+  @media (max-width: 900px) {
+    .steps {
+      grid-template-columns: 1fr 1fr;
+      row-gap: 2.5rem;
+    }
+  }
+  @media (max-width: 560px) {
+    .steps {
+      grid-template-columns: 1fr;
+    }
+    .num {
+      margin-bottom: 1rem;
+    }
+  }
+</style>

@@ -1,0 +1,41 @@
+---
+import Breadcrumbs from './Breadcrumbs.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  crumbs: { name: string; href: string }[];
+}
+const { eyebrow, title, lead, crumbs } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="container">
+    <Breadcrumbs items={crumbs} />
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 set:html={title} />
+    {lead && <p class="lead">{lead}</p>}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding: clamp(32px, 5vw, 56px) 0 clamp(56px, 8vw, 100px);
+  }
+  h1 {
+    max-width: 14em;
+    animation: rise 1s var(--ease) both;
+  }
+  .lead {
+    margin-top: 1.8rem;
+    animation: rise 1s 0.12s var(--ease) both;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+</style>

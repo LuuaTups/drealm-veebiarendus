@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { ROUTES, SITE, UI, r } from '../data/site';
+import type { Lang } from '../data/types';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const copy = {
+  et: {
+    title: 'Kontakt: küsi pakkumist | drealm',
+    description: 'Küsi drealmilt pakkumist kodulehe, e-poe, kinnisvara veebilehe või AI-lahenduse tegemiseks. Vastame ühe tööpäeva jooksul.',
+    h1: 'Alustame <em>vestlusest</em>',
+    lead: 'Täida vorm või kirjuta otse. Vastame ühe tööpäeva jooksul ja pakume välja aja lühikeseks tasuta kõneks.',
+    next: 'Mis edasi saab?',
+    steps: ['Loeme sinu päringu läbi ja vastame ühe tööpäeva jooksul.', 'Lühike 20–30-minutiline kõne sinu eesmärkidest.', 'Saad kirjaliku pakkumise koos fikseeritud hinna ja ajakavaga.'],
+  },
+  en: {
+    title: 'Contact: Get a Quote | drealm',
+    description: 'Request a quote from drealm for a website, online store, real estate website or AI solution. We reply within one business day.',
+    h1: 'Let’s start with <em>a conversation</em>',
+    lead: 'Fill in the form or email us directly. We reply within one business day and suggest a time for a short free call.',
+    next: 'What happens next?',
+    steps: ['We read your enquiry and reply within one business day.', 'A short 20–30 minute call about your goals.', 'You get a written proposal with a fixed price and timeline.'],
+  },
+}[lang];
+---
+
+<Base lang={lang} title={copy.title} description={copy.description} alternates={{ et: ROUTES.contact.et, en: ROUTES.contact.en }}>
+  <PageHero
+    eyebrow={t.nav.contact}
+    title={copy.h1}
+    lead={copy.lead}
+    crumbs={[
+      { name: t.breadcrumbHome, href: r('home', lang) },
+      { name: t.nav.contact, href: r('contact', lang) },
+    ]}
+  />
+  <section class="section section--alt">
+    <div class="container grid">
+      <aside>
+        <a class="mail" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        <p class="muted">{SITE.city}, Eesti</p>
+        <h2>{copy.next}</h2>
+        <ol>{copy.steps.map((s) => <li>{s}</li>)}</ol>
+      </aside>
+      <div class="card"><ContactForm lang={lang} /></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(32px, 6vw, 80px);
+    align-items: start;
+  }
+  .mail {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    text-decoration-color: var(--clay);
+  }
+  aside h2 {
+    font-size: 1.6rem;
+    margin: 3rem 0 1rem;
+  }
+  ol {
+    padding-left: 1.2em;
+    color: var(--ink-soft);
+  }
+  li {
+    margin-bottom: 0.8rem;
+  }
+  li::marker {
+    font-family: var(--font-display);
+    color: var(--clay);
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: clamp(24px, 4vw, 44px);
+  }
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

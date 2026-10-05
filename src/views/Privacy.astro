@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { ROUTES, SITE, UI, r } from '../data/site';
+import type { Lang } from '../data/types';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const copy = {
+  et: {
+    title: 'Privaatsuspoliitika | drealm',
+    description: 'Kuidas drealm kogub, kasutab ja kaitseb kodulehe külastajate ja päringu saatjate isikuandmeid.',
+    h1: 'Privaatsus&shy;poliitika',
+    blocks: [
+      ['Milliseid andmeid kogume', 'Kui saadad päringuvormi, kogume sinu nime, e-posti aadressi ning vabatahtlikult telefoni, ettevõtte nime, eelarve ja sõnumi sisu. Me ei kasuta jälgimisküpsiseid ega reklaamipiksleid.'],
+      ['Milleks andmeid kasutame', 'Andmeid kasutame ainult sinu päringule vastamiseks ja võimaliku pakkumise koostamiseks. Me ei müü ega jaga sinu andmeid kolmandatele osapooltele turunduse eesmärgil.'],
+      ['Volitatud töötlejad', 'Lehe majutab Vercel Inc. ja päringuvormi kirjad edastatakse Resend Inc. kaudu. Mõlemad töötlevad andmeid meie nimel ja vastavalt GDPR-i nõuetele.'],
+      ['Säilitamine', 'Päringuid säilitame kuni 24 kuud või kauem, kui sõlmime lepingu (raamatupidamise ja lepingu täitmise eesmärgil).'],
+      ['Sinu õigused', `Sul on õigus oma andmeid vaadata, parandada ja kustutada ning esitada kaebus Andmekaitse Inspektsioonile. Kirjuta meile: ${SITE.email}.`],
+    ],
+  },
+  en: {
+    title: 'Privacy Policy | drealm',
+    description: 'How drealm collects, uses and protects the personal data of website visitors and people who send an enquiry.',
+    h1: 'Privacy policy',
+    blocks: [
+      ['What we collect', 'When you submit the enquiry form we collect your name and email address, and optionally your phone number, company name, budget and message. We do not use tracking cookies or advertising pixels.'],
+      ['How we use it', 'We use your data only to respond to your enquiry and prepare a possible proposal. We never sell or share your data with third parties for marketing.'],
+      ['Processors', 'The site is hosted by Vercel Inc. and form emails are delivered via Resend Inc. Both process data on our behalf in line with GDPR.'],
+      ['Retention', 'We keep enquiries for up to 24 months, or longer if we sign a contract (for accounting and contract purposes).'],
+      ['Your rights', `You have the right to access, correct and delete your data and to complain to the Estonian Data Protection Inspectorate. Email us: ${SITE.email}.`],
+    ],
+  },
+}[lang];
+---
+
+<Base lang={lang} title={copy.title} description={copy.description} alternates={{ et: ROUTES.privacy.et, en: ROUTES.privacy.en }}>
+  <PageHero
+    eyebrow={t.privacy}
+    title={copy.h1}
+    crumbs={[
+      { name: t.breadcrumbHome, href: r('home', lang) },
+      { name: t.privacy, href: r('privacy', lang) },
+    ]}
+  />
+  <section class="section section--alt">
+    <div class="container prose">
+      {
+        copy.blocks.map(([h, p]) => (
+          <>
+            <h2>{h}</h2>
+            <p>{p}</p>
+          </>
+        ))
+      }
+    </div>
+  </section>
+</Base>

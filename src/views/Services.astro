@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import Process from '../components/Process.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { GROUPS, ROUTES, UI, r } from '../data/site';
+import { GROUP_ORDER, servicesByGroup } from '../data/services';
+import type { Lang } from '../data/types';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const copy = {
+  et: {
+    title: 'Teenused: kodulehed, kinnisvara, AI | drealm',
+    description: 'Kõik drealmi teenused ühes kohas: kodulehe tegemine, e-poed, kinnisvara- ja arendusprojektide lehed, AI-vestlusrobotid ja automatiseerimine.',
+    h1: 'Teenused, mis <em>kasvatavad</em> sinu äri veebis',
+    lead: 'Vali valdkond või teenus. Iga lehe juures on hind, ajakava ja vastused kõige levinumatele küsimustele.',
+  },
+  en: {
+    title: 'Services: Websites, Real Estate & AI | drealm',
+    description: 'All drealm services in one place: website development, online stores, real estate and development websites, AI chatbots and business automation.',
+    h1: 'Services that <em>grow</em> your business online',
+    lead: 'Pick an area or a service. Each page lists the price, timeline and answers to the most common questions.',
+  },
+}[lang];
+---
+
+<Base lang={lang} title={copy.title} description={copy.description} alternates={{ et: ROUTES.services.et, en: ROUTES.services.en }}>
+  <PageHero
+    eyebrow={t.nav.services}
+    title={copy.h1}
+    lead={copy.lead}
+    crumbs={[
+      { name: t.breadcrumbHome, href: r('home', lang) },
+      { name: t.nav.services, href: r('services', lang) },
+    ]}
+  />
+  {
+    GROUP_ORDER.map((g, i) => (
+      <section class:list={['section', { 'section--alt': i % 2 === 0 }]}>
+        <div class="container">
+          <div class="section-head reveal">
+            <h2>{GROUPS[g][lang].title}</h2>
+            <p class="lead">{GROUPS[g][lang].text}</p>
+          </div>
+          <ServiceGrid lang={lang} items={servicesByGroup(g)} />
+        </div>
+      </section>
+    ))
+  }
+  <Process lang={lang} />
+  <CtaSection lang={lang} />
+</Base>

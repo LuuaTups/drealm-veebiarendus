@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, UI } from '../data/site';
+import type { Lang } from '../data/types';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** Paths of this page in each language, used for hreflang + language switcher */
+  alternates: { et: string; en: string };
+  jsonLd?: Record<string, unknown>[];
+  ogType?: 'website' | 'article';
+}
+
+const { lang, title, description, alternates, jsonLd = [], ogType = 'website' } = Astro.props;
+const t = UI[lang];
+const canonical = new URL(alternates[lang], SITE.url).href;
+const ogImage = new URL('/og.png', SITE.url).href;
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE.url}/#org`,
+  name: SITE.name,
+  url: SITE.url,
+  email: SITE.email,
+  logo: `${SITE.url}/favicon.svg`,
+  image: ogImage,
+  description: t.footerTagline,
+  address: { '@type': 'PostalAddress', addressLocality: SITE.city, addressCountry: SITE.country },
+  areaServed: [{ '@type': 'Country', name: 'Estonia' }, 'Europe'],
+  knowsLanguage: ['et', 'en'],
+};
+---
+
+<!doctype html>
+<html lang={lang} class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="et" href={new URL(alternates.et, SITE.url).href} />
+    <link rel="alternate" hreflang="en" href={new URL(alternates.en, SITE.url).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(alternates.et, SITE.url).href} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#f6f1ea" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'et' ? 'et_EE' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
+    {jsonLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
+    <script is:inline>document.documentElement.classList.remove('no-js');</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.skip}</a>
+    <Header lang={lang} alternates={alternates} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <script>
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-in');
+              io.unobserve(e.target);
+            }
+          }
+        },
+        { rootMargin: '0px 0px -8% 0px' },
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

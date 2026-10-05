@@ -1,0 +1,33 @@
+---
+interface Props {
+  size?: 'md' | 'lg';
+}
+const { size = 'md' } = Astro.props;
+---
+
+<span class:list={['logo', size]}>drealm<span class="dot" aria-hidden="true"></span></span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 420;
+    font-size: 1.75rem;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    color: inherit;
+    font-variation-settings: 'SOFT' 100, 'WONK' 1, 'opsz' 72;
+  }
+  .logo.lg {
+    font-size: clamp(3.5rem, 12vw, 9rem);
+  }
+  .dot {
+    width: 0.16em;
+    height: 0.16em;
+    margin-left: 0.06em;
+    border-radius: 50%;
+    background: var(--clay);
+  }
+</style>

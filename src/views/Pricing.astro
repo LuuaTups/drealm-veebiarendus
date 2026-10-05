@@ -1,0 +1,235 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Faq from '../components/Faq.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { GROUPS, ROUTES, UI, r } from '../data/site';
+import { GROUP_ORDER, servicesByGroup, serviceUrl } from '../data/services';
+import type { Lang } from '../data/types';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const copy = {
+  et: {
+    title: 'Hinnad: kodulehe ja veebiarenduse hinnakiri | drealm',
+    description: 'Kui palju maksab koduleht, e-pood, arendusprojekti leht või AI-lahendus? drealmi läbipaistev hinnakiri koos ajakava ja hoolduspakettidega.',
+    h1: 'Selged hinnad, <em>ilma üllatusteta</em>',
+    lead: 'Allolevad hinnad on alghinnad. Täpse ja fikseeritud pakkumise saad pärast lühikest vestlust — enne kui töö algab ja ilma kohustuseta.',
+    tableService: 'Teenus',
+    tableFrom: 'Hind',
+    tableTime: 'Ajakava',
+    careTitle: 'Hooldus ja kasv',
+    careLead: 'Valikulised kuupaketid pärast lehe valmimist. Lepingut saab igal ajal lõpetada.',
+    plans: [
+      { name: 'Hooldus', price: '49 € / kuu', items: ['Tehnilised uuendused ja turvalisus', 'Igapäevased varukoopiad', 'Kuni 1 h väiksemaid muudatusi', 'Saadavuse jälgimine'] },
+      { name: 'Kasv', price: '290 € / kuu', items: ['Kõik hoolduspaketist', 'SEO-jälgimine ja kuuaruanne', '1 uus blogipostitus või maandumisleht kuus', 'Konversioonide analüüs ja parendused'], featured: true },
+      { name: 'Partner', price: 'kokkuleppel', items: ['Pidev arendus ja uued funktsioonid', 'AI-automatiseerimise arendus', 'Prioriteetne tugi', 'Kvartaalne strateegiakohtumine'] },
+    ],
+    faqs: [
+      { q: 'Miks on hinnad „alates“?', a: 'Iga projekt on veidi erinev: lehtede arv, keelte arv, integratsioonid (broneerimine, CRM, makselahendused) ja sisu ettevalmistus mõjutavad töömahtu. Alghind kirjeldab tüüpilist lihtsamat lahendust. Pärast vestlust saad fikseeritud hinna, mis ei muutu, kui sa ise mahtu ei muuda.' },
+      { q: 'Kuidas maksmine käib?', a: 'Tavaliselt 50% ettemaks projekti alguses ja 50% lehe avaldamisel. Suuremate projektide puhul jagame makse etappideks.' },
+      { q: 'Kas hinnad sisaldavad käibemaksu?', a: 'Hinnad on esitatud ilma käibemaksuta. Arvele lisandub käibemaks vastavalt kehtivatele reeglitele.' },
+      { q: 'Mis on lisaks igakuised kulud?', a: 'Domeen maksab umbes 10–20 € aastas. Majutus on meie tehtud staatiliste lehtede puhul enamasti tasuta (Vercel). AI-lahenduste puhul lisandub kasutuspõhine API kulu, mille hindame enne alustamist ette.' },
+    ],
+  },
+  en: {
+    title: 'Pricing: Website & Web Development Costs | drealm',
+    description: 'How much does a website, online store, property development site or AI solution cost? drealm’s transparent price list with timelines and care plans.',
+    h1: 'Clear pricing, <em>no surprises</em>',
+    lead: 'The prices below are starting points. You get an exact, fixed quote after a short call — before any work starts and with no obligation.',
+    tableService: 'Service',
+    tableFrom: 'Price',
+    tableTime: 'Timeline',
+    careTitle: 'Care & growth',
+    careLead: 'Optional monthly plans after launch. Cancel any time.',
+    plans: [
+      { name: 'Care', price: '€49 / month', items: ['Technical updates and security', 'Daily backups', 'Up to 1 h of small changes', 'Uptime monitoring'] },
+      { name: 'Growth', price: '€290 / month', items: ['Everything in Care', 'SEO tracking and monthly report', '1 new blog post or landing page a month', 'Conversion analysis and improvements'], featured: true },
+      { name: 'Partner', price: 'custom', items: ['Ongoing development and new features', 'AI automation development', 'Priority support', 'Quarterly strategy session'] },
+    ],
+    faqs: [
+      { q: 'Why are prices shown as “from”?', a: 'Every project differs a little: the number of pages and languages, integrations (booking, CRM, payments) and content preparation all affect the scope. The starting price reflects a typical simpler build. After a call you get a fixed price that will not change unless you change the scope.' },
+      { q: 'How does payment work?', a: 'Usually 50% upfront at the start and 50% at launch. Larger projects are split into milestones.' },
+      { q: 'Do prices include VAT?', a: 'Prices are shown excluding VAT. VAT is added to invoices according to the applicable rules.' },
+      { q: 'What are the ongoing costs?', a: 'A domain costs roughly €10–20 a year. Hosting for the static sites we build is usually free (Vercel). AI solutions add usage-based API costs, which we estimate for you before we start.' },
+    ],
+  },
+}[lang];
+
+const offerLd = {
+  '@context': 'https://schema.org',
+  '@type': 'OfferCatalog',
+  name: copy.title,
+  itemListElement: GROUP_ORDER.flatMap((g) => servicesByGroup(g)).map((s) => ({
+    '@type': 'Offer',
+    itemOffered: { '@type': 'Service', name: s[lang].navLabel },
+    description: s[lang].priceFrom,
+  })),
+};
+---
+
+<Base lang={lang} title={copy.title} description={copy.description} alternates={{ et: ROUTES.pricing.et, en: ROUTES.pricing.en }} jsonLd={[offerLd]}>
+  <PageHero
+    eyebrow={t.nav.pricing}
+    title={copy.h1}
+    lead={copy.lead}
+    crumbs={[
+      { name: t.breadcrumbHome, href: r('home', lang) },
+      { name: t.nav.pricing, href: r('pricing', lang) },
+    ]}
+  />
+
+  <section class="section section--alt">
+    <div class="container">
+      {
+        GROUP_ORDER.map((g) => (
+          <div class="price-group reveal">
+            <h2>{GROUPS[g][lang].title}</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>{copy.tableService}</th>
+                  <th>{copy.tableFrom}</th>
+                  <th>{copy.tableTime}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {servicesByGroup(g).map((s) => (
+                  <tr>
+                    <td>
+                      <a href={serviceUrl(s, lang)}>{s[lang].navLabel}</a>
+                    </td>
+                    <td class="price">{s[lang].priceFrom}</td>
+                    <td class="muted">{s[lang].timeline}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>{copy.careTitle}</h2>
+        <p class="lead">{copy.careLead}</p>
+      </div>
+      <ul class="plans">
+        {
+          copy.plans.map((p, i) => (
+            <li class:list={['plan', 'reveal', { featured: p.featured }]} style={`transition-delay:${i * 80}ms`}>
+              <h3>{p.name}</h3>
+              <p class="plan-price">{p.price}</p>
+              <ul>
+                {p.items.map((it) => (
+                  <li>{it}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Faq title={t.faq} items={copy.faqs} />
+  <CtaSection lang={lang} />
+</Base>
+
+<style>
+  .price-group + .price-group {
+    margin-top: clamp(48px, 6vw, 80px);
+  }
+  .price-group h2 {
+    font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+    margin-bottom: 1rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th {
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--ink);
+  }
+  td {
+    padding: 1.1rem 1rem 1.1rem 0;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  td a {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+  td a:hover {
+    color: var(--clay);
+  }
+  .price {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .plans {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+  .plan {
+    padding: 2rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+  }
+  .plan.featured {
+    background: var(--accent);
+    color: var(--on-dark);
+    border-color: var(--accent);
+  }
+  .plan-price {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin: 0.8rem 0 1.4rem;
+  }
+  .plan ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .plan ul li {
+    padding: 0.55rem 0;
+    border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    font-size: 0.97rem;
+  }
+  @media (max-width: 900px) {
+    .plans {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    th:last-child,
+    td:last-child {
+      display: none;
+    }
+    td a {
+      font-size: 1.05rem;
+    }
+    .price {
+      white-space: normal;
+    }
+  }
+</style>

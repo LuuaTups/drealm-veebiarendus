@@ -1,0 +1,98 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { ROUTES, UI, r } from '../data/site';
+import type { Lang } from '../data/types';
+import futernoDesktop from '../assets/work/futerno-desktop.png';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const copy = {
+  et: {
+    title: 'Tööd ja juhtumiuuringud | drealm',
+    description: 'Vaata drealmi tehtud kodulehti ja veebiprojekte: kuidas lähenesime, mida ehitasime ja millise tulemuse klient sai.',
+    h1: 'Tööd, mille <em>taga seisame</em>',
+    lead: 'Iga projekt on lugu sellest, kuidas ettevõte end veebis paremini näitab. Siin on meie valitud tööd — nimekiri kasvab.',
+    tag: 'Portfoolioleht · Mitmekeelne',
+    text: 'Looduskivi tootja kahekeelne (korea/inglise) portfoolioleht täisekraani visuaalide ja projektigaleriidega.',
+    more: 'Loe juhtumiuuringut',
+    nextTitle: 'Sinu projekt võiks olla järgmine',
+    nextText: 'Võtame praegu vastu uusi projekte. Räägi meile, mida sinu ettevõte vajab.',
+  },
+  en: {
+    title: 'Work & Case Studies | drealm',
+    description: 'See websites and web projects built by drealm: how we approached them, what we built and what the client got.',
+    h1: 'Work we <em>stand behind</em>',
+    lead: 'Every project is a story about a business presenting itself better online. Here is our selected work — the list keeps growing.',
+    tag: 'Portfolio site · Multilingual',
+    text: 'A bilingual (Korean/English) portfolio site with full-screen visuals and project galleries for a natural stone fabricator.',
+    more: 'Read the case study',
+    nextTitle: 'Your project could be next',
+    nextText: 'We are taking on new projects. Tell us what your business needs.',
+  },
+}[lang];
+---
+
+<Base lang={lang} title={copy.title} description={copy.description} alternates={{ et: ROUTES.work.et, en: ROUTES.work.en }}>
+  <PageHero
+    eyebrow={t.nav.work}
+    title={copy.h1}
+    lead={copy.lead}
+    crumbs={[
+      { name: t.breadcrumbHome, href: r('home', lang) },
+      { name: t.nav.work, href: r('work', lang) },
+    ]}
+  />
+  <section class="section section--alt">
+    <div class="container">
+      <a class="project reveal" href={r('futerno', lang)}>
+        <div class="img">
+          <Image src={futernoDesktop} alt="Marmi Futerno" widths={[640, 960, 1440]} sizes="(max-width: 900px) 100vw, 1200px" />
+        </div>
+        <div class="meta">
+          <p class="eyebrow">{copy.tag}</p>
+          <h2>Marmi Futerno</h2>
+          <p class="muted">{copy.text}</p>
+          <span class="btn btn--ghost">{copy.more} <span class="arrow">→</span></span>
+        </div>
+      </a>
+    </div>
+  </section>
+  <CtaSection lang={lang} title={copy.nextTitle} text={copy.nextText} />
+</Base>
+
+<style>
+  .project {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: clamp(24px, 4vw, 56px);
+    align-items: center;
+    text-decoration: none;
+  }
+  .img {
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+  .img :global(img) {
+    transition: transform 0.8s var(--ease);
+  }
+  .project:hover .img :global(img) {
+    transform: scale(1.03);
+  }
+  .meta h2 {
+    margin-bottom: 1rem;
+  }
+  .meta .muted {
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 900px) {
+    .project {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

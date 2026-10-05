@@ -1,0 +1,222 @@
+---
+import { SITE, UI, r } from '../data/site';
+import { services } from '../data/services';
+import type { Lang } from '../data/types';
+
+interface Props {
+  lang: Lang;
+  /** Service id to preselect */
+  preselect?: string;
+}
+const { lang, preselect } = Astro.props;
+const f = UI[lang].form;
+---
+
+<form class="form" method="post" action="/api/contact" data-contact-form novalidate>
+  <input type="hidden" name="lang" value={lang} />
+  <input type="hidden" name="page" value={Astro.url.pathname} />
+  <input type="hidden" name="ts" value="" data-ts />
+  <div class="hp" aria-hidden="true">
+    <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+  </div>
+
+  <div class="grid">
+    <label class="field">
+      <span>{f.name}</span>
+      <input type="text" name="name" required autocomplete="name" maxlength="120" />
+    </label>
+    <label class="field">
+      <span>{f.email}</span>
+      <input type="email" name="email" required autocomplete="email" maxlength="160" />
+    </label>
+    <label class="field">
+      <span>{f.phone}</span>
+      <input type="tel" name="phone" autocomplete="tel" maxlength="40" />
+    </label>
+    <label class="field">
+      <span>{f.company}</span>
+      <input type="text" name="company" autocomplete="organization" maxlength="120" />
+    </label>
+    <label class="field">
+      <span>{f.service}</span>
+      <select name="service" required>
+        <option value="" disabled selected={!preselect}>{f.servicePlaceholder}</option>
+        {services.map((s) => <option value={s.et.navLabel} selected={s.id === preselect}>{s[lang].navLabel}</option>)}
+        <option value="Muu">{f.other}</option>
+      </select>
+    </label>
+    <label class="field">
+      <span>{f.budget}</span>
+      <select name="budget">
+        {f.budgetOptions.map((b, i) => <option selected={i === f.budgetOptions.length - 1}>{b}</option>)}
+      </select>
+    </label>
+    <label class="field full">
+      <span>{f.message}</span>
+      <textarea name="message" rows="5" required maxlength="5000" placeholder={f.messagePlaceholder}></textarea>
+    </label>
+  </div>
+
+  <label class="consent">
+    <input type="checkbox" name="consent" required />
+    <span>{f.consent} <a href={r('privacy', lang)}>{UI[lang].privacy}</a></span>
+  </label>
+
+  <div class="submit-row">
+    <button class="btn btn--primary" type="submit" data-submit>
+      <span data-label>{f.submit}</span> <span class="arrow">→</span>
+    </button>
+    <p class="status" role="status" aria-live="polite" data-status></p>
+  </div>
+  <template data-msg-sending>{f.sending}</template>
+  <template data-msg-success>{f.success}</template>
+  <template data-msg-error>{f.error} <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</template>
+</form>
+
+<style>
+  .form {
+    display: grid;
+    gap: 1.4rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem 1.2rem;
+  }
+  .field {
+    display: grid;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .field.full {
+    grid-column: 1 / -1;
+  }
+  input,
+  select,
+  textarea {
+    width: 100%;
+    font: 400 1rem/1.4 var(--font-body);
+    color: inherit;
+    background: transparent;
+    border: 1px solid currentColor;
+    border-color: color-mix(in srgb, currentColor 25%, transparent);
+    border-radius: 10px;
+    padding: 0.85em 1em;
+    transition: border-color 0.2s;
+  }
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1em center;
+    padding-right: 2.4em;
+  }
+  select option {
+    color: #1f1b16;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--clay);
+  }
+  textarea {
+    resize: vertical;
+  }
+  .form :global(.invalid) {
+    border-color: #c0392b;
+  }
+  .consent {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+  .consent input {
+    width: 18px;
+    height: 18px;
+    margin-top: 0.2em;
+    flex: none;
+    accent-color: var(--clay);
+  }
+  .submit-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.4rem;
+  }
+  .status {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .status.ok {
+    color: inherit;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+  }
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .submit-row .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
+    const ts = form.querySelector<HTMLInputElement>('[data-ts]')!;
+    ts.value = String(Date.now());
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+    const btn = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const label = form.querySelector<HTMLElement>('[data-label]')!;
+    const msg = (name: string) => form.querySelector<HTMLTemplateElement>(`[data-msg-${name}]`)!.innerHTML;
+    const original = label.textContent;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let valid = true;
+      form.querySelectorAll<HTMLInputElement>('[required]').forEach((el) => {
+        const ok = el.type === 'checkbox' ? el.checked : el.checkValidity() && el.value.trim() !== '';
+        el.classList.toggle('invalid', !ok);
+        if (!ok && valid) {
+          el.focus();
+          valid = false;
+        }
+      });
+      if (!valid) return;
+
+      btn.disabled = true;
+      label.textContent = msg('sending');
+      status.className = 'status';
+      status.textContent = '';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        status.className = 'status ok';
+        status.innerHTML = msg('success');
+      } catch {
+        status.innerHTML = msg('error');
+      } finally {
+        btn.disabled = false;
+        label.textContent = original;
+      }
+    });
+  });
+</script>
