@@ -27,7 +27,7 @@ const orgLd = {
   name: SITE.name,
   url: SITE.url,
   email: SITE.email,
-  logo: `${SITE.url}/favicon.svg`,
+  logo: `${SITE.url}/logo.png`,
   image: ogImage,
   description: t.footerTagline,
   address: { '@type': 'PostalAddress', addressLocality: SITE.city, addressCountry: SITE.country },
@@ -48,6 +48,7 @@ const orgLd = {
     <link rel="alternate" hreflang="en" href={new URL(alternates.en, SITE.url).href} />
     <link rel="alternate" hreflang="x-default" href={new URL(alternates.et, SITE.url).href} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#f6f1ea" />
 
