@@ -10,6 +10,7 @@ import { GROUP_ORDER, servicesByGroup } from '../data/services';
 import type { Lang } from '../data/types';
 import futernoDesktop from '../assets/work/futerno-desktop.png';
 import futernoMobile from '../assets/work/futerno-mobile.png';
+import { GROUP_PHOTO, PHOTOS } from '../data/photos';
 
 interface Props {
   lang: Lang;
@@ -101,6 +102,7 @@ const copy = {
           <a class="btn btn--ghost" href={r('work', lang)}>{t.seeWork}</a>
         </div>
       </div>
+      <Image class="hero-photo" src={PHOTOS.desk.src} alt={PHOTOS.desk.alt[lang]} widths={[640, 960, 1200]} sizes="(max-width: 1200px) 100vw, 1200px" loading="eager" fetchpriority="high" />
       <ul class="pillars">
         {
           copy.pillars.map((p) => (
@@ -128,6 +130,9 @@ const copy = {
                 <h3>{GROUPS[g][lang].title}</h3>
                 <p>{GROUPS[g][lang].text}</p>
               </div>
+              {g !== 'industry' && (
+                <Image class="group-photo" src={GROUP_PHOTO[g].src} alt={GROUP_PHOTO[g].alt[lang]} widths={[640, 960, 1200]} sizes="(max-width: 1200px) 100vw, 1200px" />
+              )}
               <ServiceGrid lang={lang} items={servicesByGroup(g)} />
             </div>
           ))
@@ -197,6 +202,21 @@ const copy = {
   .hero-bottom .lead {
     margin: 0;
     max-width: 34rem;
+  }
+  .hero :global(.hero-photo),
+  .group :global(.group-photo) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+  .hero :global(.hero-photo) {
+    margin-top: clamp(40px, 6vw, 72px);
+    aspect-ratio: 16 / 7;
+  }
+  .group :global(.group-photo) {
+    margin-bottom: 1.6rem;
   }
   .pillars {
     list-style: none;
@@ -311,6 +331,10 @@ const copy = {
     }
   }
   @media (max-width: 600px) {
+    .hero :global(.hero-photo),
+    .group :global(.group-photo) {
+      aspect-ratio: 4 / 3;
+    }
     .pillars {
       grid-template-columns: 1fr;
     }

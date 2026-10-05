@@ -3,6 +3,8 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import Process from '../components/Process.astro';
 import CtaSection from '../components/CtaSection.astro';
+import { Image } from 'astro:assets';
+import { PHOTOS } from '../data/photos';
 import { ROUTES, UI, r } from '../data/site';
 import type { Lang } from '../data/types';
 
@@ -20,7 +22,7 @@ const copy = {
     valuesTitle: 'Mida me usume',
     values: [
       { t: 'Veebileht on tööriist, mitte visiitkaart', d: 'Ilus leht, mis ei too päringuid, ei ole hea leht. Iga disainiotsus teenib üht eesmärki: et külastaja saaks kliendiks.' },
-      { t: 'Kiirus on austus', d: 'Iga sekund laadimisaega maksab külastajaid. Ehitame kaasaegse tehnoloogiaga (Astro, Vercel), mis teeb lehed välkkiireks.' },
+      { t: 'Kiirus on austus', d: 'Iga sekund laadimisaega maksab külastajaid. Ehitame kaasaegse tehnoloogiaga (Astro), mis teeb lehed välkkiireks.' },
       { t: 'Ausus enne müüki', d: 'Kui sul pole meie teenust vaja või lihtsam lahendus sobib paremini, ütleme seda otse. Pikaajaline usaldus on väärtuslikum kui üks projekt.' },
       { t: 'Tehnoloogia, mis kuulub sulle', d: 'Kood, domeen ja sisu on sinu omad. Ei mingit lukustust ega peidetud tasusid.' },
     ],
@@ -33,7 +35,7 @@ const copy = {
     valuesTitle: 'What we believe',
     values: [
       { t: 'A website is a tool, not a business card', d: 'A beautiful site that brings in no enquiries is not a good site. Every design decision serves one goal: turning visitors into clients.' },
-      { t: 'Speed is respect', d: 'Every second of load time costs visitors. We build with modern technology (Astro, Vercel) that makes sites lightning fast.' },
+      { t: 'Speed is respect', d: 'Every second of load time costs visitors. We build with modern technology (Astro) that makes sites lightning fast.' },
       { t: 'Honesty before sales', d: 'If you do not need our service, or a simpler solution would fit better, we will tell you. Long-term trust is worth more than one project.' },
       { t: 'Technology you own', d: 'The code, domain and content are yours. No lock-in and no hidden fees.' },
     ],
@@ -51,6 +53,10 @@ const copy = {
       { name: t.nav.about, href: r('about', lang) },
     ]}
   />
+  <div class="container photos">
+    <Image src={PHOTOS.sketch.src} alt={PHOTOS.sketch.alt[lang]} widths={[400, 760]} sizes="(max-width: 700px) 100vw, 38vw" />
+    <Image src={PHOTOS.desk.src} alt={PHOTOS.desk.alt[lang]} widths={[640, 960, 1200]} sizes="(max-width: 700px) 100vw, 62vw" />
+  </div>
   <section class="section section--alt">
     <div class="container">
       <div class="section-head reveal"><h2>{copy.valuesTitle}</h2></div>
@@ -74,6 +80,24 @@ const copy = {
 </Base>
 
 <style>
+  .photos {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: clamp(12px, 2vw, 24px);
+    margin-bottom: clamp(48px, 7vw, 96px);
+  }
+  .photos :global(img) {
+    width: 100%;
+    height: 100%;
+    max-height: 560px;
+    object-fit: cover;
+    border-radius: 3px;
+  }
+  @media (max-width: 700px) {
+    .photos {
+      grid-template-columns: 1fr;
+    }
+  }
   .values {
     list-style: none;
     margin: 0;
