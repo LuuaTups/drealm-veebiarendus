@@ -1,0 +1,35 @@
+---
+// Line drawing of a modern seaside apartment building, used inside concept mockups.
+interface Props {
+  class?: string;
+}
+const { class: cls } = Astro.props;
+---
+
+<svg class={cls} viewBox="0 0 400 220" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMax slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9c29d" />
+      <stop offset="0.55" stop-color="#d9a079" />
+      <stop offset="1" stop-color="#8f6a52" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="220" fill="url(#sky)" />
+  <circle cx="70" cy="150" r="26" fill="#f4dcc0" opacity="0.85" />
+  <path d="M0 176 Q100 168 200 174 T400 170 V220 H0Z" fill="#5a4a3e" opacity="0.55" />
+  <g transform="translate(80 0)">
+  <g stroke="#2b241d" stroke-width="1.4" fill="#efe6da">
+    <path d="M60 196 V92 L130 72 V196" />
+    <path d="M130 196 V60 H230 V196" />
+    <path d="M230 196 V96 H300 V196" />
+  </g>
+  <g stroke="#2b241d" stroke-width="1" opacity="0.8">
+    <path d="M130 84 H230 M130 108 H230 M130 132 H230 M130 156 H230 M130 180 H230" />
+    <path d="M155 60 V196 M180 60 V196 M205 60 V196" />
+    <path d="M60 116 H130 M60 140 H130 M60 164 H130" />
+    <path d="M230 120 H300 M230 144 H300 M230 168 H300" />
+    <path d="M265 96 V196 M95 82 V196" />
+  </g>
+  </g>
+  <path d="M0 196 H400 V220 H0Z" fill="#3a3129" />
+</svg>
