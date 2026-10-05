@@ -1,0 +1,1516 @@
+---
+// Uue avalehe kavand (ainult ET). Pole sitemapis ega indekseeritud, kuni disain on kinnitatud.
+import '@fontsource-variable/fraunces/full.css';
+import '@fontsource-variable/instrument-sans/index.css';
+import { Image } from 'astro:assets';
+import Logo from '../components/Logo.astro';
+import futernoDesktop from '../assets/work/futerno-desktop.png';
+import futernoDesktop2 from '../assets/work/futerno-desktop-2.png';
+import futernoMobile from '../assets/work/futerno-mobile.png';
+import sketch from '../assets/photos/visand.jpg';
+
+const units = [
+  { id: 'A1', rooms: 2, m2: 54.2, floor: 2, price: '219 000 €', status: 'Vaba' },
+  { id: 'A2', rooms: 3, m2: 78.6, floor: 2, price: '312 000 €', status: 'Broneeritud' },
+  { id: 'A3', rooms: 1, m2: 36.8, floor: 2, price: '154 000 €', status: 'Vaba' },
+  { id: 'A4', rooms: 4, m2: 96.1, floor: 2, price: '389 000 €', status: 'Müüdud' },
+];
+---
+
+<!doctype html>
+<html lang="et">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>drealm — veebistuudio (kavand)</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap nav-inner">
+        <a href="/uus" class="brand" aria-label="drealm"><Logo /></a>
+        <nav aria-label="Peamenüü">
+          <a href="#teenused">Teenused</a>
+          <a href="#tood">Tööd</a>
+          <a href="#protsess">Protsess</a>
+          <a href="#hinnad">Hinnad</a>
+        </nav>
+        <a class="btn btn-dark btn-sm" href="#kontakt">Broneeri kõne</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="kicker">Veebistuudio · Tallinn</p>
+            <h1>Kodulehed, mis näevad välja sama head kui sinu teenus.</h1>
+            <p class="hero-lead">
+              Disainime ja ehitame premium-kodulehti ettevõtetele ja kinnisvaraarendajatele ning automatiseerime töö,
+              mis su päevast tunde võtab. Üks tiim, fikseeritud hind, tulemus, mida on uhke näidata.
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-dark" href="#kontakt">Broneeri tasuta 20-min kõne</a>
+              <a class="btn btn-line" href="#vaated">Vaata disaini</a>
+            </div>
+            <ul class="assure">
+              <li>Fikseeritud hind kirjalikult</li>
+              <li>Näed disaini enne arendust</li>
+              <li>Vastame 24 h jooksul</li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="browser hero-browser">
+              <div class="browser-bar"><i></i><i></i><i></i><span>futerno.com</span></div>
+              <Image src={futernoDesktop} alt="" widths={[640, 960, 1280]} sizes="(max-width: 960px) 92vw, 52vw" loading="eager" />
+            </div>
+            <div class="phone hero-phone">
+              <Image src={futernoMobile} alt="" widths={[260, 390]} sizes="170px" loading="eager" />
+            </div>
+            <div class="toast toast-lead">
+              <span class="dot"></span>
+              <div>
+                <strong>Uus päring</strong>
+                <span>Ärihoone fassaad, ~420 m² · 2 min tagasi</span>
+              </div>
+            </div>
+            <div class="toast toast-ai">
+              <span class="spark">✦</span>
+              <div>
+                <strong>Vastuse mustand valmis</strong>
+                <span>Hinnapakkumine koostatud 14 sekundiga</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM / PSYCHOLOGY -->
+      <section class="statement">
+        <div class="wrap">
+          <p class="big">
+            Klient otsustab <em>poole sekundiga</em>, kas sinu ettevõte tundub usaldusväärne. Kui teenus on premium, aga
+            koduleht mitte, kaotad ta enne esimest kõnet.
+          </p>
+          <div class="stat-row">
+            <div><b>Esmamulje</b><span>Disain, mis loob usalduse enne, kui keegi on lugenud ühtegi lauset.</span></div>
+            <div><b>Selgus</b><span>Külastaja saab 5 sekundiga aru, mida pakud, kellele ja mis on järgmine samm.</span></div>
+            <div><b>Tegevus</b><span>Iga leht viib päringuni. Lihtne vorm, kiire vastus, mitte ühtegi ummikteed.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="services" id="teenused">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="kicker">Mida teeme</p>
+            <h2>Kolm asja. Teeme need väga hästi.</h2>
+          </div>
+
+          <!-- 1. Websites: design views -->
+          <article class="svc" id="vaated">
+            <div class="svc-copy">
+              <span class="num">01</span>
+              <h3>Kodulehed ja e-poed</h3>
+              <p>
+                Iga leht disainitakse sinu brändi järgi, mitte valmis malli pealt. Näed kõiki vaateid enne, kui rida koodi
+                kirjutatakse, ja leht laeb telefonis hetkega.
+              </p>
+              <ul class="ticks">
+                <li>Disain arvutis, tahvlis ja telefonis</li>
+                <li>Tehniline SEO ja Google'i kiirus sisse ehitatud</li>
+                <li>Sisu saad ise muuta</li>
+              </ul>
+              <p class="from">alates <b>900 €</b></p>
+            </div>
+            <div class="svc-visual">
+              <div class="tabs" role="tablist" aria-label="Disaini vaated">
+                <button role="tab" aria-selected="true" data-view="desktop">Avaleht</button>
+                <button role="tab" aria-selected="false" data-view="mobile">Mobiil</button>
+                <button role="tab" aria-selected="false" data-view="system">Stiilijuhend</button>
+              </div>
+              <div class="views">
+                <!-- desktop concept -->
+                <div class="view is-active" data-view="desktop">
+                  <div class="browser">
+                    <div class="browser-bar"><i></i><i></i><i></i><span>atelier-nord.ee</span></div>
+                    <div class="mock mock-nord">
+                      <div class="mn-nav"><b>Atelier Nord</b><span>Menüü</span><span>Broneeri</span></div>
+                      <div class="mn-hero">
+                        <div class="mn-text">
+                          <small>Restoran · Kalamaja</small>
+                          <h4>Põhjamaine köök, aeglaselt tehtud.</h4>
+                          <span class="mn-btn">Broneeri laud</span>
+                        </div>
+                        <div class="mn-img"></div>
+                      </div>
+                      <div class="mn-row">
+                        <div><small>Lõuna</small>E–R 12–15</div>
+                        <div><small>Õhtu</small>T–L 18–23</div>
+                        <div><small>Aadress</small>Kalaranna 1</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- mobile concept -->
+                <div class="view" data-view="mobile">
+                  <div class="phones">
+                    <div class="phone phone-ui">
+                      <div class="mock mock-m">
+                        <div class="mm-top"><b>Atelier Nord</b><span>☰</span></div>
+                        <div class="mm-img"></div>
+                        <h4>Põhjamaine köök, aeglaselt tehtud.</h4>
+                        <span class="mn-btn">Broneeri laud</span>
+                      </div>
+                    </div>
+                    <div class="phone phone-ui">
+                      <div class="mock mock-m">
+                        <div class="mm-top"><b>Broneeri</b><span>✕</span></div>
+                        <div class="mm-field"><small>Kuupäev</small>Reede, 17. okt</div>
+                        <div class="mm-field"><small>Kellaaeg</small>19:30</div>
+                        <div class="mm-field"><small>Inimesi</small>4</div>
+                        <span class="mn-btn mm-full">Kinnita broneering</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- design system -->
+                <div class="view" data-view="system">
+                  <div class="system">
+                    <div class="sys-type">
+                      <small>Pealkiri · Fraunces</small>
+                      <p class="sys-h">Aa</p>
+                      <small>Tekst · Instrument Sans</small>
+                      <p class="sys-b">Selge, rahulik ja hästi loetav igal ekraanil.</p>
+                    </div>
+                    <div class="sys-colors">
+                      <span style="background:#1c1a16"><em>#1C1A16</em></span>
+                      <span style="background:#3f4a32"><em>#3F4A32</em></span>
+                      <span style="background:#a85f35"><em>#A85F35</em></span>
+                      <span style="background:#ede5d9;color:#1c1a16"><em>#EDE5D9</em></span>
+                    </div>
+                    <div class="sys-comp">
+                      <span class="mn-btn">Esmane nupp</span>
+                      <span class="mn-btn ghost">Teisene nupp</span>
+                      <div class="mm-field"><small>Väli</small>nimi@ettevote.ee</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="concept-note">Näidiskujundus</p>
+            </div>
+          </article>
+
+          <!-- 2. Real estate -->
+          <article class="svc svc-alt">
+            <div class="svc-copy">
+              <span class="num">02</span>
+              <h3>Kinnisvaraarenduse lehed</h3>
+              <p>
+                Ostja tahab näha, mis on vaba, kui suur see on ja mis maksab. Ehitame korterivaliku, plaanid ja
+                päringuvormi nii, et huvi muutub broneeringuks ilma ühegi telefonikõneta.
+              </p>
+              <ul class="ticks">
+                <li>Interaktiivne korterivalik ja korruseplaanid</li>
+                <li>Staatused uuenevad ühest kohast</li>
+                <li>Päringud otse müügimeeskonnale</li>
+              </ul>
+              <p class="from">alates <b>2 500 €</b></p>
+            </div>
+            <div class="svc-visual">
+              <div class="browser">
+                <div class="browser-bar"><i></i><i></i><i></i><span>kalaranna-kodud.ee/korterid</span></div>
+                <div class="mock mock-re">
+                  <svg class="plan" viewBox="0 0 320 200" role="img" aria-label="Korruseplaan">
+                    <rect x="6" y="6" width="308" height="188" rx="2" class="plan-outline" />
+                    <g class="units">
+                      <rect data-unit="A1" x="10" y="10" width="100" height="96" />
+                      <rect data-unit="A2" x="114" y="10" width="120" height="96" />
+                      <rect data-unit="A3" x="238" y="10" width="72" height="96" />
+                      <rect data-unit="A4" x="10" y="110" width="180" height="80" />
+                    </g>
+                    <rect x="194" y="110" width="116" height="80" class="core" />
+                    <g class="labels">
+                      <text x="60" y="62">A1</text><text x="174" y="62">A2</text><text x="274" y="62">A3</text><text x="100" y="154">A4</text>
+                      <text x="252" y="154" class="core-t">trepikoda</text>
+                    </g>
+                  </svg>
+                  <table class="units-table">
+                    <thead><tr><th>Korter</th><th>Tube</th><th>m²</th><th>Hind</th><th></th></tr></thead>
+                    <tbody>
+                      {
+                        units.map((u) => (
+                          <tr data-unit={u.id}>
+                            <td>{u.id}</td>
+                            <td>{u.rooms}</td>
+                            <td>{u.m2.toLocaleString('et-EE')}</td>
+                            <td>{u.price}</td>
+                            <td><span class:list={['badge', u.status === 'Vaba' ? 'free' : u.status === 'Müüdud' ? 'sold' : 'held']}>{u.status}</span></td>
+                          </tr>
+                        ))
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <p class="concept-note">Näidiskujundus · vii kursor korterile</p>
+            </div>
+          </article>
+
+          <!-- 3. AI automation -->
+          <article class="svc">
+            <div class="svc-copy">
+              <span class="num">03</span>
+              <h3>AI-automatiseerimine</h3>
+              <p>
+                Päringud, arved, pakkumised ja raportid liiguvad ise. AI loeb sissetuleva, koostab mustandi ja paneb
+                kõik õigesse kohta. Sina vaatad üle ja vajutad „saada“.
+              </p>
+              <ul class="ticks">
+                <li>Töötab tööriistadega, mida juba kasutad</li>
+                <li>Inimene jääb otsustajaks</li>
+                <li>Alustame ühe protsessi auditist</li>
+              </ul>
+              <p class="from">alates <b>800 €</b></p>
+            </div>
+            <div class="svc-visual">
+              <div class="flow" data-flow>
+                <div class="flow-step" data-step="0">
+                  <span class="ico">✉</span>
+                  <div><strong>Päring saabub</strong><small>„Soovime hinnapakkumist kontori fassaadile…“</small></div>
+                </div>
+                <div class="flow-line"></div>
+                <div class="flow-step" data-step="1">
+                  <span class="ico">✦</span>
+                  <div><strong>AI loeb ja liigitab</strong><small>Teenus: fassaad · Maht: ~420 m² · Prioriteet: kõrge</small></div>
+                </div>
+                <div class="flow-line"></div>
+                <div class="flow-split">
+                  <div class="flow-step" data-step="2">
+                    <span class="ico">✎</span>
+                    <div><strong>Pakkumise mustand</strong><small>Valmis üle vaatamiseks</small></div>
+                  </div>
+                  <div class="flow-step" data-step="2">
+                    <span class="ico">▤</span>
+                    <div><strong>CRM-i kirje</strong><small>Kontakt ja ajalugu salvestatud</small></div>
+                  </div>
+                  <div class="flow-step" data-step="2">
+                    <span class="ico">◉</span>
+                    <div><strong>Teavitus telefoni</strong><small>„Uus kuum päring“</small></div>
+                  </div>
+                </div>
+              </div>
+              <p class="concept-note">Näidis-töövoog</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- WORK -->
+      <section class="work" id="tood">
+        <div class="wrap">
+          <div class="sec-head light">
+            <p class="kicker">Valitud töö</p>
+            <h2>Marmi Futerno</h2>
+            <p class="sec-lead">
+              Kahekeelne portfoolioleht Tallinna looduskivi tootjale. Täisekraani fotod, projektigaleriid kategooriate
+              kaupa ja kiire laadimine ka suurte piltidega.
+            </p>
+          </div>
+          <div class="work-grid">
+            <div class="browser dark">
+              <div class="browser-bar"><i></i><i></i><i></i><span>futerno.com</span></div>
+              <Image src={futernoDesktop2} alt="Marmi Futerno projektide leht" widths={[640, 960, 1280]} sizes="(max-width: 960px) 92vw, 60vw" />
+            </div>
+            <div class="work-side">
+              <dl>
+                <div><dt>Klient</dt><dd>Marmi Futerno, looduskivi</dd></div>
+                <div><dt>Tehtud</dt><dd>Disain, arendus, korea ja inglise keel</dd></div>
+                <div><dt>Eesmärk</dt><dd>Näidata rahvusvahelistele klientidele kvaliteeti, mitte ainult rääkida sellest</dd></div>
+              </dl>
+              <a class="btn btn-light" href="/tood/marmi-futerno">Loe juhtumiuuringut</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="process" id="protsess">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="kicker">Kuidas töö käib</p>
+            <h2>Ei mingeid üllatusi. Tead alati, mis järgmiseks tuleb.</h2>
+          </div>
+          <div class="process-grid">
+            <ol class="steps">
+              <li><span>1</span><div><b>Kõne</b><p>20 minutit. Räägime eesmärgist, mitte tehnikast.</p><em>Päev 1</em></div></li>
+              <li><span>2</span><div><b>Pakkumine</b><p>Fikseeritud hind ja ajakava kirjalikult. Hind ei muutu.</p><em>2 päeva</em></div></li>
+              <li><span>3</span><div><b>Disain</b><p>Näed kõiki vaateid ja annad tagasisidet enne arendust.</p><em>1–2 nädalat</em></div></li>
+              <li><span>4</span><div><b>Ehitus ja avamine</b><p>Arendus, SEO, testimine ja üleandmine koos õpetusega.</p><em>2–4 nädalat</em></div></li>
+            </ol>
+            <figure class="process-photo">
+              <Image src={sketch} alt="Kodulehe paigutuse visand paberil sülearvuti kõrval" widths={[400, 760]} sizes="(max-width: 960px) 92vw, 34vw" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING ANCHOR -->
+      <section class="pricing" id="hinnad">
+        <div class="wrap">
+          <div class="sec-head">
+            <p class="kicker">Hinnad</p>
+            <h2>Selge hind enne, kui midagi alustame.</h2>
+          </div>
+          <div class="price-grid">
+            <div class="price">
+              <h3>Koduleht</h3>
+              <p class="amt"><small>alates</small> 900 €</p>
+              <p>Ettevõtte koduleht kuni 6 lehega, disain, SEO ja kontaktvorm.</p>
+            </div>
+            <div class="price">
+              <h3>Arendusprojekt</h3>
+              <p class="amt"><small>alates</small> 2 500 €</p>
+              <p>Kinnisvaraarenduse leht korterivaliku, plaanide ja päringutega.</p>
+            </div>
+            <div class="price">
+              <h3>Automatiseerimine</h3>
+              <p class="amt"><small>alates</small> 800 €</p>
+              <p>Üks protsess audit + lahendus, mis säästab iga nädal tunde.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA + FORM -->
+      <section class="cta" id="kontakt">
+        <div class="wrap cta-grid">
+          <div>
+            <h2>Räägime sinu projektist.</h2>
+            <p>Kirjuta paar lauset. Vastame ühe tööpäeva jooksul ja pakume aega lühikeseks kõneks. Kohustusi pole.</p>
+            <p class="direct">Või kirjuta otse: <a href="mailto:info@drealm.ee">info@drealm.ee</a></p>
+          </div>
+          <form class="form" method="post" action="/api/contact.php" data-form>
+            <input type="hidden" name="lang" value="et" />
+            <input type="hidden" name="page" value="/uus" />
+            <input type="hidden" name="service" value="Avalehe päring" />
+            <input type="hidden" name="ts" value="" data-ts />
+            <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+            <label>Nimi<input name="name" required autocomplete="name" maxlength="120" /></label>
+            <label>E-post<input type="email" name="email" required autocomplete="email" maxlength="160" /></label>
+            <label>Millest räägime?<textarea name="message" rows="4" required maxlength="5000"></textarea></label>
+            <button class="btn btn-light" type="submit">Saada päring</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot-inner">
+        <Logo />
+        <span>Veebistuudio · Tallinn</span>
+        <a href="mailto:info@drealm.ee">info@drealm.ee</a>
+      </div>
+    </footer>
+
+    <script>
+      // Design view tabs
+      document.querySelectorAll<HTMLButtonElement>('.tabs [data-view]').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const root = tab.closest('.svc-visual')!;
+          root.querySelectorAll('.tabs [data-view]').forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
+          root.querySelectorAll<HTMLElement>('.view').forEach((v) => v.classList.toggle('is-active', v.dataset.view === tab.dataset.view));
+        });
+      });
+
+      // Floor plan <-> table highlight
+      const plan = document.querySelector('.mock-re');
+      plan?.querySelectorAll<HTMLElement>('[data-unit]').forEach((el) => {
+        const id = el.dataset.unit;
+        const on = (v: boolean) => plan.querySelectorAll(`[data-unit="${id}"]`).forEach((x) => x.classList.toggle('hl', v));
+        el.addEventListener('mouseenter', () => on(true));
+        el.addEventListener('mouseleave', () => on(false));
+      });
+
+      // AI flow: light up steps in sequence
+      const flow = document.querySelector('[data-flow]');
+      if (flow && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let step = 0;
+        setInterval(() => {
+          flow.querySelectorAll<HTMLElement>('[data-step]').forEach((s) => s.classList.toggle('lit', Number(s.dataset.step) <= step));
+          step = step >= 3 ? 0 : step + 1;
+        }, 1100);
+      } else {
+        flow?.querySelectorAll('[data-step]').forEach((s) => s.classList.add('lit'));
+      }
+
+      // Contact form
+      document.querySelectorAll<HTMLFormElement>('[data-form]').forEach((form) => {
+        form.querySelector<HTMLInputElement>('[data-ts]')!.value = String(Date.now());
+        const status = form.querySelector('.form-status')!;
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (!form.reportValidity()) return;
+          const btn = form.querySelector('button')!;
+          btn.disabled = true;
+          try {
+            const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+            if (!res.ok) throw new Error();
+            form.reset();
+            status.textContent = 'Aitäh! Vastame ühe tööpäeva jooksul.';
+          } catch {
+            status.textContent = 'Saatmine ebaõnnestus. Kirjuta palun info@drealm.ee';
+          } finally {
+            btn.disabled = false;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #f4efe7;
+    --paper: #fbf8f3;
+    --ink: #171511;
+    --ink-2: #3a342c;
+    --muted: #776c60;
+    --line: #ddd3c5;
+    --dark: #151410;
+    --dark-2: #22201b;
+    --on-dark: #f1ebe1;
+    --on-dark-2: #a99f91;
+    --olive: #3f4a32;
+    --clay: #a85f35;
+    --serif: 'Fraunces Variable', Georgia, serif;
+    --sans: 'Instrument Sans Variable', system-ui, -apple-system, sans-serif;
+    --wrap: 1240px;
+    --pad: clamp(16px, 4vw, 48px);
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 17px/1.6 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  a {
+    color: inherit;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--serif);
+    font-weight: 380;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 0;
+  }
+  .wrap {
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+  .kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1.2rem;
+  }
+
+  /* buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.95rem 1.5rem;
+    border-radius: 999px;
+    font: 500 0.98rem/1 var(--sans);
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .btn-sm {
+    padding: 0.7rem 1.15rem;
+    font-size: 0.9rem;
+  }
+  .btn-dark {
+    background: var(--ink);
+    color: var(--on-dark);
+  }
+  .btn-dark:hover {
+    background: var(--olive);
+  }
+  .btn-line {
+    border-color: var(--ink);
+  }
+  .btn-line:hover {
+    background: var(--ink);
+    color: var(--on-dark);
+  }
+  .btn-light {
+    background: var(--on-dark);
+    color: var(--ink);
+  }
+  .btn-light:hover {
+    background: #fff;
+  }
+
+  /* nav */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 72px;
+  }
+  .nav nav {
+    display: flex;
+    gap: 1.8rem;
+    margin-left: auto;
+    font-size: 0.95rem;
+  }
+  .nav nav a {
+    text-decoration: none;
+    color: var(--ink-2);
+  }
+  .nav nav a:hover {
+    color: var(--ink);
+  }
+
+  /* device frames */
+  .browser {
+    background: var(--paper);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 rgba(0, 0, 0, 0.04),
+      0 30px 60px -30px rgba(30, 22, 12, 0.35);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .browser.dark {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 12px;
+    background: #ebe4d9;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+  .browser-bar i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #d3c8b8;
+  }
+  .browser-bar span {
+    margin: 0 auto;
+    font-size: 0.72rem;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.6);
+    padding: 3px 14px;
+    border-radius: 6px;
+    transform: translateX(-18px);
+  }
+  .phone {
+    border-radius: 28px;
+    border: 7px solid #151410;
+    overflow: hidden;
+    background: #151410;
+    box-shadow: 0 30px 60px -20px rgba(30, 22, 12, 0.45);
+  }
+
+  /* hero */
+  .hero {
+    padding: clamp(48px, 7vw, 96px) 0 clamp(64px, 8vw, 120px);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 5.4vw, 4.9rem);
+  }
+  .hero-lead {
+    font-size: 1.15rem;
+    color: var(--ink-2);
+    max-width: 34rem;
+    margin: 1.6rem 0 2rem;
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .assure {
+    list-style: none;
+    padding: 0;
+    margin: 1.8rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .assure li::before {
+    content: '✓';
+    color: var(--olive);
+    margin-right: 0.45rem;
+  }
+  .hero-visual {
+    position: relative;
+    padding: 0 0 12% 0;
+  }
+  .hero-browser img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+  .hero-phone {
+    position: absolute;
+    right: -3%;
+    bottom: 0;
+    width: 27%;
+  }
+  .hero-phone img {
+    aspect-ratio: 9 / 19;
+    object-fit: cover;
+    object-position: top;
+  }
+  .toast {
+    position: absolute;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    background: var(--paper);
+    border-radius: 14px;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 20px 40px -18px rgba(30, 22, 12, 0.4);
+    font-size: 0.82rem;
+    line-height: 1.35;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .toast strong {
+    display: block;
+    font-weight: 600;
+  }
+  .toast span:not(.dot):not(.spark) {
+    color: var(--muted);
+  }
+  .toast-lead {
+    left: -6%;
+    bottom: 22%;
+  }
+  .toast-ai {
+    left: 14%;
+    bottom: 2%;
+  }
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4f8a4b;
+    box-shadow: 0 0 0 4px rgba(79, 138, 75, 0.18);
+    flex: none;
+  }
+  .spark {
+    color: var(--clay);
+    font-size: 1.1rem;
+  }
+
+  /* statement */
+  .statement {
+    background: var(--dark);
+    color: var(--on-dark);
+    padding: clamp(72px, 10vw, 140px) 0;
+  }
+  .statement .big {
+    font-family: var(--serif);
+    font-variation-settings: 'opsz' 144;
+    font-weight: 340;
+    font-size: clamp(1.8rem, 3.6vw, 3.2rem);
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    max-width: 22em;
+    margin: 0;
+  }
+  .statement em {
+    font-style: normal;
+    color: #d39a73;
+  }
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: clamp(48px, 6vw, 88px);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    padding-top: 2rem;
+  }
+  .stat-row b {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .stat-row span {
+    color: var(--on-dark-2);
+    font-size: 0.97rem;
+  }
+
+  /* services */
+  .services {
+    padding: clamp(80px, 10vw, 150px) 0;
+  }
+  .sec-head {
+    max-width: 44rem;
+    margin-bottom: clamp(48px, 6vw, 88px);
+  }
+  .sec-head h2 {
+    font-size: clamp(2.1rem, 4vw, 3.4rem);
+  }
+  .sec-lead {
+    margin: 1.2rem 0 0;
+    font-size: 1.1rem;
+  }
+  .svc {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: center;
+    padding: clamp(48px, 6vw, 88px) 0;
+    border-top: 1px solid var(--line);
+  }
+  .svc-alt {
+    grid-template-columns: 1.25fr 0.75fr;
+  }
+  .svc-alt .svc-copy {
+    order: 2;
+  }
+  .num {
+    font-size: 0.85rem;
+    color: var(--clay);
+    letter-spacing: 0.08em;
+  }
+  .svc h3 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    margin: 0.6rem 0 1rem;
+  }
+  .svc-copy > p {
+    color: var(--ink-2);
+  }
+  .ticks {
+    list-style: none;
+    padding: 0;
+    margin: 1.4rem 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .ticks li {
+    padding-left: 1.6rem;
+    position: relative;
+  }
+  .ticks li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.9rem;
+    height: 1px;
+    background: var(--ink);
+  }
+  .from {
+    color: var(--muted);
+    margin: 0;
+  }
+  .from b {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .concept-note {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin: 0.9rem 0 0;
+    text-align: right;
+  }
+
+  /* tabs + views */
+  .tabs {
+    display: inline-flex;
+    gap: 4px;
+    padding: 4px;
+    background: #e8e0d3;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+  .tabs button {
+    border: 0;
+    background: transparent;
+    font: 500 0.88rem var(--sans);
+    color: var(--ink-2);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .tabs button[aria-selected='true'] {
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  }
+  .view {
+    display: none;
+  }
+  .view.is-active {
+    display: block;
+    animation: view-in 0.35s ease;
+  }
+  @keyframes view-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  /* mock: restaurant desktop */
+  .mock {
+    font-family: var(--sans);
+  }
+  .mock-nord {
+    background: #f3eee6;
+    padding: 18px 22px 22px;
+    color: #1d1a15;
+  }
+  .mn-nav {
+    display: flex;
+    gap: 18px;
+    font-size: 11px;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .mn-nav b {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 15px;
+    margin-right: auto;
+  }
+  .mn-hero {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 18px;
+    align-items: stretch;
+  }
+  .mn-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+  .mn-text small,
+  .mn-row small,
+  .mm-field small {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8a7f71;
+  }
+  .mn-text h4 {
+    font-size: clamp(18px, 2.2vw, 28px);
+    line-height: 1.05;
+  }
+  .mn-btn {
+    align-self: flex-start;
+    display: inline-block;
+    background: #2a3022;
+    color: #f3eee6;
+    font-size: 10px;
+    padding: 7px 12px;
+    border-radius: 99px;
+  }
+  .mn-btn.ghost {
+    background: transparent;
+    color: #2a3022;
+    border: 1px solid #2a3022;
+  }
+  .mn-img {
+    min-height: 170px;
+    border-radius: 4px;
+    background:
+      radial-gradient(120% 90% at 70% 20%, #e9b98b 0%, transparent 55%),
+      radial-gradient(90% 70% at 20% 90%, #4a3424 0%, transparent 60%),
+      linear-gradient(160deg, #7b5a3e, #2c2119);
+  }
+  .mn-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #dcd2c3;
+    font-size: 11px;
+  }
+
+  /* mock: mobile */
+  .phones {
+    display: flex;
+    gap: 6%;
+    justify-content: center;
+    padding: 8px 0;
+  }
+  .phone-ui {
+    width: 38%;
+  }
+  .mock-m {
+    background: #f3eee6;
+    aspect-ratio: 9 / 18;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #1d1a15;
+  }
+  .mm-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+  }
+  .mm-top b {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 13px;
+  }
+  .mm-img {
+    flex: 1;
+    max-height: 48%;
+    border-radius: 4px;
+    background:
+      radial-gradient(120% 90% at 70% 20%, #e9b98b 0%, transparent 55%),
+      linear-gradient(160deg, #7b5a3e, #2c2119);
+  }
+  .mock-m h4 {
+    font-size: 17px;
+    line-height: 1.08;
+  }
+  .mm-field {
+    background: #fff;
+    border: 1px solid #e2d9cb;
+    border-radius: 6px;
+    padding: 7px 9px;
+    font-size: 11px;
+  }
+  .mm-full {
+    align-self: stretch;
+    text-align: center;
+    margin-top: auto;
+  }
+
+  /* design system */
+  .system {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    background: var(--paper);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 30px 60px -30px rgba(30, 22, 12, 0.35);
+  }
+  .sys-type small {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sys-h {
+    font-family: var(--serif);
+    font-variation-settings: 'opsz' 144;
+    font-size: 72px;
+    line-height: 1;
+    margin: 4px 0 12px;
+  }
+  .sys-b {
+    margin: 4px 0 0;
+    font-size: 14px;
+  }
+  .sys-colors {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .sys-colors span {
+    border-radius: 6px;
+    min-height: 64px;
+    color: #f1ebe1;
+    display: flex;
+    align-items: flex-end;
+    padding: 8px;
+  }
+  .sys-colors em {
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+  .sys-comp {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .sys-comp .mm-field {
+    flex: 1;
+    min-width: 160px;
+  }
+
+  /* mock: real estate */
+  .mock-re {
+    background: #f7f3ed;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 16px;
+    align-items: center;
+  }
+  .plan {
+    width: 100%;
+  }
+  .plan-outline {
+    fill: none;
+    stroke: #1d1a15;
+    stroke-width: 2;
+  }
+  .units rect {
+    fill: #ece4d7;
+    stroke: #1d1a15;
+    stroke-width: 1;
+    transition: fill 0.2s;
+    cursor: pointer;
+  }
+  .units rect.hl {
+    fill: #c98a5f;
+  }
+  .core {
+    fill: #ddd3c4;
+    stroke: #1d1a15;
+  }
+  .labels text {
+    font: 600 12px var(--sans);
+    text-anchor: middle;
+    fill: #1d1a15;
+    pointer-events: none;
+  }
+  .labels .core-t {
+    font-weight: 400;
+    font-size: 10px;
+    fill: #776c60;
+  }
+  .units-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .units-table th {
+    text-align: left;
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8a7f71;
+    padding: 0 6px 6px;
+    border-bottom: 1px solid #ddd3c5;
+  }
+  .units-table td {
+    white-space: nowrap;
+    padding: 8px 6px;
+    border-bottom: 1px solid #ebe3d6;
+  }
+  .units-table tr {
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .units-table tr.hl {
+    background: #efe2d4;
+  }
+  .badge {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 99px;
+  }
+  .badge.free {
+    background: #dfe8d6;
+    color: #33502a;
+  }
+  .badge.held {
+    background: #f1e2c9;
+    color: #7a5420;
+  }
+  .badge.sold {
+    background: #e7e1d9;
+    color: #8a7f71;
+  }
+
+  /* AI flow */
+  .flow {
+    background: var(--dark);
+    border-radius: 14px;
+    padding: clamp(20px, 3vw, 36px);
+    color: var(--on-dark);
+    display: grid;
+    gap: 0;
+  }
+  .flow-step {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+    background: var(--dark-2);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    opacity: 0.4;
+    transition:
+      opacity 0.4s,
+      border-color 0.4s;
+  }
+  .flow-step.lit {
+    opacity: 1;
+    border-color: rgba(211, 154, 115, 0.5);
+  }
+  .flow-step strong {
+    display: block;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .flow-step small {
+    color: var(--on-dark-2);
+    font-size: 0.8rem;
+  }
+  .ico {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    color: #d39a73;
+    flex: none;
+  }
+  .flow-line {
+    width: 1px;
+    height: 22px;
+    margin-left: 33px;
+    background: rgba(255, 255, 255, 0.18);
+  }
+  .flow-split {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .flow-split .flow-step {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* work */
+  .work {
+    background: var(--dark);
+    color: var(--on-dark);
+    padding: clamp(80px, 10vw, 150px) 0;
+  }
+  .sec-head.light .kicker,
+  .sec-head.light .sec-lead {
+    color: var(--on-dark-2);
+  }
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: end;
+  }
+  .work-side dl {
+    margin: 0 0 2rem;
+  }
+  .work-side dl div {
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .work-side dt {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--on-dark-2);
+  }
+  .work-side dd {
+    margin: 0.3rem 0 0;
+  }
+
+  /* process */
+  .process {
+    padding: clamp(80px, 10vw, 150px) 0;
+  }
+  .process-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+  }
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .steps li {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .steps li > span {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    color: var(--clay);
+    line-height: 1;
+  }
+  .steps b {
+    font-weight: 500;
+    font-size: 1.15rem;
+  }
+  .steps p {
+    margin: 0.3rem 0;
+    color: var(--ink-2);
+  }
+  .steps em {
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .process-photo {
+    margin: 0;
+  }
+  .process-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  /* pricing */
+  .pricing {
+    padding: 0 0 clamp(80px, 10vw, 150px);
+  }
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--ink);
+  }
+  .price {
+    padding: 2rem 2rem 0 0;
+  }
+  .price + .price {
+    padding-left: 2rem;
+    border-left: 1px solid var(--line);
+  }
+  .price h3 {
+    font-size: 1.5rem;
+  }
+  .amt {
+    font-family: var(--serif);
+    font-variation-settings: 'opsz' 144;
+    font-size: clamp(2.2rem, 3.6vw, 3rem);
+    letter-spacing: -0.02em;
+    margin: 0.8rem 0;
+    line-height: 1;
+  }
+  .amt small {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+  .price p:last-child {
+    color: var(--ink-2);
+    margin: 0;
+  }
+
+  /* cta */
+  .cta {
+    background: var(--olive);
+    color: var(--on-dark);
+    padding: clamp(80px, 10vw, 140px) 0;
+  }
+  .cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 6vw, 96px);
+  }
+  .cta h2 {
+    font-size: clamp(2.4rem, 4.6vw, 4rem);
+    margin-bottom: 1.4rem;
+  }
+  .cta p {
+    color: #d7d6c6;
+    max-width: 30rem;
+  }
+  .direct a {
+    color: var(--on-dark);
+  }
+  .form {
+    display: grid;
+    gap: 1rem;
+  }
+  .form label {
+    display: grid;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    color: #d7d6c6;
+  }
+  .form input,
+  .form textarea {
+    font: inherit;
+    color: var(--on-dark);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+  }
+  .form input:focus,
+  .form textarea:focus {
+    outline: 2px solid #d39a73;
+    outline-offset: 1px;
+  }
+  .form button {
+    justify-self: start;
+  }
+  .hp {
+    position: absolute;
+    left: -9999px;
+  }
+  .form-status {
+    margin: 0;
+    min-height: 1.4em;
+  }
+
+  /* footer */
+  .foot {
+    background: var(--dark);
+    color: var(--on-dark-2);
+    padding: 2.4rem 0;
+    font-size: 0.9rem;
+  }
+  .foot-inner {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .foot-inner .logo {
+    color: var(--on-dark);
+    height: 1.1rem;
+  }
+  .foot-inner a {
+    margin-left: auto;
+  }
+
+  /* responsive */
+  @media (max-width: 960px) {
+    .nav nav {
+      display: none;
+    }
+    .nav-inner .btn {
+      margin-left: auto;
+    }
+    .hero-grid,
+    .svc,
+    .work-grid,
+    .process-grid,
+    .cta-grid {
+      grid-template-columns: 1fr;
+    }
+    .svc-alt {
+      grid-template-columns: 1fr;
+    }
+    .svc-alt .svc-copy {
+      order: 0;
+    }
+    .stat-row,
+    .price-grid {
+      grid-template-columns: 1fr;
+    }
+    .price,
+    .price + .price {
+      padding: 1.6rem 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .toast-lead {
+      left: 0;
+    }
+    .process-photo img {
+      aspect-ratio: 4 / 3;
+    }
+  }
+  @media (max-width: 600px) {
+    body {
+      font-size: 16px;
+    }
+    .mock-re {
+      grid-template-columns: 1fr;
+    }
+    .flow-split {
+      grid-template-columns: 1fr;
+    }
+    .toast {
+      font-size: 0.74rem;
+      padding: 0.6rem 0.8rem;
+    }
+    .toast-ai {
+      display: none;
+    }
+    .system {
+      grid-template-columns: 1fr;
+    }
+    .mn-hero {
+      grid-template-columns: 1fr;
+    }
+    .mn-img {
+      min-height: 110px;
+    }
+    .hero-cta .btn {
+      flex: 1 1 100%;
+    }
+  }
+</style>

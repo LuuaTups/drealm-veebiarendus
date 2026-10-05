@@ -8,6 +8,7 @@ export default defineConfig({
   build: { format: 'file' },
   integrations: [
     sitemap({
+      filter: (page) => !page.includes('/uus'),
       i18n: {
         defaultLocale: 'et',
         locales: { et: 'et-EE', en: 'en' },
