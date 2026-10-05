@@ -12,7 +12,7 @@ const { lang, preselect } = Astro.props;
 const f = UI[lang].form;
 ---
 
-<form class="form" method="post" action="/api/contact" data-contact-form novalidate>
+<form class="form" method="post" action="/api/contact.php" data-contact-form novalidate>
   <input type="hidden" name="lang" value={lang} />
   <input type="hidden" name="page" value={Astro.url.pathname} />
   <input type="hidden" name="ts" value="" data-ts />

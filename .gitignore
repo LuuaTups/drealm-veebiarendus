@@ -6,3 +6,5 @@ dist
 .env.*
 !.env.example
 .DS_Store
+public/api/config.php
+.env.deploy

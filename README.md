@@ -2,7 +2,7 @@
 
 SEO-optimeeritud teenuste veebileht: kodulehed, kinnisvara veebilehed ja AI-automatiseerimine. Eesti + inglise keel.
 
-**Tehnoloogia:** [Astro](https://astro.build) (staatiline sait) + üks serverless-funktsioon päringuvormi jaoks, majutus Vercelis.
+**Tehnoloogia:** [Astro](https://astro.build) (täiesti staatiline sait) + PHP päringuvorm, majutus ja e-post Zone'is.
 
 ## Käivitamine
 
@@ -10,6 +10,7 @@ SEO-optimeeritud teenuste veebileht: kodulehed, kinnisvara veebilehed ja AI-auto
 npm install
 npm run dev      # http://localhost:4321
 npm run build
+npm run deploy   # build + rsync Zone'i serverisse
 ```
 
 ## Struktuur
@@ -21,15 +22,16 @@ npm run build
 | `src/content/blog/{et,en}/*.md` | Blogipostitused (sama `translationKey` seob keeled) |
 | `src/views/*.astro` | Lehemallid (avaleht, hinnad, tööd jne) |
 | `src/pages/` | URL-id (õhukesed failid, mis kasutavad vaateid) |
-| `src/pages/api/contact.ts` | Päringuvorm → e-post (Resend) |
+| `public/api/contact.php` | Päringuvorm → e-post (Zone'i meil, PHP `mail()`) |
+| `public/.htaccess` | https, www → apex, puhtad URL-id, vahemälu |
 
-## Keskkonnamuutujad (Vercel → Settings → Environment Variables)
+## Zone'i seadistus
 
-| Muutuja | Näide |
+| Fail | Sisu |
 |---|---|
-| `RESEND_API_KEY` | `re_…` (resend.com) |
-| `LEAD_EMAIL` | aadress, kuhu päringud saabuvad |
-| `LEAD_FROM` | `drealm <noreply@drealm.ee>` (pärast domeeni kinnitamist Resendis) |
+| `.env.deploy` (pole gitis) | `ZONE_SSH=virtXXXXX@drealm.ee`, `ZONE_PATH=domeenid/www.drealm.ee/htdocs` |
+| `~/.ssh/drealm_zone` | Deploy SSH-võti; avalik võti lisatud Zone'i paneeli |
+| serveris `api/config.php` | Päringute saaja ja saatja (vt `public/api/config.example.php`) |
 
 ## SEO
 
