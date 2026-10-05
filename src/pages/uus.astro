@@ -196,13 +196,14 @@ const units = [
           <div class="reel-track">
             {
               [0, 1].map((copy) =>
-                menu.flatMap((g) =>
+                menu.flatMap((g, gi) =>
                   g.items.map((it) => (
                     <a class="card" href={`#${it.id}`} tabindex={copy ? -1 : undefined} aria-hidden={copy ? 'true' : undefined}>
                       <Image src={photos[it.id]} alt="" widths={[360, 560, 720]} sizes="(max-width: 640px) 70vw, 340px" loading={copy ? 'lazy' : 'eager'} />
                       <span class="card-meta">
-                        <small>{g.group}</small>
+                        <small><em>{String(services.indexOf(it.name) + 1).padStart(2, '0')}</em>{g.group}</small>
                         <b>{it.name}</b>
+                        <span class="card-go">Vaata <Icon name="arrow" size={16} /></span>
                       </span>
                       <span class="card-ic"><Icon name={it.icon} size={20} /></span>
                     </a>
@@ -1213,7 +1214,7 @@ const units = [
   .card {
     position: relative;
     display: block;
-    width: clamp(240px, 24vw, 340px);
+    width: clamp(260px, 26vw, 370px);
     aspect-ratio: 4 / 5;
     overflow: hidden;
     color: var(--on-dark);
@@ -1230,33 +1231,63 @@ const units = [
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(10, 9, 7, 0) 45%, rgba(10, 9, 7, 0.78));
+    background: linear-gradient(180deg, rgba(10, 9, 7, 0) 30%, rgba(10, 9, 7, 0.55) 60%, rgba(10, 9, 7, 0.92));
   }
   .card:hover img {
     transform: scale(1.06);
   }
   .card-meta {
     position: absolute;
-    left: 20px;
-    right: 20px;
-    bottom: 18px;
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
     z-index: 1;
   }
   .card-meta small {
-    display: block;
-    font-size: 0.7rem;
-    letter-spacing: 0.16em;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--clay-l);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.7rem;
+  }
+  .card-meta small em {
+    font-style: normal;
+    color: var(--on-dark);
+    padding-right: 0.7rem;
+    border-right: 1px solid rgba(241, 235, 225, 0.35);
   }
   .card-meta b {
+    display: block;
     font-family: var(--serif);
-    font-variation-settings: 'opsz' 144;
-    font-weight: 380;
-    font-size: clamp(1.5rem, 2vw, 1.9rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0;
+    font-weight: 420;
+    font-size: clamp(2.1rem, 2.9vw, 2.9rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  }
+  .card-go {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(241, 235, 225, 0.3);
+    font-size: 0.85rem;
+    opacity: 0.75;
+    transition: opacity 0.3s;
+  }
+  .card-go .icon {
+    transition: transform 0.35s var(--ease);
+  }
+  .card:hover .card-go {
+    opacity: 1;
+  }
+  .card:hover .card-go .icon {
+    transform: translateX(4px);
   }
   .card-ic {
     position: absolute;
@@ -1330,7 +1361,8 @@ const units = [
     border-color: transparent;
   }
   .tile header h3 {
-    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    letter-spacing: -0.035em;
     margin: 0.5rem 0 0.35rem;
   }
   .tile header p {
