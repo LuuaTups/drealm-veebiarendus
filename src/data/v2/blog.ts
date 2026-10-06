@@ -13,6 +13,8 @@ export const POST_SERVICE: Record<string, string> = {
   website: 'veebilehed',
   development: 'platvormid',
   'ai-automation': 'automatiseerimine',
+  'local-seo': 'seo',
+  'meta-ads': 'meta',
 };
 
 export async function getPosts(lang: Lang) {
