@@ -3500,3 +3500,14 @@ dd {
     -webkit-text-fill-color: #fff;
   }
 }
+@media (min-width: 901px) {
+  .grad {
+    background: linear-gradient(90deg, var(--ink) 82%, rgba(27, 2, 0, 0.6));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .sec-head h2.grad {
+    display: inline-block;
+  }
+}
