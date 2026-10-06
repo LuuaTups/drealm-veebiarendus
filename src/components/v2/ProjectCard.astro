@@ -1,7 +1,7 @@
 ---
 import Icon from '../mock/Icon.astro';
 import ProjectShot from './ProjectShot.astro';
-import { projHref, type Project } from '../../data/v2/projects';
+import { pName, projHref, type Project } from '../../data/v2/projects';
 import type { Lang } from '../../data/v2/services';
 import { UI } from '../../data/v2/ui';
 
@@ -18,7 +18,7 @@ const c = p[lang];
   <ProjectShot p={p} lang={lang} compact />
   <div class="proj-meta">
     <span class="tag">{c.type}{p.own && ` · ${t.ownProject}`}</span>
-    <h3>{p.name}</h3>
+    <h3>{pName(p, lang)}</h3>
     <p>{c.lead}</p>
     <span class="tile-more">{t.see} <Icon name="arrow" size={15} /></span>
   </div>

@@ -1,7 +1,7 @@
 ---
 import V2 from '../../layouts/V2.astro';
 import ProjectCard from '../../components/v2/ProjectCard.astro';
-import { PROJECTS, projHref } from '../../data/v2/projects';
+import { PROJECTS, pName, projHref } from '../../data/v2/projects';
 import type { Lang } from '../../data/v2/services';
 import { ROUTES, SITE_URL, UI, r } from '../../data/v2/ui';
 
@@ -34,7 +34,7 @@ const jsonLd = [
     inLanguage: lang,
     mainEntity: {
       '@type': 'ItemList',
-      itemListElement: PROJECTS.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.name, url: new URL(projHref(p, lang), SITE_URL).href })),
+      itemListElement: PROJECTS.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: pName(p, lang), url: new URL(projHref(p, lang), SITE_URL).href })),
     },
   },
 ];

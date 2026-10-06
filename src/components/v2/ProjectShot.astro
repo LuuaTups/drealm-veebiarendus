@@ -1,7 +1,7 @@
 ---
 // Project visual: desktop screenshot in a browser frame + phone screenshot, or an app mock when no screenshot exists.
 import { Image } from 'astro:assets';
-import type { Project } from '../../data/v2/projects';
+import { pName, type Project } from '../../data/v2/projects';
 import type { Lang } from '../../data/v2/services';
 
 interface Props {
@@ -18,14 +18,18 @@ const desk = img(p.shots.desktop);
 const mob = img(p.shots.mobile);
 const host = p.url ? new URL(p.url).host : '';
 const load = eager ? 'eager' : 'lazy';
-const alt = lang === 'et' ? `${p.name} koduleht` : `${p.name} website`;
+const photo = img(p.shots.photo);
+const phones = (p.shots.phones ?? []).map(img).filter((x): x is ImageMetadata => Boolean(x));
+const name = pName(p, lang);
+const alt = lang === 'et' ? `${name}: ${p.et.type}` : `${name}: ${p.en.type}`;
+const illus = lang === 'et' ? 'Illustreeriv pilt' : 'Illustrative image';
 const N = {
   et: { today: 'Täna', kcal: 'kcal', protein: 'Valk', meal: 'Lõuna', mealName: 'Kanafilee, riis ja salat', snap: 'Pildista toitu', week: 'Nädala kokkuvõte', weekTxt: 'Valku said 6 päeval 7-st. Kalorid jäid kahel päeval eesmärgist liiga madalaks.' },
   en: { today: 'Today', kcal: 'kcal', protein: 'Protein', meal: 'Lunch', mealName: 'Chicken breast, rice and salad', snap: 'Snap your food', week: 'Weekly summary', weekTxt: 'You hit protein on 6 of 7 days. Calories were too low on two days.' },
 }[lang];
 ---
 
-<div class:list={['pshot', { compact, 'has-phone': mob || !desk }]}>
+<div class:list={['pshot', { compact, 'has-phone': mob }]}>
   {
     desk && (
       <div class="pshot-browser">
@@ -47,7 +51,26 @@ const N = {
     )
   }
   {
-    !desk && !mob && (
+    photo && (
+      <figure class="pshot-photo">
+        <Image src={photo} alt={alt} widths={[480, 800, 1200]} sizes={compact ? '(max-width: 960px) 92vw, 640px' : '(max-width: 960px) 92vw, 760px'} loading={load} />
+        {p.illustrative && <figcaption>{illus}</figcaption>}
+      </figure>
+    )
+  }
+  {
+    phones.length > 0 && (
+      <div class="pshot-phones">
+        {phones.map((ph, i) => (
+          <div class="pshot-phone static">
+            <Image src={ph} alt={i === 0 ? alt : ''} widths={[240, 400]} sizes="200px" loading={load} />
+          </div>
+        ))}
+      </div>
+    )
+  }
+  {
+    !desk && !mob && !photo && phones.length === 0 && (
       <div class="pshot-app" aria-hidden="true">
         <div class="nc-phone">
           <div class="nc-head">

@@ -4148,3 +4148,82 @@ dd {
     display: none;
   }
 }
+@media (max-width: 640px) {
+  .pains {
+    display: none;
+  }
+}
+.pshot-photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(27, 2, 0, 0.16);
+}
+.pshot-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+.pshot-photo figcaption {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(27, 2, 0, 0.6);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+.pshot-phones {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 14px;
+  aspect-ratio: 16 / 10;
+  padding: 18px 18px 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: linear-gradient(160deg, #241c1a, #120d0c);
+  border: 1px solid var(--line);
+}
+.pshot-phone.static {
+  position: static;
+  width: 34%;
+  max-width: 200px;
+  align-self: flex-end;
+  border-bottom: 0;
+  border-radius: 22px 22px 0 0;
+}
+.pshot-phone.static:nth-child(2) {
+  margin-bottom: -40px;
+}
+.pshot-phone.static img {
+  border-radius: 16px 16px 0 0;
+  aspect-ratio: 444 / 700;
+}
+@media (min-width: 1081px) {
+  .proj-grid:not(.n2):not(.one) > .proj-card:last-child:nth-child(3n + 1) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
+    gap: clamp(24px, 4vw, 56px);
+    padding: clamp(22px, 3vw, 36px);
+  }
+}
+.pshot-phones {
+  padding: 22px 22px 0;
+  gap: 18px;
+}
+.pshot-phone.static {
+  width: 40%;
+  max-width: 230px;
+}
+.pshot-phone.static:nth-child(2) {
+  margin-bottom: -60px;
+}
