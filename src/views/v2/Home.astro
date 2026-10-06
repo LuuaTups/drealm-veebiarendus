@@ -1,6 +1,4 @@
 ---
-import ProjectCard from '../../components/v2/ProjectCard.astro';
-import { PROJECTS } from '../../data/v2/projects';
 import V2 from '../../layouts/V2.astro';
 import Icon from '../../components/mock/Icon.astro';
 import ServiceMock from '../../components/v2/ServiceMock.astro';
@@ -103,25 +101,6 @@ const c = {
       </div>
     </div>
   </section>
-
-  {
-    PROJECTS.length > 0 && (
-      <section class="sv-sec home-work">
-        <div class="wrap">
-          <div class="sec-head">
-            <div>
-              <p class="chip">{t.work}</p>
-              <h2 class="h-md">{lang === 'et' ? 'Päris projektid, päriselt kasutusel.' : 'Real projects in real use.'}</h2>
-            </div>
-            <a class="link-arrow" href={r('work', lang)}>{t.allWork} <Icon name="arrow" size={16} /></a>
-          </div>
-          <div class:list={['proj-grid', { n2: PROJECTS.length === 2, one: PROJECTS.length === 1 }]}>
-            {PROJECTS.map((x) => <ProjectCard p={x} lang={lang} />)}
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   <section class="pains" aria-labelledby="pains-h">
     <div class="dark-card">
