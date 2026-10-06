@@ -47,7 +47,7 @@ const T = {
     okH: 'Aitäh! Päring on kohal.',
     okP: 'Vaatame selle üle ja vastame ühe tööpäeva jooksul. Kui on kiire, kirjuta info@drealm.ee.',
     fail: 'Saatmine ebaõnnestus. Kirjuta palun info@drealm.ee',
-    need: 'Palun kirjelda paari lausega, mida soovid.',
+    need: 'Vorm on tühi. Lisa sõnum või kontakt, et saaksime vastata.',
   },
   en: {
     steps: ['What you need', 'Tell us more', 'Contact'],
@@ -84,7 +84,7 @@ const T = {
     okH: 'Thank you! Your request is in.',
     okP: 'We’ll review it and reply within one working day. In a hurry? Email info@drealm.ee.',
     fail: 'Sending failed. Please email info@drealm.ee',
-    need: 'Please describe in a couple of sentences what you need.',
+    need: 'The form is empty. Add a message or a contact so we can reply.',
   },
 }[lang];
 ---
@@ -136,7 +136,7 @@ const T = {
       <legend>{T.s2h}</legend>
       <label class="ifield">
         <span>{T.msg}</span>
-        <textarea name="message" rows="5" required maxlength="5000" placeholder={T.msgPh}></textarea>
+        <textarea name="message" rows="5" maxlength="5000" placeholder={T.msgPh}></textarea>
       </label>
       <label class="ifield">
         <span>{T.url}</span>
@@ -174,8 +174,8 @@ const T = {
     <fieldset class="inq-step" data-step="2">
       <legend>{T.s3h}</legend>
       <div class="igrid">
-        <label class="ifield"><span>{T.name}</span><input name="name" required autocomplete="name" maxlength="120" placeholder={T.namePh} /></label>
-        <label class="ifield"><span>{T.email}</span><input name="email" type="email" required autocomplete="email" maxlength="160" placeholder={T.emailPh} /></label>
+        <label class="ifield"><span>{T.name}</span><input name="name" autocomplete="name" maxlength="120" placeholder={T.namePh} /></label>
+        <label class="ifield"><span>{T.email}</span><input name="email" type="email" autocomplete="email" maxlength="160" placeholder={T.emailPh} /></label>
         <label class="ifield"><span>{T.phone}</span><input name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder={T.phonePh} /></label>
         <label class="ifield"><span>{T.company}</span><input name="company" autocomplete="organization" maxlength="120" placeholder={T.companyPh} /></label>
       </div>
@@ -246,8 +246,6 @@ const T = {
     };
     const valid = (i: number) => {
       const fields = [...steps[i].querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea')];
-      const msg = form.elements.namedItem('message') as HTMLTextAreaElement;
-      if (i === 1 && msg.value.trim().length < 10) return flag(msg, root.dataset.need!);
       for (const f of fields) if (!f.checkValidity()) return flag(f, f.validationMessage);
       return true;
     };
@@ -272,6 +270,12 @@ const T = {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!valid(cur)) return;
+      const fd0 = new FormData(form);
+      const filled = ['message', 'name', 'email', 'phone', 'company', 'url', 'service'].some((k) => String(fd0.get(k) ?? '').trim() !== '');
+      if (!filled) {
+        status.textContent = root.dataset.need!;
+        return;
+      }
       submit.disabled = true;
       try {
         const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });

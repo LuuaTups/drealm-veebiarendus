@@ -60,7 +60,11 @@ if (field('type', 20) === 'audit') {
     $lead['message'] = "Palun tee tasuta ülevaade: $url";
 }
 
-if ($lead['name'] === '' || $lead['message'] === '' || !filter_var($lead['email'], FILTER_VALIDATE_EMAIL)) reply(false);
+// No required fields: accept anything that carries at least one real detail (an empty form is just noise)
+$hasEmail = (bool) filter_var($lead['email'], FILTER_VALIDATE_EMAIL);
+if ($lead['message'] === '' && $lead['name'] === '' && !$hasEmail && $lead['phone'] === '' && $lead['service'] === '' && $lead['company'] === '' && $lead['url'] === '') reply(false);
+if ($lead['message'] === '') $lead['message'] = '(sõnumit ei lisatud)';
+if (!$hasEmail && $lead['email'] !== '') $lead['message'] .= "\n\nE-post (vigane?): " . $lead['email'];
 
 $esc = fn(string $s) => htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 $isAudit = field('type', 20) === 'audit';
@@ -95,16 +99,16 @@ $html = '<div style="background:#ebe5db;padding:24px;font-family:-apple-system,S
     . '<div style="padding:24px 28px">'
     . '<p style="margin:0 0 18px;padding:14px 16px;background:#f3ece2;border-left:3px solid #a21e02;border-radius:8px;white-space:pre-wrap;font-size:15px;line-height:1.55;color:#1b0200">' . $esc($lead['message']) . '</p>'
     . "<table style=\"border-collapse:collapse\">$rows</table>"
-    . '<p style="margin:22px 0 0"><a href="mailto:' . $esc($lead['email']) . '?subject=' . rawurlencode('Re: ' . ($isAudit ? 'kodulehe ülevaade' : 'sinu päring drealmile')) . '" style="display:inline-block;background:#1b0200;color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-size:14px">Vasta ' . $esc($lead['name']) . '</a></p>'
+    . (!$hasEmail ? '' : '<p style="margin:22px 0 0"><a href="mailto:' . $esc($lead['email']) . '?subject=' . rawurlencode('Re: ' . ($isAudit ? 'kodulehe ülevaade' : 'sinu päring drealmile')) . '" style="display:inline-block;background:#1b0200;color:#fff;text-decoration:none;padding:12px 18px;border-radius:10px;font-size:14px">Vasta ' . $esc($lead['name'] ?: 'kliendile') . '</a></p>')
     . '</div></div></div>';
 
-$subject = ($isAudit ? 'Ülevaate soov: ' . $lead['url'] : 'Hinnapäring: ' . ($lead['service'] ?: 'üldine') . ' – ' . $lead['name']);
+$subject = ($isAudit ? 'Ülevaate soov: ' . $lead['url'] : 'Hinnapäring: ' . ($lead['service'] ?: 'üldine') . ' – ' . ($lead['name'] ?: ($lead['email'] ?: ($lead['phone'] ?: 'nimeta'))));
 $headers = [
     'MIME-Version' => '1.0',
     'Content-Type' => 'text/html; charset=UTF-8',
     'From' => $from,
-    'Reply-To' => $lead['email'],
 ];
+if ($hasEmail) $headers['Reply-To'] = $lead['email'];
 $envelopeFrom = preg_match('/<([^>]+)>/', $from, $m) ? $m[1] : $from;
 
 $ok = mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $html, $headers, '-f' . $envelopeFrom);
