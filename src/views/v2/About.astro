@@ -1,0 +1,214 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import V2 from '../../layouts/V2.astro';
+import Icon from '../../components/mock/Icon.astro';
+import { type Lang } from '../../data/v2/services';
+import { ROUTES, SITE_URL, UI, r } from '../../data/v2/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+
+// Team photo: drop the file at src/assets/photos/vennad.jpg and it appears automatically.
+const photos = import.meta.glob<{ default: ImageMetadata }>('../../assets/photos/vennad.{jpg,jpeg,png,webp}', { eager: true });
+const photo = Object.values(photos)[0]?.default;
+
+const c = {
+  et: {
+    title: 'Meist: Robin ja Karlos Rattasepp | drealm',
+    description: 'drealm on Tallinna digistuudio, mille taga on vennad Robin ja Karlos Rattasepp: arendus, disain ja AI ning turundus, strateegia ja äriarendus.',
+    chip: 'Meist',
+    h1: 'Kaks venda, üks eesmärk: sinu äri kasvab veebis.',
+    lead: 'drealm on Tallinna digistuudio, mille taga on vennad Robin ja Karlos Rattasepp. Robin ehitab ja automatiseerib, Karlos mõtleb, kuidas see sinu äris raha teenib.',
+    photoAlt: 'Robin ja Karlos Rattasepp',
+    caption: 'Robin ja Karlos Rattasepp',
+    peopleChip: 'Kes me oleme',
+    peopleH: 'Tegijad, kellega räägid otse.',
+    people: [
+      {
+        name: 'Robin Rattasepp',
+        role: 'Asutaja · arendus, disain ja AI',
+        icon: 'web',
+        text: 'Robin disainib ja ehitab veebilehti ning veebirakendusi algusest lõpuni ja viib ettevõtetes läbi AI-töötubasid. Tema vastutab selle eest, et kõik, mida lubame, ka päriselt töötab.',
+        skills: ['Veebilehed ja veebirakendused', 'Kasutajaliidese disain', 'AI-automatiseerimine', 'AI-töötoad ja koolitused'],
+      },
+      {
+        name: 'Karlos Rattasepp',
+        role: 'Turundus, strateegia ja äriarendus',
+        icon: 'target',
+        text: 'Karlos õpib Estonian Business Schoolis ärijuhtimist ja vastutab drealmis turunduse, strateegia ja äriarenduse eest. Tema küsib alati esimesena: mis on üks päring sulle väärt?',
+        skills: ['Turundusstrateegia', 'Reklaamikampaaniad', 'Hinnastamine ja finants', 'Äriarendus'],
+      },
+    ],
+    valuesChip: 'Kuidas me töötame',
+    valuesH: 'Põhimõtted, millest kinni peame.',
+    values: [
+      { icon: 'target', t: 'Äri enne tehnikat', d: 'Alustame sinu eesmärgist ja kliendist. Tehnoloogia valime alles siis, kui on selge, mida see peab saavutama.' },
+      { icon: 'doc', t: 'Fikseeritud hind', d: 'Hind on kirjas enne töö algust ja see ei muutu. Kui midagi lisandub, räägime enne, mitte arvel.' },
+      { icon: 'rank', t: 'Ausad numbrid', d: 'Raporteerime päringuid ja müüki, mitte laike ega näitamisi. Kui midagi ei tööta, ütleme seda.' },
+      { icon: 'check', t: 'Kõik jääb sinu omaks', d: 'Domeen, kood, sisu ja ligipääsud kuuluvad sulle. Võid meiega jätkata või mitte, valik on sinu.' },
+    ],
+    ctaH: 'Räägime, mida sinu äri vajab.',
+    ctaP: 'Kirjelda paari lausega ja vastame ühe tööpäeva jooksul.',
+  },
+  en: {
+    title: 'About: Robin and Karlos Rattasepp | drealm',
+    description: 'drealm is a digital studio in Tallinn run by brothers Robin and Karlos Rattasepp: development, design and AI, plus marketing, strategy and business development.',
+    chip: 'About',
+    h1: 'Two brothers, one goal: growing your business online.',
+    lead: 'drealm is a digital studio in Tallinn run by brothers Robin and Karlos Rattasepp. Robin builds and automates, Karlos works out how it makes money for your business.',
+    photoAlt: 'Robin and Karlos Rattasepp',
+    caption: 'Robin and Karlos Rattasepp',
+    peopleChip: 'Who we are',
+    peopleH: 'The people you talk to directly.',
+    people: [
+      {
+        name: 'Robin Rattasepp',
+        role: 'Founder · development, design and AI',
+        icon: 'web',
+        text: 'Robin designs and builds websites and web apps end to end and runs AI workshops for companies. He makes sure everything we promise actually works.',
+        skills: ['Websites and web apps', 'Interface design', 'AI automation', 'AI workshops and training'],
+      },
+      {
+        name: 'Karlos Rattasepp',
+        role: 'Marketing, strategy and business development',
+        icon: 'target',
+        text: 'Karlos studies business administration at Estonian Business School and leads marketing, strategy and business development at drealm. He always asks first: what is one enquiry worth to you?',
+        skills: ['Marketing strategy', 'Ad campaigns', 'Pricing and finance', 'Business development'],
+      },
+    ],
+    valuesChip: 'How we work',
+    valuesH: 'Principles we stick to.',
+    values: [
+      { icon: 'target', t: 'Business before tech', d: 'We start with your goal and your client. Technology comes once it’s clear what it must achieve.' },
+      { icon: 'doc', t: 'Fixed price', d: 'The price is agreed in writing before work starts and doesn’t change. If something is added, we talk first, not on the invoice.' },
+      { icon: 'rank', t: 'Honest numbers', d: 'We report enquiries and sales, not likes or impressions. If something doesn’t work, we say so.' },
+      { icon: 'check', t: 'Everything stays yours', d: 'Domain, code, content and access belong to you. Stay with us or don’t, it’s your choice.' },
+    ],
+    ctaH: 'Let’s talk about what your business needs.',
+    ctaP: 'Describe it in a couple of sentences and we’ll reply within one working day.',
+  },
+}[lang];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    url: new URL(r('about', lang), SITE_URL).href,
+    mainEntity: { '@id': `${SITE_URL}/#org` },
+  },
+  ...c.people.map((p) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: p.name,
+    jobTitle: p.role,
+    worksFor: { '@id': `${SITE_URL}/#org` },
+  })),
+];
+---
+
+<V2 lang={lang} title={c.title} description={c.description} alternates={{ et: ROUTES.about.et, en: ROUTES.about.en }} jsonLd={jsonLd}>
+  <section class="stage">
+    <div class="stage-card page-card">
+      <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>
+      <div class="sv-shade" aria-hidden="true"></div>
+      <div class="page-hero">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><span aria-current="page">{t.about}</span></nav>
+        <p class="chip on-dark"><Icon name="spark" size={14} />{c.chip}</p>
+        <h1 class="sv-h1 about-h1">{c.h1}</h1>
+        <p class="sv-lead">{c.lead}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-sec">
+    <div class="wrap">
+      <figure class="team-photo">
+        {
+          photo ? (
+            <Image src={photo} alt={c.photoAlt} widths={[640, 1024, 1600, 2200]} sizes="(max-width: 1280px) 92vw, 1200px" />
+          ) : (
+            <div class="team-ph" aria-hidden="true">
+              <span>R</span>
+              <span>K</span>
+            </div>
+          )
+        }
+        <figcaption><span class="dot"></span>{c.caption}</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sv-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="chip"><Icon name="chat" size={14} />{c.peopleChip}</p>
+          <h2 class="grad">{c.peopleH}</h2>
+        </div>
+      </div>
+      <div class="people">
+        {
+          c.people.map((p, i) => (
+            <article class:list={['person', { dark: i === 1 }]} data-glow>
+              <header>
+                <span class="ibox">
+                  <Icon name={p.icon as 'web' | 'target'} size={20} />
+                </span>
+                <div>
+                  <h3>{p.name}</h3>
+                  <p class="person-role">{p.role}</p>
+                </div>
+              </header>
+              <p class="person-text">{p.text}</p>
+              <ul>
+                {p.skills.map((s) => (
+                  <li>{s}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <p class="chip"><Icon name="check" size={14} />{c.valuesChip}</p>
+          <h2 class="grad">{c.valuesH}</h2>
+        </div>
+      </div>
+      <div class="values-grid">
+        {
+          c.values.map((v) => (
+            <div class="del-card" data-glow>
+              <span class="ibox">
+                <Icon name={v.icon as 'target'} size={20} />
+              </span>
+              <h3>{v.t}</h3>
+              <p>{v.d}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-sec sv-last">
+    <div class="wrap">
+      <div class="about-cta dark-card" data-glow>
+        <div>
+          <h2>{c.ctaH}</h2>
+          <p>{c.ctaP}</p>
+        </div>
+        <a class="cta-glow" href={r('contact', lang)}><span class="box"><Icon name="arrow" size={16} /></span>{t.askPrice}</a>
+      </div>
+    </div>
+  </section>
+</V2>

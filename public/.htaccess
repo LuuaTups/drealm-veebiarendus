@@ -24,7 +24,7 @@ RewriteRule ^veebirakenduse-arendus/?$ /teenused/platvormid/veebirakendus [R=301
 RewriteRule ^(ai-automatiseerimine|ai-kinnisvarale)/?$ /teenused/ai-automatiseerimine [R=301,L]
 RewriteRule ^ai-chatbot/?$ /teenused/ettevotte-ai/ai-klienditeenindaja [R=301,L]
 RewriteRule ^hinnad/?$ /teenused [R=301,L]
-RewriteRule ^(tood|tood/marmi-futerno|meist)/?$ / [R=301,L]
+RewriteRule ^(tood|tood/marmi-futerno)/?$ / [R=301,L]
 RewriteRule ^en/website-development/?$ /en/services/website-development/business-websites [R=301,L]
 RewriteRule ^en/ecommerce-development/?$ /en/services/website-development/online-stores [R=301,L]
 RewriteRule ^en/landing-page/?$ /en/services/website-development/landing-pages [R=301,L]
@@ -36,7 +36,7 @@ RewriteRule ^en/web-app-development/?$ /en/services/platforms/web-applications [
 RewriteRule ^en/(ai-automation|ai-for-real-estate)/?$ /en/services/ai-automation [R=301,L]
 RewriteRule ^en/ai-chatbot/?$ /en/services/company-ai/ai-customer-assistant [R=301,L]
 RewriteRule ^en/pricing/?$ /en/services [R=301,L]
-RewriteRule ^en/(work|work/marmi-futerno|about)/?$ /en [R=301,L]
+RewriteRule ^en/(work|work/marmi-futerno)/?$ /en [R=301,L]
 
 # /leht.html ja /leht/ → /leht
 RewriteCond %{THE_REQUEST} \s/([^?\s]*?)\.html[\s?] [NC]

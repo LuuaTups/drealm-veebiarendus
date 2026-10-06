@@ -66,7 +66,7 @@ const org = {
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
     {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
   </head>
-  <body>
+  <body id="top">
     <header class="nav" data-nav>
       <div class="nav-in">
         <a href={r('home', lang)} class="brand" aria-label={`drealm – ${t.home}`}><Logo /></a>
@@ -95,6 +95,7 @@ const org = {
             </div>
           </div>
           <a href="#ulevaade">{t.review}</a>
+          <a href={r('about', lang)} class:list={{ on: path === r('about', lang) }}>{t.about}</a>
           <a href={r('blog', lang)} class:list={{ on: path.startsWith(r('blog', lang)) }}>{t.blog}</a>
           <a href={r('contact', lang)} class:list={{ on: path === r('contact', lang) }}>{t.contact}</a>
         </nav>
@@ -111,6 +112,7 @@ const org = {
         <a href={r('services', lang)}>{t.services}</a>
         {services.map((s) => <a href={serviceHref(s, lang)} class="sub">{s.name}</a>)}
         <a href="#ulevaade">{t.review}</a>
+        <a href={r('about', lang)}>{t.about}</a>
         <a href={r('blog', lang)}>{t.blog}</a>
         <a href={r('contact', lang)}>{t.contact}</a>
         <a href={alternates[other]} hreflang={other}>{other === 'en' ? 'English' : 'Eesti keeles'}</a>
@@ -141,11 +143,13 @@ const org = {
           <Logo />
           <nav aria-label={t.footNav}>
             <a href={r('services', lang)}>{t.services}</a>
+            <a href={r('about', lang)}>{t.about}</a>
             <a href={r('blog', lang)}>{t.blog}</a>
             <a href={r('contact', lang)}>{t.contact}</a>
             <a href={r('privacy', lang)}>{t.privacy}</a>
           </nav>
           <span>{t.rights}</span>
+          <a class="to-top" href="#top">{lang === 'et' ? 'Üles' : 'Top'} <Icon name="up" size={14} /></a>
         </div>
       </div>
     </footer>

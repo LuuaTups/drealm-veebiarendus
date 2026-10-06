@@ -8,6 +8,7 @@ export const ROUTES = {
   home: { et: '/', en: '/en' },
   services: { et: '/teenused', en: '/en/services' },
   contact: { et: '/kontakt', en: '/en/contact' },
+  about: { et: '/meist', en: '/en/about' },
   blog: { et: '/blogi', en: '/en/blog' },
   privacy: { et: '/privaatsus', en: '/en/privacy' },
 } as const;
@@ -22,6 +23,7 @@ export const UI = {
     review: 'Tasuta ülevaade',
     blog: 'Blogi',
     contact: 'Kontakt',
+    about: 'Meist',
     privacy: 'Privaatsus',
     askPrice: 'Küsi hinda',
     menu: 'Ava menüü',
@@ -66,6 +68,7 @@ export const UI = {
     review: 'Free review',
     blog: 'Blog',
     contact: 'Contact',
+    about: 'About',
     privacy: 'Privacy',
     askPrice: 'Get a quote',
     menu: 'Open menu',
