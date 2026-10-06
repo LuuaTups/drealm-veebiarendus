@@ -222,7 +222,7 @@ const T = {
     root.classList.add('js');
     let cur = 0;
 
-    const show = (i: number) => {
+    const show = (i: number, scroll = true) => {
       cur = i;
       steps.forEach((s, k) => (s.hidden = k !== i));
       progress.forEach((p, k) => {
@@ -233,14 +233,22 @@ const T = {
       next.hidden = i === steps.length - 1;
       submit.hidden = i !== steps.length - 1;
       status.textContent = '';
+      // keep the new step in view (the step above may have been much taller)
+      if (scroll && root.getBoundingClientRect().top < 90) root.scrollIntoView({ block: 'start' });
+    };
+    const flag = (f: HTMLElement, msg: string) => {
+      status.textContent = msg;
+      f.scrollIntoView({ block: 'center' });
+      f.focus({ preventScroll: true });
+      f.classList.add('invalid');
+      f.addEventListener('input', () => f.classList.remove('invalid'), { once: true });
+      return false;
     };
     const valid = (i: number) => {
       const fields = [...steps[i].querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea')];
-      for (const f of fields) if (!f.checkValidity()) return f.reportValidity(), false;
-      if (i === 1 && (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim().length < 10) {
-        status.textContent = root.dataset.need!;
-        return false;
-      }
+      const msg = form.elements.namedItem('message') as HTMLTextAreaElement;
+      if (i === 1 && msg.value.trim().length < 10) return flag(msg, root.dataset.need!);
+      for (const f of fields) if (!f.checkValidity()) return flag(f, f.validationMessage);
       return true;
     };
     next.addEventListener('click', () => valid(cur) && show(cur + 1));
@@ -278,6 +286,6 @@ const T = {
         submit.disabled = false;
       }
     });
-    show(0);
+    show(0, false);
   });
 </script>

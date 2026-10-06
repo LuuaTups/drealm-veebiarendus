@@ -4613,3 +4613,13 @@ dd {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+[data-inq] {
+  scroll-margin-top: 100px;
+}
+[data-inq] .invalid {
+  border-color: #e0795a !important;
+  box-shadow: 0 0 0 3px rgba(224, 121, 90, 0.25);
+}
+[data-inq] .audit-status:not(:empty) {
+  color: #f2a48a;
+}
