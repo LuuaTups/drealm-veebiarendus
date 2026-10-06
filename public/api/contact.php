@@ -48,6 +48,16 @@ $lead = [
     'page' => field('page', 200),
 ];
 
+// Free website review request: only URL + email are asked
+if (field('type', 20) === 'audit') {
+    $url = field('url', 300);
+    if ($url === '') reply(false);
+    if (!preg_match('~^https?://~i', $url)) $url = 'https://' . $url;
+    $lead['service'] = 'Tasuta kodulehe ülevaade';
+    $lead['name'] = $lead['name'] ?: 'Ülevaate soov';
+    $lead['message'] = "Palun tee tasuta ülevaade: $url";
+}
+
 if ($lead['name'] === '' || $lead['message'] === '' || !filter_var($lead['email'], FILTER_VALIDATE_EMAIL)) reply(false);
 
 $esc = fn(string $s) => htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
