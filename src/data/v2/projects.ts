@@ -26,7 +26,7 @@ export interface Project {
   year: string;
   own: boolean;
   /** images in src/assets/projects: desktop+mobile screenshots, a single photo, or phone screenshots; empty → app mock */
-  shots: { desktop?: string; mobile?: string; photo?: string; phones?: string[] };
+  shots: { desktop?: string; mobile?: string; photo?: string; phones?: string[]; mock?: 'leads' | 'flow' | 'social' | 'shop' | 'terminal' };
   /** illustrative (AI-generated) photo rather than a real screenshot */
   illustrative?: boolean;
   /** don't list on service/solution pages */
@@ -289,8 +289,7 @@ export const PROJECTS: Project[] = [
     nameEn: 'AI lead generator',
     year: '2023',
     own: false,
-    shots: { photo: 'leads.png' },
-    illustrative: true,
+    shots: { mock: 'leads' },
     services: ['automatiseerimine', 'ettevotte-ai'],
     solutions: ['auto-paringud'],
     tech: ['n8n', 'OpenAI', 'Web scraping', 'SMTP', 'Discord webhooks'],
@@ -351,8 +350,7 @@ export const PROJECTS: Project[] = [
     nameEn: 'n8n automations',
     year: '2023–2026',
     own: false,
-    shots: { photo: 'n8n.png' },
-    illustrative: true,
+    shots: { mock: 'flow' },
     services: ['automatiseerimine', 'ettevotte-ai'],
     solutions: ['auto-paringud', 'auto-aruanded'],
     tech: ['n8n', 'OpenAI', 'Claude', 'CRM', 'SMTP', 'Docker', 'PostgreSQL'],
@@ -413,8 +411,7 @@ export const PROJECTS: Project[] = [
     nameEn: 'Social media robot',
     year: '2024',
     own: true,
-    shots: { photo: 'social.png' },
-    illustrative: true,
+    shots: { mock: 'social' },
     services: ['automatiseerimine', 'reklaampildid'],
     solutions: [],
     tech: ['n8n', 'OpenAI', 'Meta API'],
@@ -475,8 +472,7 @@ export const PROJECTS: Project[] = [
     nameEn: 'WordPress stores',
     year: '2018–2024',
     own: false,
-    shots: { photo: 'woo.png' },
-    illustrative: true,
+    shots: { mock: 'shop' },
     services: ['veebilehed'],
     solutions: [],
     tech: ['WordPress', 'WooCommerce', 'Montonio', 'PHP', 'Zone'],
@@ -598,8 +594,7 @@ export const PROJECTS: Project[] = [
     nameEn: 'Linux and IT courses',
     year: '2025',
     own: false,
-    shots: { photo: 'linux.png' },
-    illustrative: true,
+    shots: { mock: 'terminal' },
     services: ['koolitused'],
     solutions: [],
     tech: ['Linux', 'Bash', 'Git', 'Võrgud', 'Docker', 'AI tööriistad'],

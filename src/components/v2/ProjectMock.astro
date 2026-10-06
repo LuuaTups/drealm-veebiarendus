@@ -1,0 +1,161 @@
+---
+// Designed UI visuals for projects without a public screenshot (no generated photos).
+import type { Lang } from '../../data/v2/services';
+
+export type MockKind = 'leads' | 'flow' | 'social' | 'shop' | 'terminal';
+interface Props {
+  kind: MockKind;
+  lang: Lang;
+}
+const { kind, lang } = Astro.props;
+const et = lang === 'et';
+const T = {
+  leads: {
+    title: et ? 'Leadid' : 'Leads',
+    cols: et ? ['Ettevõte', 'Allikas', 'Skoor', 'Staatus'] : ['Company', 'Source', 'Score', 'Status'],
+    rows: [
+      ['Inforegister', 9, et ? 'Vastas' : 'Replied', 'ok'],
+      ['CV-Keskus', 8, et ? 'Kiri saadetud' : 'Email sent', 'sent'],
+      ['Google Maps', 7, et ? 'Kiri saadetud' : 'Email sent', 'sent'],
+      ['Äripäev', 8, et ? 'Ootel' : 'Queued', 'wait'],
+      ['LinkedIn', 6, et ? 'Kiri saadetud' : 'Email sent', 'sent'],
+      ['Inforegister', 9, et ? 'Ootel' : 'Queued', 'wait'],
+    ] as [string, number, string, string][],
+    w: [62, 48, 70, 55, 66, 44],
+  },
+  flow: {
+    nodes: et
+      ? ['Iga 15 min', 'Vali allikas', 'Leia kontakt', 'AI kirjutab', 'Saada kiri', 'CRM']
+      : ['Every 15 min', 'Pick source', 'Find contact', 'AI writes', 'Send email', 'CRM'],
+    side: et ? 'Teade Discordi' : 'Discord alert',
+    title: et ? 'Müügi töövoog' : 'Sales workflow',
+    live: et ? 'Aktiivne' : 'Active',
+  },
+  social: {
+    title: et ? 'Sel nädalal' : 'This week',
+    auto: et ? 'Automaatne postitus' : 'Auto-post',
+    tag: et ? 'Ajastatud' : 'Scheduled',
+    days: et ? ['E', 'T', 'K', 'N', 'R', 'L'] : ['M', 'T', 'W', 'T', 'F', 'S'],
+  },
+  shop: {
+    title: et ? 'Planeerijad ja kalendrid' : 'Planners and calendars',
+    add: et ? 'Lisa korvi' : 'Add to cart',
+    items: [
+      ['#c9a77c', '24 €'],
+      ['#9fb5a0', '22 €'],
+      ['#d8c3a5', '18 €'],
+      ['#b7a3c7', '22 €'],
+      ['#e2b49a', '16 €'],
+      ['#a9bccd', '24 €'],
+    ],
+  },
+  terminal: [
+    ['$', 'ssh opilane@linux-labor'],
+    ['$', 'sudo apt update && sudo apt upgrade -y'],
+    ['', 'Reading package lists... Done'],
+    ['$', 'ls -la /var/log | head -4'],
+    ['', 'drwxrwxr-x  12 root syslog  4096 auth.log'],
+    ['$', 'systemctl status nginx'],
+    ['ok', '● nginx.service - active (running)'],
+    ['$', 'chmod 750 varundus.sh && ./varundus.sh'],
+    ['ok', '✓ varukoopia valmis: /backup/2026-10-06.tar.gz'],
+    ['$', ''],
+  ] as [string, string][],
+};
+---
+
+<div class:list={['pm', `pm-${kind}`]} aria-hidden="true">
+  {
+    kind === 'leads' && (
+      <div class="pm-win light">
+        <div class="pm-bar"><i /><i /><i /><span>{T.leads.title}</span></div>
+        <div class="pm-table">
+          <div class="pm-tr head">{T.leads.cols.map((c) => <span>{c}</span>)}</div>
+          {T.leads.rows.map(([src, score, status, st], i) => (
+            <div class="pm-tr">
+              <span><b class="pm-skel" style={`width:${T.leads.w[i]}%`} /></span>
+              <span class="pm-src">{src}</span>
+              <span><em class:list={['pm-score', { hi: score >= 8 }]}>{score}</em></span>
+              <span><em class:list={['pm-pill', st]}>{status}</em></span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+  {
+    kind === 'flow' && (
+      <div class="pm-win dark">
+        <div class="pm-bar"><i /><i /><i /><span>{T.flow.title}</span><em class="pm-live">{T.flow.live}</em></div>
+        <div class="pm-canvas">
+          <svg class="pm-wires" viewBox="0 0 600 200" preserveAspectRatio="none">
+            <path d="M60 70 H540" />
+            <path d="M440 70 C470 70 470 150 500 150" />
+          </svg>
+          <div class="pm-nodes">
+            {T.flow.nodes.map((n, i) => (
+              <div class:list={['pm-node', { ai: i === 3 }]}>
+                <span class="pm-dot" />
+                {n}
+              </div>
+            ))}
+          </div>
+          <div class="pm-node side">{T.flow.side}</div>
+        </div>
+      </div>
+    )
+  }
+  {
+    kind === 'social' && (
+      <div class="pm-phone">
+        <div class="pm-ph-head">
+          <b>{T.social.title}</b>
+          <span class="pm-toggle">
+            {T.social.auto}
+            <i />
+          </span>
+        </div>
+        <div class="pm-days">{T.social.days.map((d) => <span>{d}</span>)}</div>
+        <div class="pm-grid">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <div class:list={['pm-post', `c${i}`]}>
+              <em>{T.social.tag}</em>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+  {
+    kind === 'shop' && (
+      <div class="pm-win light">
+        <div class="pm-bar"><i /><i /><i /><span>{T.shop.title}</span></div>
+        <div class="pm-shop">
+          {T.shop.items.map(([c, price]) => (
+            <div class="pm-item">
+              <div class="pm-book" style={`--c:${c}`}><i /></div>
+              <b class="pm-skel" />
+              <span>{price}</span>
+              <em>{T.shop.add}</em>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+  {
+    kind === 'terminal' && (
+      <div class="pm-win term">
+        <div class="pm-bar"><i /><i /><i /><span>opilane@linux-labor: ~</span></div>
+        <div class="pm-term">
+          {T.terminal.map(([p, l], i) => (
+            <div class:list={['pm-line', { ok: p === 'ok' }]}>
+              {p === '$' && <span class="pm-ps">opilane@linux-labor:~$</span>} {l}
+              {i === T.terminal.length - 1 && <span class="pm-cursor" />}
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+</div>

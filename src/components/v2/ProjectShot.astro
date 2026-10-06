@@ -2,6 +2,7 @@
 // Project visual: desktop screenshot in a browser frame + phone screenshot, or an app mock when no screenshot exists.
 import { Image } from 'astro:assets';
 import { pName, type Project } from '../../data/v2/projects';
+import ProjectMock from './ProjectMock.astro';
 import type { Lang } from '../../data/v2/services';
 
 interface Props {
@@ -69,8 +70,9 @@ const N = {
       </div>
     )
   }
+  {p.shots.mock && <ProjectMock kind={p.shots.mock} lang={lang} />}
   {
-    !desk && !mob && !photo && phones.length === 0 && (
+    !desk && !mob && !photo && phones.length === 0 && !p.shots.mock && (
       <div class="pshot-app" aria-hidden="true">
         <div class="nc-phone">
           <div class="nc-head">
