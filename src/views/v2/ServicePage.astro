@@ -6,6 +6,8 @@ import { priceOffer, GROUP_LABEL, byId, relatedOf, serviceHref, type Lang, type 
 import { SITE_URL, UI, r } from '../../data/v2/ui';
 import { subHref, subsOf } from '../../data/v2/subservices';
 import { solHref, solutionsFor } from '../../data/v2/solutions';
+import { projectsForService } from '../../data/v2/projects';
+import ProjectCard from '../../components/v2/ProjectCard.astro';
 
 interface Props {
   s: Service;
@@ -20,6 +22,7 @@ const url = new URL(serviceHref(s, lang), SITE_URL).href;
 const quoteHref = `${r('contact', lang)}?t=${s.id}`;
 const subs = subsOf(s.id);
 const sols = solutionsFor(s.id);
+const projs = projectsForService(s.id);
 const SOLL = { et: { chip: 'Lahendused', h: 'Konkreetsed lahendused, kus see teenus on keskne.' }, en: { chip: 'Solutions', h: 'Specific solutions built around this service.' } }[lang];
 const SUBL = { et: { chip: 'Alamteenused', h: 'Vali täpsem lahendus.' }, en: { chip: 'Specific services', h: 'Pick the exact solution.' } }[lang];
 const jsonLd = [
@@ -255,6 +258,25 @@ const jsonLd = [
       </div>
     </div>
   </section>
+
+  {
+    projs.length > 0 && (
+      <section class="sv-sec">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <p class="chip">{t.work}</p>
+              <h2 class="h-md">{lang === 'et' ? 'Tehtud selle teenusega.' : 'Built with this service.'}</h2>
+            </div>
+            <a class="link-arrow" href={r('work', lang)}>{t.allWork} <Icon name="arrow" size={16} /></a>
+          </div>
+          <div class:list={['proj-grid', { n2: projs.length === 2, one: projs.length === 1 }]}>
+            {projs.map((x) => <ProjectCard p={x} lang={lang} />)}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <section class="sv-sec sv-last">
     <div class="wrap">

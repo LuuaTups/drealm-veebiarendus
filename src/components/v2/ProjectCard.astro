@@ -1,0 +1,25 @@
+---
+import Icon from '../mock/Icon.astro';
+import ProjectShot from './ProjectShot.astro';
+import { projHref, type Project } from '../../data/v2/projects';
+import type { Lang } from '../../data/v2/services';
+import { UI } from '../../data/v2/ui';
+
+interface Props {
+  p: Project;
+  lang: Lang;
+}
+const { p, lang } = Astro.props;
+const t = UI[lang];
+const c = p[lang];
+---
+
+<a class="proj-card" href={projHref(p, lang)} data-glow>
+  <ProjectShot p={p} lang={lang} compact />
+  <div class="proj-meta">
+    <span class="tag">{c.type}{p.own && ` · ${t.ownProject}`}</span>
+    <h3>{p.name}</h3>
+    <p>{c.lead}</p>
+    <span class="tile-more">{t.see} <Icon name="arrow" size={15} /></span>
+  </div>
+</a>

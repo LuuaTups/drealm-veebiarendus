@@ -1,0 +1,84 @@
+---
+// Project visual: desktop screenshot in a browser frame + phone screenshot, or an app mock when no screenshot exists.
+import { Image } from 'astro:assets';
+import type { Project } from '../../data/v2/projects';
+import type { Lang } from '../../data/v2/services';
+
+interface Props {
+  p: Project;
+  lang: Lang;
+  /** above the fold → eager loading */
+  eager?: boolean;
+  compact?: boolean;
+}
+const { p, lang, eager = false, compact = false } = Astro.props;
+const files = import.meta.glob<{ default: ImageMetadata }>('../../assets/projects/*.{jpg,png,webp}', { eager: true });
+const img = (name?: string) => (name ? files[`../../assets/projects/${name}`]?.default : undefined);
+const desk = img(p.shots.desktop);
+const mob = img(p.shots.mobile);
+const host = p.url ? new URL(p.url).host : '';
+const load = eager ? 'eager' : 'lazy';
+const alt = lang === 'et' ? `${p.name} koduleht` : `${p.name} website`;
+const N = {
+  et: { today: 'Täna', kcal: 'kcal', protein: 'Valk', meal: 'Lõuna', mealName: 'Kanafilee, riis ja salat', snap: 'Pildista toitu', week: 'Nädala kokkuvõte', weekTxt: 'Valku said 6 päeval 7-st. Kalorid jäid kahel päeval eesmärgist liiga madalaks.' },
+  en: { today: 'Today', kcal: 'kcal', protein: 'Protein', meal: 'Lunch', mealName: 'Chicken breast, rice and salad', snap: 'Snap your food', week: 'Weekly summary', weekTxt: 'You hit protein on 6 of 7 days. Calories were too low on two days.' },
+}[lang];
+---
+
+<div class:list={['pshot', { compact, 'has-phone': mob || !desk }]}>
+  {
+    desk && (
+      <div class="pshot-browser">
+        <div class="pshot-bar">
+          <i />
+          <i />
+          <i />
+          <span>{host}</span>
+        </div>
+        <Image src={desk} alt={alt} widths={[480, 800, 1200]} sizes={compact ? '(max-width: 960px) 92vw, 640px' : '(max-width: 960px) 92vw, 760px'} loading={load} />
+      </div>
+    )
+  }
+  {
+    mob && (
+      <div class="pshot-phone">
+        <Image src={mob} alt="" widths={[200, 320]} sizes="160px" loading={load} />
+      </div>
+    )
+  }
+  {
+    !desk && !mob && (
+      <div class="pshot-app" aria-hidden="true">
+        <div class="nc-phone">
+          <div class="nc-head">
+            <b>{N.today}</b>
+            <span>NutriCoach</span>
+          </div>
+          <div class="nc-rings">
+            <div class="nc-ring" style="--v:.72">
+              <strong>1 730</strong>
+              <small>/ 2 400 {N.kcal}</small>
+            </div>
+            <div class="nc-ring alt" style="--v:.81">
+              <strong>162 g</strong>
+              <small>{N.protein} / 200 g</small>
+            </div>
+          </div>
+          <div class="nc-meal">
+            <span class="nc-thumb" />
+            <div>
+              <small>{N.meal}</small>
+              <b>{N.mealName}</b>
+              <span>640 {N.kcal} · 58 g</span>
+            </div>
+          </div>
+          <div class="nc-week">
+            <small>{N.week}</small>
+            <p>{N.weekTxt}</p>
+          </div>
+          <div class="nc-snap">{N.snap}</div>
+        </div>
+      </div>
+    )
+  }
+</div>

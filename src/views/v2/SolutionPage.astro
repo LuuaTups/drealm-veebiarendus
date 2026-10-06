@@ -5,6 +5,8 @@ import ServiceMock from '../../components/v2/ServiceMock.astro';
 import { priceOffer, byId, serviceHref, type Lang, type Service } from '../../data/v2/services';
 import { SOLUTIONS, solHref, type Solution } from '../../data/v2/solutions';
 import { SITE_URL, UI, r } from '../../data/v2/ui';
+import { projectsForSolution } from '../../data/v2/projects';
+import ProjectCard from '../../components/v2/ProjectCard.astro';
 
 interface Props {
   sol: Solution;
@@ -17,6 +19,7 @@ const services = sol.services.map((id) => byId(id, lang)).filter((x): x is Servi
 const main = services[0];
 const alternates = { et: solHref(sol, 'et'), en: solHref(sol, 'en') };
 const url = new URL(solHref(sol, lang), SITE_URL).href;
+const projs = projectsForSolution(sol.id);
 const quoteHref = `${r('contact', lang)}?t=${main.id}`;
 // Related: same primary service first, then solutions sharing any service.
 const score = (x: Solution) => (x.services[0] === sol.services[0] ? 2 : 0) + (x.services.some((id) => sol.services.includes(id)) ? 1 : 0);
@@ -162,6 +165,25 @@ const jsonLd = [
       </div>
     </div>
   </section>
+
+  {
+    projs.length > 0 && (
+      <section class="sv-sec">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <p class="chip">{t.work}</p>
+              <h2 class="h-md">{lang === 'et' ? 'Päris näide sellest lahendusest.' : 'A real example of this solution.'}</h2>
+            </div>
+            <a class="link-arrow" href={r('work', lang)}>{t.allWork} <Icon name="arrow" size={16} /></a>
+          </div>
+          <div class:list={['proj-grid', { n2: projs.length === 2, one: projs.length === 1 }]}>
+            {projs.map((x) => <ProjectCard p={x} lang={lang} />)}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <section class="sv-sec sv-last">
     <div class="wrap">

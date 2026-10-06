@@ -153,6 +153,7 @@ const website = {
             </div>
           </div>
           <a href={r('solutions', lang)} class:list={{ on: path.startsWith(r('solutions', lang)) }}>{t.solutions}</a>
+          <a href={r('work', lang)} class:list={{ on: path.startsWith(r('work', lang)) }}>{t.work}</a>
           <a href="#ulevaade">{t.review}</a>
           <a href={r('about', lang)} class:list={{ on: path === r('about', lang) }}>{t.about}</a>
           <a href={r('blog', lang)} class:list={{ on: path.startsWith(r('blog', lang)) }}>{t.blog}</a>
@@ -171,6 +172,7 @@ const website = {
         <a href={r('services', lang)}>{t.services}</a>
         {services.map((s) => <a href={serviceHref(s, lang)} class="sub">{s.name}</a>)}
         <a href={r('solutions', lang)}>{t.solutions}</a>
+        <a href={r('work', lang)}>{t.work}</a>
         <a href="#ulevaade">{t.review}</a>
         <a href={r('about', lang)}>{t.about}</a>
         <a href={r('blog', lang)}>{t.blog}</a>
@@ -204,6 +206,7 @@ const website = {
           <nav aria-label={t.footNav}>
             <a href={r('services', lang)}>{t.services}</a>
             <a href={r('solutions', lang)}>{t.solutions}</a>
+            <a href={r('work', lang)}>{t.work}</a>
             <a href={r('about', lang)}>{t.about}</a>
             <a href={r('blog', lang)}>{t.blog}</a>
             <a href={r('contact', lang)}>{t.contact}</a>

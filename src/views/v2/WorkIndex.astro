@@ -1,0 +1,64 @@
+---
+import V2 from '../../layouts/V2.astro';
+import ProjectCard from '../../components/v2/ProjectCard.astro';
+import { PROJECTS, projHref } from '../../data/v2/projects';
+import type { Lang } from '../../data/v2/services';
+import { ROUTES, SITE_URL, UI, r } from '../../data/v2/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const c = {
+  et: {
+    title: 'Tehtud tööd: platvormid, kodulehed ja AI rakendused | drealm',
+    description: 'drealmi tehtud tööd: Rebelle kleitide rendiplatvorm, TeachAI maandumisleht ja automatiseerimisserver ning NutriCoach AI toitumisrakendus.',
+    h1: 'Tehtud tööd.',
+    lead: 'Päris projektid, mis on päriselt kasutusel. Iga töö juures on kirjas, mis oli probleem ja mida tegime.',
+  },
+  en: {
+    title: 'Our work: platforms, websites and AI apps | drealm',
+    description: 'drealm work: the Rebelle dress rental platform, the TeachAI landing page and automation server, and the NutriCoach AI nutrition app.',
+    h1: 'Our work.',
+    lead: 'Real projects in real use. Each one shows what the problem was and what we built.',
+  },
+}[lang];
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: c.h1,
+    description: c.description,
+    url: new URL(r('work', lang), SITE_URL).href,
+    inLanguage: lang,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: PROJECTS.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.name, url: new URL(projHref(p, lang), SITE_URL).href })),
+    },
+  },
+];
+---
+
+<V2 lang={lang} title={c.title} description={c.description} alternates={{ et: ROUTES.work.et, en: ROUTES.work.en }} jsonLd={jsonLd}>
+  <section class="stage">
+    <div class="stage-card page-card">
+      <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>
+      <div class="sv-shade" aria-hidden="true"></div>
+      <div class="page-hero">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><span aria-current="page">{t.work}</span></nav>
+        <p class="chip on-dark">{t.work}</p>
+        <h1 class="sv-h1">{c.h1}</h1>
+        <p class="sv-lead">{c.lead}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-sec sv-last">
+    <div class="wrap">
+      <div class="proj-grid">
+        {PROJECTS.map((p) => <ProjectCard p={p} lang={lang} />)}
+      </div>
+    </div>
+  </section>
+</V2>
