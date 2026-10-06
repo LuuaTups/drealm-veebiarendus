@@ -145,7 +145,7 @@ export function mountHeroScene(canvas: HTMLCanvasElement) {
 
   const DEPTH = 56;
   const cards: { mesh: THREE.Mesh; speed: number; spin: number }[] = [];
-  const N = 72;
+  const N = 56;
   for (let i = 0; i < N; i++) {
     const t = textures[(i * 7) % textures.length];
     const scale = (t.k === 'phone' ? 2.4 : t.k === 'browser' ? 4.4 : 3.1) * (0.8 + Math.random() * 0.5);
@@ -157,7 +157,7 @@ export function mountHeroScene(canvas: HTMLCanvasElement) {
     const radius = 5.2 + Math.random() * 3.2;
     const x = Math.cos(angle) * radius * 1.55;
     const y = Math.sin(angle) * radius * 0.95;
-    mesh.position.set(x, y, -Math.random() * DEPTH);
+    mesh.position.set(x, y, 3 - Math.random() * (DEPTH + 3));
     // turn each card towards the tunnel axis, like panels lining a corridor
     mesh.rotation.set(Math.sign(y) * (0.35 + Math.random() * 0.35), -Math.sign(x) * (0.5 + Math.random() * 0.4), (Math.random() - 0.5) * 0.5);
     scene.add(mesh);
@@ -192,7 +192,10 @@ export function mountHeroScene(canvas: HTMLCanvasElement) {
         for (const c of cards) {
           c.mesh.position.z += c.speed * dt;
           c.mesh.rotation.z += c.spin * dt;
-          if (c.mesh.position.z > 9) c.mesh.position.z -= DEPTH + 9;
+          if (c.mesh.position.z > 3) c.mesh.position.z -= DEPTH + 3;
+          // fade cards out before they get close enough to cover the headline
+          const m = c.mesh.material as THREE.MeshBasicMaterial;
+          m.opacity = Math.min(1, Math.max(0, (3 - c.mesh.position.z) / 6));
         }
       }
       mouse.x += (mouse.tx - mouse.x) * 0.04;
