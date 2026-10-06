@@ -73,8 +73,8 @@ One of the most common mistakes is finishing the website only when sales begin. 
 2. **By the start of sales,** the full site is ready with the apartment selector, floor plans and prices.
 3. **During sales,** statuses are kept current and construction updates are added.
 
-Because we build sites with Astro and host them on Vercel, a teaser page can go live quickly and later grow into the full site on the same address, without losing the search visibility it has built up.
+Because we build sites with modern static technology, a teaser page can go live quickly and later grow into the full site on the same address, without losing the search visibility it has built up.
 
 ## In short
 
-A good new development website helps buyers choose, keeps information current and delivers clear enquiries to your sales team. If you’re planning a new project or want to improve an existing site, tell us about its size and timeline. We’ll talk through when and in what order it makes sense to build the website.
+A good new development website helps buyers choose, keeps information current and delivers clear enquiries to your sales team. If you’re planning a new project or want to improve an existing site, [tell us](/en/contact?t=platvormid) about its size and timeline. See also our [property development websites](/en/services/platforms/property-development-websites) and [real estate videos](/en/services/ai-video-ads/real-estate-videos). We’ll talk through when and in what order it makes sense to build the website.

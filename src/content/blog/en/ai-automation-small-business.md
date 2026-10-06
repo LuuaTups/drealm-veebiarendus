@@ -70,4 +70,4 @@ It sounds bureaucratic, but a well-designed setup is usually simpler and safer a
 
 AI automation doesn’t have to be a big or expensive project. Start with one repetitive, well-defined task, keep a person in the loop, measure the result and expand only once the first step has proven its worth.
 
-If there’s a task in your business that feels ripe for automation, describe it to us in a few sentences. We’ll look at whether and how it can sensibly be done, and we’ll tell you honestly if it isn’t worth it yet.
+If there’s a task in your business that feels ripe for automation, [describe it to us](/en/contact?t=automatiseerimine) in a few sentences. For examples, see [email automation](/en/services/ai-automation/email-automation), [quote automation](/en/services/ai-automation/quote-automation) and [invoice processing](/en/services/ai-automation/invoice-processing). We’ll look at whether and how it can sensibly be done, and we’ll tell you honestly if it isn’t worth it yet.

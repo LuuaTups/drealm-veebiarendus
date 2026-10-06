@@ -73,8 +73,8 @@ Kui päringutele vastatakse kiiresti, on huvilisel palju väiksem põhjus konkur
 2. **Müügi alguseks** on valmis täislahendus koos korterivaliku, plaanide ja hindadega.
 3. **Müügi ajal** uuendatakse staatusi ja lisatakse ehitusuudiseid.
 
-Kuna ehitame lehed Astroga ja majutame Vercelis, saab eellehe kiiresti püsti panna ja hiljem samal aadressil täislahenduseks laiendada, ilma et senine otsingunähtavus kaoks.
+Kuna ehitame lehed kaasaegse staatilise tehnoloogiaga, saab eellehe kiiresti püsti panna ja hiljem samal aadressil täislahenduseks laiendada, ilma et senine otsingunähtavus kaoks.
 
 ## Kokkuvõtteks
 
-Hea uusarenduse koduleht aitab ostjal korterit valida, hoiab info ajakohasena ja toob müügimeeskonnale selgeid päringuid. Kui plaanid uut arendust või tahad olemasolevat lehte paremaks teha, kirjuta meile projekti mahust ja ajakavast. Arutame, millal ja millises järjekorras on mõistlik leht valmis teha.
+Hea uusarenduse koduleht aitab ostjal korterit valida, hoiab info ajakohasena ja toob müügimeeskonnale selgeid päringuid. Kui plaanid uut arendust või tahad olemasolevat lehte paremaks teha, [kirjuta meile](/kontakt?t=platvormid) projekti mahust ja ajakavast. Vaata ka, kuidas näeb välja meie [kinnisvaraarenduse koduleht](/teenused/platvormid/kinnisvaraarenduse-koduleht) ja [arenduse videod](/teenused/ai-videoreklaamid/kinnisvara-videod). Arutame, millal ja millises järjekorras on mõistlik leht valmis teha.

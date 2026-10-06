@@ -46,7 +46,7 @@ A website isn’t a one-off expense. Budget for the following (all approximate):
 - **Maintenance:** updating WordPress and its plugins, backups and security often cost €30–150 a month. A static site needs far less of this.
 - **Content updates and new features:** new pages, campaigns and changes, billed hourly or as a package.
 
-We build sites as static websites with Astro and host them on Vercel. That’s one reason maintenance stays low: there’s no database and no plugins to keep patching.
+We build sites as static websites and host them on a server in Estonia. That’s one reason maintenance stays low: there’s no database and no plugins to keep patching.
 
 ## Red flags in a quote
 
@@ -63,4 +63,4 @@ A cheap quote isn’t automatically bad and an expensive one isn’t automatical
 
 The fastest way to a realistic number is to answer a few questions up front: what is the main goal of the site, how many languages do you need, is the content ready, and which features are essential versus nice to have? The clearer the brief, the more accurate the quote, and the lower the risk of the price creeping up halfway through.
 
-If you’re thinking about a new website and want to know what makes sense in your situation, send us a few lines about your business and your goals. We’ll give you an honest view, even if it turns out a DIY site is all you need for now.
+If you’re thinking about a new website and want to know what makes sense in your situation, [send us a few lines](/en/contact?t=veebilehed) about your business and your goals. You’ll also find prices and scope on our [business websites](/en/services/website-development/business-websites) and [online stores](/en/services/website-development/online-stores) pages. We’ll give you an honest view, even if it turns out a DIY site is all you need for now.

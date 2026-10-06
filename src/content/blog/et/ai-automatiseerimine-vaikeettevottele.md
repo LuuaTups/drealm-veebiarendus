@@ -70,4 +70,4 @@ See kõlab bürokraatlikult, kuid hästi läbimõeldud lahendus on enamasti ka l
 
 AI-automatiseerimine ei pea olema suur ega kallis projekt. Alusta ühest korduvast ja selgelt piiritletud tööst, hoia inimene protsessis, mõõda tulemust ja laienda alles siis, kui esimene samm on end õigustanud.
 
-Kui sul on mõni töö, mis tundub automatiseerimiseks sobiv, kirjelda see meile paari lausega. Vaatame koos, kas ja kuidas seda mõistlikult teha saab, ning ütleme ausalt ka siis, kui praegu pole see veel mõttekas.
+Kui sul on mõni töö, mis tundub automatiseerimiseks sobiv, [kirjelda see meile](/kontakt?t=automatiseerimine) paari lausega. Näiteid leiad lehtedelt [e-kirjade automatiseerimine](/teenused/ai-automatiseerimine/e-kirjade-automatiseerimine), [pakkumiste automatiseerimine](/teenused/ai-automatiseerimine/pakkumiste-automatiseerimine) ja [arvete töötlus](/teenused/ai-automatiseerimine/arvete-tootlus). Vaatame koos, kas ja kuidas seda mõistlikult teha saab, ning ütleme ausalt ka siis, kui praegu pole see veel mõttekas.

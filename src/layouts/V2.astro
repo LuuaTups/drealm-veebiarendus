@@ -6,6 +6,7 @@ import Icon from '../components/mock/Icon.astro';
 import AuditForm from '../components/AuditForm.astro';
 import { GROUP_LABEL, servicesFor, serviceHref, type Lang } from '../data/v2/services';
 import { EMAIL, SITE_URL, UI, r } from '../data/v2/ui';
+import sansUrl from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 
 interface Props {
   lang: Lang;
@@ -47,6 +48,7 @@ const org = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#1b0200" />
+    <link rel="preload" href={sansUrl} as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -67,13 +69,14 @@ const org = {
     {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
   </head>
   <body id="top">
+    <a class="skip" href="#sisu-algus">{lang === 'et' ? 'Liigu sisu juurde' : 'Skip to content'}</a>
     <header class="nav" data-nav>
       <div class="nav-in">
         <a href={r('home', lang)} class="brand" aria-label={`drealm – ${t.home}`}><Logo /></a>
         <nav class="nav-pill" aria-label={t.mainNav}>
           <div class="nav-dd" data-dd>
-            <button class="nav-dd-btn" aria-expanded="false" data-dd-btn>{t.services} <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5" /></svg></button>
-            <div class="dd-panel">
+            <button class="nav-dd-btn" aria-expanded="false" aria-controls="dd-panel" data-dd-btn>{t.services} <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5" /></svg></button>
+            <div class="dd-panel" id="dd-panel">
               {
                 groups.map((g) => (
                   <div class="dd-col">
@@ -120,7 +123,7 @@ const org = {
       </nav>
     </header>
 
-    <main>
+    <main id="sisu-algus">
       <slot />
     </main>
 
@@ -186,7 +189,10 @@ const org = {
 
       // 3D scenes
       const canvases = document.querySelectorAll<HTMLCanvasElement>('[data-gl]');
-      if (canvases.length) import('../scripts/hero-scene').then((m) => canvases.forEach((c) => m.mountHeroScene(c)));
+      if (canvases.length) {
+        const load = () => import('../scripts/hero-scene').then((m) => canvases.forEach((c) => m.mountHeroScene(c)));
+        'requestIdleCallback' in window ? requestIdleCallback(load, { timeout: 1500 }) : setTimeout(load, 300);
+      }
 
       // Cursor-following glow on cards
       document.querySelectorAll<HTMLElement>('[data-glow]').forEach((el) => {

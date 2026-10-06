@@ -46,7 +46,7 @@ Koduleht pole ühekordne kulu. Arvesta ka järgmisega (summad ligikaudsed):
 - **Hooldus:** WordPressi ja pistikprogrammide uuendamine, varukoopiad ja turvalisus maksavad sageli 30–150 € kuus. Staatilisel lehel on seda tööd oluliselt vähem.
 - **Sisu uuendamine ja edasiarendus:** uued lehed, kampaaniad ja muudatused tunnihinnaga või paketina.
 
-Meie ehitame lehed Astroga staatilistena ja majutame Vercelis. See on üks põhjus, miks hoolduskulu jääb väikeseks: pole andmebaasi ega pistikprogramme, mida pidevalt paigata.
+Meie ehitame lehed staatilistena ja majutame need Eesti serveris. See on üks põhjus, miks hoolduskulu jääb väikeseks: pole andmebaasi ega pistikprogramme, mida pidevalt paigata.
 
 ## Ohumärgid pakkumises
 
@@ -63,4 +63,4 @@ Odav pakkumine ei ole automaatselt halb ja kallis pole automaatselt hea. Mõned 
 
 Kõige kiiremini jõuab realistliku hinnani, kui pakkuja teab vastuseid paarile küsimusele: mis on lehe peamine eesmärk, mitu keelt on vaja, kas sisu on olemas, millised funktsioonid on hädavajalikud ja millised oleks lihtsalt toredad. Mida selgem on lähteülesanne, seda täpsem on pakkumine ja seda väiksem on oht, et hind poole projekti pealt kasvama hakkab.
 
-Kui mõtled uue kodulehe peale ja tahad teada, mis sinu olukorras mõistlik oleks, kirjuta meile paar lauset oma ettevõttest ja eesmärgist. Anname ausa hinnangu, ka siis, kui selgub, et alustuseks piisab ise tehtud lehest.
+Kui mõtled uue kodulehe peale ja tahad teada, mis sinu olukorras mõistlik oleks, [kirjuta meile](/kontakt?t=veebilehed) paar lauset oma ettevõttest ja eesmärgist. Hinnad ja sisu leiad ka lehtedelt [kodulehe tegemine](/teenused/veebilehed/kodulehe-tegemine) ja [e-poe tegemine](/teenused/veebilehed/e-poe-tegemine). Anname ausa hinnangu, ka siis, kui selgub, et alustuseks piisab ise tehtud lehest.

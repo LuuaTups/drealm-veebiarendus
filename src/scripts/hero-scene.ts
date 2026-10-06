@@ -1,6 +1,18 @@
 // Hero background: a slow flight through a tunnel of floating "digital work" cards
 // (browser windows, phones, charts, chat) lit in warm rust tones.
-import * as THREE from 'three';
+import {
+  CanvasTexture,
+  Clock,
+  DoubleSide,
+  Fog,
+  Mesh,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  PlaneGeometry,
+  SRGBColorSpace,
+  Scene,
+  WebGLRenderer,
+} from 'three';
 
 type Kind = 'browser' | 'phone' | 'chart' | 'chat' | 'ad';
 
@@ -16,7 +28,7 @@ function roundRect(g: CanvasRenderingContext2D, x: number, y: number, w: number,
   g.closePath();
 }
 
-function cardTexture(kind: Kind, base: string): { tex: THREE.CanvasTexture; aspect: number } {
+function cardTexture(kind: Kind, base: string): { tex: CanvasTexture; aspect: number } {
   const dims: Record<Kind, [number, number]> = {
     browser: [512, 340],
     phone: [220, 440],
@@ -125,33 +137,34 @@ function cardTexture(kind: Kind, base: string): { tex: THREE.CanvasTexture; aspe
     g.fillRect(18, h - 52, w * 0.6, 10);
   }
 
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
+  const tex = new CanvasTexture(c);
+  tex.colorSpace = SRGBColorSpace;
   tex.anisotropy = 4;
   return { tex, aspect: w / h };
 }
 
 export function mountHeroScene(canvas: HTMLCanvasElement) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  const renderer = new WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+  const small = innerWidth < 760 || (navigator as Navigator & { hardwareConcurrency?: number }).hardwareConcurrency! <= 4;
+  renderer.setPixelRatio(Math.min(devicePixelRatio, small ? 1.25 : 2));
 
-  const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0x1b0200, 10, 58);
-  const camera = new THREE.PerspectiveCamera(58, 1, 0.1, 100);
+  const scene = new Scene();
+  scene.fog = new Fog(0x1b0200, 10, 58);
+  const camera = new PerspectiveCamera(58, 1, 0.1, 100);
   camera.position.set(0, 0, 8);
 
   const kinds: Kind[] = ['browser', 'browser', 'phone', 'chart', 'chat', 'ad', 'browser', 'phone'];
   const textures = kinds.flatMap((k) => PALETTE.slice(0, 4).map((col) => ({ k, ...cardTexture(k, col) })));
 
   const DEPTH = 56;
-  const cards: { mesh: THREE.Mesh; speed: number; spin: number }[] = [];
-  const N = 56;
+  const cards: { mesh: Mesh; speed: number; spin: number }[] = [];
+  const N = small ? 30 : 56;
   for (let i = 0; i < N; i++) {
     const t = textures[(i * 7) % textures.length];
     const scale = (t.k === 'phone' ? 2.4 : t.k === 'browser' ? 4.4 : 3.1) * (0.8 + Math.random() * 0.5);
-    const geo = new THREE.PlaneGeometry(scale * t.aspect, scale);
-    const mat = new THREE.MeshBasicMaterial({ map: t.tex, transparent: true, depthWrite: false, side: THREE.DoubleSide, fog: true });
-    const mesh = new THREE.Mesh(geo, mat);
+    const geo = new PlaneGeometry(scale * t.aspect, scale);
+    const mat = new MeshBasicMaterial({ map: t.tex, transparent: true, depthWrite: false, side: DoubleSide, fog: true });
+    const mesh = new Mesh(geo, mat);
     // place on the walls of an oval tunnel, keeping the centre clear for the headline
     const angle = (i / N) * Math.PI * 2 * 5 + Math.random() * 0.5;
     const radius = 5.2 + Math.random() * 3.2;
@@ -184,7 +197,7 @@ export function mountHeroScene(canvas: HTMLCanvasElement) {
   let visible = true;
   new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(canvas);
 
-  const clock = new THREE.Clock();
+  const clock = new Clock();
   const tick = () => {
     const dt = Math.min(clock.getDelta(), 0.05);
     if (visible) {
@@ -194,7 +207,7 @@ export function mountHeroScene(canvas: HTMLCanvasElement) {
           c.mesh.rotation.z += c.spin * dt;
           if (c.mesh.position.z > 3) c.mesh.position.z -= DEPTH + 3;
           // fade cards out before they get close enough to cover the headline
-          const m = c.mesh.material as THREE.MeshBasicMaterial;
+          const m = c.mesh.material as MeshBasicMaterial;
           m.opacity = Math.min(1, Math.max(0, (3 - c.mesh.position.z) / 6));
         }
       }
