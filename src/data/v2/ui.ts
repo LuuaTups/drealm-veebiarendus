@@ -3,6 +3,7 @@ import type { Lang } from './services';
 
 export const SITE_URL = 'https://drealm.ee';
 export const EMAIL = 'info@drealm.ee';
+export const GA_ID = 'G-B42TX6G2GQ';
 
 export const ROUTES = {
   home: { et: '/', en: '/en' },
@@ -54,6 +55,11 @@ export const UI = {
     footMail: 'Või kirjuta otse:',
     footNav: 'Jaluse menüü',
     rights: '© 2026 drealm',
+    cookies: 'Küpsised',
+    consentText: 'Kasutame Google Analyticsit, et näha, mis lehed on külastajatele kasulikud. Ilma sinu nõusolekuta analüütikat ei laadita.',
+    consentYes: 'Nõustun',
+    consentNo: 'Keeldun',
+    consentMore: 'Loe lähemalt',
     form: {
       url: 'Kodulehe aadress',
       email: 'Kuhu ülevaade saata',
@@ -101,6 +107,11 @@ export const UI = {
     footMail: 'Or email us directly:',
     footNav: 'Footer menu',
     rights: '© 2026 drealm',
+    cookies: 'Cookies',
+    consentText: 'We use Google Analytics to see which pages are useful to visitors. Analytics only loads with your consent.',
+    consentYes: 'Accept',
+    consentNo: 'Decline',
+    consentMore: 'Read more',
     form: {
       url: 'Website address',
       email: 'Where to send the review',

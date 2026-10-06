@@ -270,6 +270,8 @@ const T = {
         if (!res.ok) throw new Error();
         root.classList.add('sent');
         root.querySelector<HTMLElement>('.inq-done')!.hidden = false;
+        const fd = new FormData(form);
+        (window as any).dtrack?.('generate_lead', { form_type: 'inquiry', service: fd.getAll('service').join(','), budget: String(fd.get('budget') || '') });
       } catch {
         status.textContent = root.dataset.fail!;
       } finally {

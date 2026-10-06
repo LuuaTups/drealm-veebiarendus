@@ -5,7 +5,7 @@ import Logo from '../components/Logo.astro';
 import Icon from '../components/mock/Icon.astro';
 import AuditForm from '../components/AuditForm.astro';
 import { GROUP_LABEL, servicesFor, serviceHref, type Lang } from '../data/v2/services';
-import { EMAIL, SITE_URL, UI, r } from '../data/v2/ui';
+import { EMAIL, GA_ID, SITE_URL, UI, r } from '../data/v2/ui';
 import sansUrl from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 
 interface Props {
@@ -93,6 +93,29 @@ const website = {
     <meta name="twitter:description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script is:inline define:vars={{ GA_ID }}>
+      // Google Analytics 4, loaded only after consent (GDPR). Choice kept in localStorage.
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied' });
+      window.__gaLoad = function () {
+        if (window.__ga) return;
+        window.__ga = true;
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', GA_ID);
+      };
+      window.dtrack = function (name, params) { if (window.__ga) gtag('event', name, params || {}); };
+      var consent = null;
+      try { consent = localStorage.getItem('drealm-consent'); } catch (e) {}
+      window.__consent = consent;
+      if (consent === 'yes') window.__gaLoad();
+    </script>
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
     <script type="application/ld+json" set:html={JSON.stringify(website)} />
     {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
@@ -185,6 +208,7 @@ const website = {
             <a href={r('blog', lang)}>{t.blog}</a>
             <a href={r('contact', lang)}>{t.contact}</a>
             <a href={r('privacy', lang)}>{t.privacy}</a>
+            <button type="button" class="foot-link" data-consent-open>{t.cookies}</button>
           </nav>
           <span>{t.rights}</span>
           <a class="to-top" href="#top">{lang === 'et' ? 'Üles' : 'Top'} <Icon name="up" size={14} /></a>
@@ -192,8 +216,41 @@ const website = {
       </div>
     </footer>
 
+    <div class="consent" role="dialog" aria-live="polite" aria-label={t.cookies} hidden data-consent>
+      <p>{t.consentText} <a href={r('privacy', lang)}>{t.consentMore}</a></p>
+      <div class="consent-btns">
+        <button type="button" class="consent-no" data-consent-no>{t.consentNo}</button>
+        <button type="button" class="consent-yes" data-consent-yes>{t.consentYes}</button>
+      </div>
+    </div>
+
     <script>
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Consent banner + conversion clicks
+      {
+        const w = window as any;
+        const box = document.querySelector<HTMLElement>('[data-consent]')!;
+        const set = (v: 'yes' | 'no') => {
+          try {
+            localStorage.setItem('drealm-consent', v);
+          } catch {}
+          box.hidden = true;
+          if (v === 'yes') w.__gaLoad();
+          else if (w.__ga) location.reload();
+        };
+        if (!w.__consent) box.hidden = false;
+        box.querySelector('[data-consent-yes]')!.addEventListener('click', () => set('yes'));
+        box.querySelector('[data-consent-no]')!.addEventListener('click', () => set('no'));
+        document.querySelectorAll('[data-consent-open]').forEach((b) => b.addEventListener('click', () => (box.hidden = false)));
+        document.addEventListener('click', (e) => {
+          const a = (e.target as HTMLElement).closest('a');
+          if (!a) return;
+          const href = a.getAttribute('href') || '';
+          if (href.startsWith('mailto:')) w.dtrack?.('contact_email', { page_path: location.pathname });
+          else if (/^\/(en\/contact|kontakt)/.test(href)) w.dtrack?.('quote_click', { page_path: location.pathname, link_text: a.textContent?.trim().slice(0, 60) });
+        });
+      }
 
       // Nav: sits inside the hero card, turns into a solid bar after it
       const nav = document.querySelector<HTMLElement>('[data-nav]')!;
@@ -252,6 +309,7 @@ const website = {
             if (!res.ok) throw new Error();
             form.reset();
             status.textContent = form.dataset.ok!;
+            (window as any).dtrack?.('generate_lead', { form_type: 'audit', page_path: location.pathname });
           } catch {
             status.textContent = form.dataset.fail!;
           } finally {
