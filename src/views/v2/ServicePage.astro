@@ -4,6 +4,7 @@ import Icon from '../../components/mock/Icon.astro';
 import ServiceMock from '../../components/v2/ServiceMock.astro';
 import { GROUP_LABEL, byId, relatedOf, serviceHref, type Lang, type Service } from '../../data/v2/services';
 import { SITE_URL, UI, r } from '../../data/v2/ui';
+import { subHref, subsOf } from '../../data/v2/subservices';
 
 interface Props {
   s: Service;
@@ -16,6 +17,8 @@ const alternates = lang === 'et' ? { et: serviceHref(s, 'et'), en: serviceHref(o
 const related = relatedOf(s, lang);
 const url = new URL(serviceHref(s, lang), SITE_URL).href;
 const quoteHref = `${r('contact', lang)}?t=${s.id}`;
+const subs = subsOf(s.id);
+const SUBL = { et: { chip: 'Alamteenused', h: 'Vali täpsem lahendus.' }, en: { chip: 'Specific services', h: 'Pick the exact solution.' } }[lang];
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -73,6 +76,39 @@ const jsonLd = [
       </div>
     </div>
   </section>
+
+  {
+    subs.length > 0 && (
+      <section class="sv-sec">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <p class="chip">
+                <Icon name="stack" size={14} />
+                {SUBL.chip}
+              </p>
+              <h2 class="grad h-md">{SUBL.h}</h2>
+            </div>
+          </div>
+          <div class:list={['sub-grid', `n${subs.length}`]}>
+            {subs.map((x, i) => (
+              <a class="sub-tile" href={subHref(x, lang)} data-glow>
+                <span class="sub-n">0{i + 1}</span>
+                <span class="ibox">
+                  <Icon name={x.icon} size={20} />
+                </span>
+                <h3>{x[lang].name}</h3>
+                <p>{x[lang].lead}</p>
+                <span class="tile-more">
+                  {t.seeMore} <Icon name="arrow" size={15} />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <section class="sv-sec">
     <div class="wrap">

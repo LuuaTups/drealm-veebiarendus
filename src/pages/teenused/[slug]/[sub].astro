@@ -1,0 +1,12 @@
+---
+import SubServicePage from '../../../views/v2/SubServicePage.astro';
+import { byId } from '../../../data/v2/services';
+import { SUBSERVICES, type SubService } from '../../../data/v2/subservices';
+
+export function getStaticPaths() {
+  return SUBSERVICES.map((sub) => ({ params: { slug: byId(sub.parent, 'et')!.slug, sub: sub.et.slug }, props: { sub } }));
+}
+const { sub } = Astro.props as { sub: SubService };
+---
+
+<SubServicePage sub={sub} lang="et" />

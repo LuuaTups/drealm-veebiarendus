@@ -3,6 +3,7 @@ import V2 from '../../layouts/V2.astro';
 import Icon from '../../components/mock/Icon.astro';
 import { GROUP_LABEL, servicesFor, serviceHref, type Lang } from '../../data/v2/services';
 import { ROUTES, UI, r } from '../../data/v2/ui';
+import { subHref, subsOf } from '../../data/v2/subservices';
 
 interface Props {
   lang: Lang;
@@ -72,7 +73,8 @@ const icons = { Veeb: 'web', Turundus: 'target', AI: 'spark' } as const;
             {services
               .filter((s) => s.group === g)
               .map((s) => (
-                <a class="rel-card" href={serviceHref(s, lang)} data-glow>
+                <div class="svc-card" data-glow>
+                <a class="rel-card bare" href={serviceHref(s, lang)}>
                   <span class="ibox">
                     <Icon name={s.icon} size={20} />
                   </span>
@@ -83,6 +85,17 @@ const icons = { Veeb: 'web', Turundus: 'target', AI: 'spark' } as const;
                     {t.seeMore} <Icon name="arrow" size={15} />
                   </span>
                 </a>
+                <ul class="svc-subs">
+                  {subsOf(s.id).map((x) => (
+                    <li>
+                      <a href={subHref(x, lang)}>
+                        {x[lang].name}
+                        <Icon name="arrow" size={13} />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                </div>
               ))}
           </div>
         </div>

@@ -1,7 +1,7 @@
 ---
-import ServicePage from '../../../views/v2/ServicePage.astro';
-import { SERVICES_EN } from '../../../data/v2/services.en';
-import type { Service } from '../../../data/v2/services';
+import ServicePage from '../../../../views/v2/ServicePage.astro';
+import { SERVICES_EN } from '../../../../data/v2/services.en';
+import type { Service } from '../../../../data/v2/services';
 
 export function getStaticPaths() {
   return SERVICES_EN.map((s) => ({ params: { slug: s.slug }, props: { s } }));
