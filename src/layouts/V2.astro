@@ -1,0 +1,212 @@
+---
+// drealm v2 layout: rust/3D design system, floating nav, 3D footer CTA.
+import '../styles/v2.css';
+import Logo from '../components/Logo.astro';
+import Icon from '../components/mock/Icon.astro';
+import AuditForm from '../components/AuditForm.astro';
+import { SERVICES, serviceHref } from '../data/v2/services';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  jsonLd?: Record<string, unknown>[];
+}
+const { title, description, path, jsonLd = [] } = Astro.props;
+const groups = ['Veeb', 'Turundus', 'AI'] as const;
+---
+
+<!doctype html>
+<html lang="et">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#1b0200" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://drealm.ee/og.png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+  </head>
+  <body>
+    <header class="nav" data-nav>
+      <div class="nav-in">
+        <a href="/uus" class="brand" aria-label="drealm avaleht"><Logo /></a>
+        <nav class="nav-pill" aria-label="Peamenüü">
+          <div class="nav-dd" data-dd>
+            <button class="nav-dd-btn" aria-expanded="false" data-dd-btn>Teenused <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5" /></svg></button>
+            <div class="dd-panel">
+              {
+                groups.map((g) => (
+                  <div class="dd-col">
+                    <p>{g}</p>
+                    {SERVICES.filter((s) => s.group === g).map((s) => (
+                      <a href={serviceHref(s)} class:list={{ on: path === serviceHref(s) }}>
+                        <span class="ibox sm"><Icon name={s.icon} size={16} /></span>
+                        {s.name}
+                      </a>
+                    ))}
+                  </div>
+                ))
+              }
+              <a class="dd-all" href="/uus/teenused">Kõik teenused <Icon name="arrow" size={14} /></a>
+            </div>
+          </div>
+          <a href="/uus#kliendid">Kõlab tuttavalt?</a>
+          <a href="#kontakt">Tasuta ülevaade</a>
+          <a href="/uus/kontakt" class:list={{ on: path === '/uus/kontakt' }}>Kontakt</a>
+        </nav>
+        <div class="nav-right">
+          <span class="lang" aria-label="Keel"><b>ET</b><a href="/en">EN</a></span>
+          <a class="nav-cta" href="#kontakt">Alusta projekti <span class="box"><Icon name="arrow" size={14} /></span></a>
+          <button class="nav-toggle" aria-label="Ava menüü" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
+        </div>
+      </div>
+      <nav class="nav-sheet" aria-label="Mobiilimenüü">
+        <a href="/uus/teenused">Teenused</a>
+        {SERVICES.map((s) => <a href={serviceHref(s)} class="sub">{s.name}</a>)}
+        <a href="#kontakt">Tasuta ülevaade</a>
+        <a href="/uus/kontakt">Kontakt</a>
+        <a href="/en">English</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="foot" id="kontakt">
+      <div class="dark-card foot-card">
+        <canvas class="stage-gl" data-gl aria-hidden="true"></canvas>
+        <div class="foot-shade" aria-hidden="true"></div>
+        <div class="foot-grid">
+          <div>
+            <p class="chip on-dark"><Icon name="spark" size={14} />Tasuta kodulehe ülevaade</p>
+            <h2>Saada aadress. Ülejäänu teeme meie.</h2>
+            <p class="foot-sub">5-minutiline video sinu kodulehest: mis töötab, mis mitte ja mida parandada esimesena. Ühe tööpäeva jooksul, tasuta.</p>
+            <p class="foot-mail">Või kirjuta otse: <a href="mailto:info@drealm.ee">info@drealm.ee</a></p>
+          </div>
+          <div class="glass-form">
+            <AuditForm dark page={`${path}#footer`} />
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <Logo />
+          <nav aria-label="Jaluse menüü">
+            <a href="/uus/teenused">Teenused</a>
+            <a href="/uus/kontakt">Kontakt</a>
+            <a href="/privaatsus">Privaatsus</a>
+          </nav>
+          <span>© 2026 drealm · Tallinn</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Nav: sits inside the hero card, turns into a solid bar after it
+      const nav = document.querySelector<HTMLElement>('[data-nav]')!;
+      const onScroll = () => nav.classList.toggle('solid', scrollY > Math.min(innerHeight * 0.55, 420));
+      addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      const toggle = nav.querySelector<HTMLButtonElement>('[data-nav-toggle]')!;
+      toggle.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+      nav.querySelectorAll('.nav-sheet a').forEach((a) => a.addEventListener('click', () => nav.classList.remove('open')));
+
+      // Services dropdown
+      const dd = nav.querySelector<HTMLElement>('[data-dd]')!;
+      const ddBtn = dd.querySelector<HTMLButtonElement>('[data-dd-btn]')!;
+      let ddTimer: number | undefined;
+      const setDd = (open: boolean) => {
+        dd.classList.toggle('open', open);
+        ddBtn.setAttribute('aria-expanded', String(open));
+      };
+      ddBtn.addEventListener('click', () => setDd(!dd.classList.contains('open')));
+      if (matchMedia('(hover: hover)').matches) {
+        dd.addEventListener('mouseenter', () => (clearTimeout(ddTimer), setDd(true)));
+        dd.addEventListener('mouseleave', () => (ddTimer = window.setTimeout(() => setDd(false), 160)));
+      }
+      addEventListener('keydown', (e) => e.key === 'Escape' && (setDd(false), nav.classList.remove('open')));
+
+      // 3D scenes
+      const canvases = document.querySelectorAll<HTMLCanvasElement>('[data-gl]');
+      if (canvases.length) import('../scripts/hero-scene').then((m) => canvases.forEach((c) => m.mountHeroScene(c)));
+
+      // Cursor-following glow on cards
+      document.querySelectorAll<HTMLElement>('[data-glow]').forEach((el) => {
+        el.addEventListener('pointermove', (e) => {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+          el.style.setProperty('--my', `${e.clientY - r.top}px`);
+        });
+      });
+
+      // Free review forms
+      document.querySelectorAll<HTMLFormElement>('[data-audit]').forEach((form) => {
+        form.querySelector<HTMLInputElement>('[data-ts]')!.value = String(Date.now());
+        const status = form.querySelector('.audit-status')!;
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (!form.reportValidity()) return;
+          const btn = form.querySelector('button')!;
+          btn.disabled = true;
+          try {
+            const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+            if (!res.ok) throw new Error();
+            form.reset();
+            status.textContent = 'Aitäh! Saadame ülevaate ühe tööpäeva jooksul.';
+          } catch {
+            status.textContent = 'Saatmine ebaõnnestus. Kirjuta palun info@drealm.ee';
+          } finally {
+            btn.disabled = false;
+          }
+        });
+      });
+
+      // Design view tabs
+      document.querySelectorAll<HTMLButtonElement>('.seg [data-view]').forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const root = tab.closest('.vis')!;
+          root.querySelectorAll('.seg [data-view]').forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
+          root.querySelectorAll<HTMLElement>('.view').forEach((v) => v.classList.toggle('is-active', v.dataset.view === tab.dataset.view));
+        });
+      });
+
+      // Floor plan <-> table highlight
+      document.querySelectorAll('.re').forEach((re) => {
+        re.querySelectorAll<HTMLElement>('[data-unit]').forEach((el) => {
+          const on = (v: boolean) => re.querySelectorAll(`[data-unit="${el.dataset.unit}"]`).forEach((x) => x.classList.toggle('hl', v));
+          el.addEventListener('mouseenter', () => on(true));
+          el.addEventListener('mouseleave', () => on(false));
+        });
+      });
+
+      // FAQ accordions: only one open at a time
+      document.querySelectorAll<HTMLDetailsElement>('.faq details').forEach((d, _, all) => {
+        d.addEventListener('toggle', () => d.open && all.forEach((o) => o !== d && (o.open = false)));
+      });
+
+      // AI flow + video scenes step through in sequence
+      const flows = document.querySelectorAll('[data-flow]');
+      const scenes = document.querySelectorAll('.scenes');
+      if (!reduceMotion) {
+        let step = 0;
+        setInterval(() => {
+          flows.forEach((f) => f.querySelectorAll<HTMLElement>('[data-step]').forEach((s) => s.classList.toggle('lit', Number(s.dataset.step) <= step)));
+          scenes.forEach((list) => list.querySelectorAll('li').forEach((s, i) => s.classList.toggle('on', i === step)));
+          step = (step + 1) % 4;
+        }, 1100);
+      } else {
+        flows.forEach((f) => f.querySelectorAll('[data-step]').forEach((s) => s.classList.add('lit')));
+      }
+    </script>
+  </body>
+</html>

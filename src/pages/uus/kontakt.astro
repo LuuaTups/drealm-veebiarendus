@@ -1,0 +1,74 @@
+---
+import V2 from '../../layouts/V2.astro';
+import Icon from '../../components/mock/Icon.astro';
+import { SERVICES } from '../../data/v2/services';
+---
+
+<V2
+  title="Kontakt | drealm"
+  description="Võta drealmiga ühendust: info@drealm.ee. Vastame ühe tööpäeva jooksul. Tasuta esimene kõne ja kodulehe ülevaade."
+  path="/uus/kontakt"
+>
+  <section class="stage">
+    <div class="stage-card page-card">
+      <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>
+      <div class="sv-shade" aria-hidden="true"></div>
+      <div class="sv-grid contact-grid">
+        <div class="sv-copy">
+          <nav class="crumbs" aria-label="Asukoht"><a href="/uus">Avaleht</a><span>/</span><span aria-current="page">Kontakt</span></nav>
+          <p class="chip on-dark"><Icon name="mail" size={14} />Kontakt</p>
+          <h1 class="sv-h1">Räägime sinu projektist.</h1>
+          <p class="sv-lead">Kirjuta paar lauset. Vastame ühe tööpäeva jooksul ja pakume aega lühikeseks kõneks. Kohustusi pole.</p>
+          <div class="contact-list">
+            <a href="mailto:info@drealm.ee" class="contact-item"><span class="ibox"><Icon name="mail" size={18} /></span><span><small>E-post</small>info@drealm.ee</span></a>
+            <div class="contact-item"><span class="ibox"><Icon name="target" size={18} /></span><span><small>Asukoht</small>Tallinn, Eesti</span></div>
+            <div class="contact-item"><span class="ibox"><Icon name="bell" size={18} /></span><span><small>Vastame</small>ühe tööpäeva jooksul</span></div>
+          </div>
+        </div>
+        <form class="msg-form glass-form" method="post" action="/api/contact.php" data-msg novalidate>
+          <input type="hidden" name="lang" value="et" />
+          <input type="hidden" name="page" value="/uus/kontakt" />
+          <input type="hidden" name="ts" value="" data-ts />
+          <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+          <div class="audit">
+            <label class="f"><span>Nimi</span><input name="name" required autocomplete="name" maxlength="120" placeholder="Mari Maasikas" /></label>
+            <label class="f"><span>E-post</span><input type="email" name="email" required autocomplete="email" maxlength="160" placeholder="mari@ettevote.ee" /></label>
+            <label class="f full-row"><span>Teenus</span>
+              <select name="service">
+                <option value="">Veel ei tea</option>
+                {SERVICES.map((s) => <option>{s.name}</option>)}
+              </select>
+            </label>
+            <label class="f full-row"><span>Millest räägime?</span><textarea name="message" rows="4" required maxlength="5000" placeholder="Paar lauset sinu ettevõttest ja soovist"></textarea></label>
+            <button class="btn btn-light" type="submit"><span>Saada sõnum</span><Icon name="arrow" size={18} /></button>
+            <p class="audit-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <div class="sv-last"></div>
+
+  <script>
+    document.querySelectorAll<HTMLFormElement>('[data-msg]').forEach((form) => {
+      form.querySelector<HTMLInputElement>('[data-ts]')!.value = String(Date.now());
+      const status = form.querySelector('.audit-status')!;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        const btn = form.querySelector('button')!;
+        btn.disabled = true;
+        try {
+          const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+          if (!res.ok) throw new Error();
+          form.reset();
+          status.textContent = 'Aitäh! Vastame ühe tööpäeva jooksul.';
+        } catch {
+          status.textContent = 'Saatmine ebaõnnestus. Kirjuta palun info@drealm.ee';
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    });
+  </script>
+</V2>

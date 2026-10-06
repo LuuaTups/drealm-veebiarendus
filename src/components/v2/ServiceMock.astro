@@ -1,0 +1,211 @@
+---
+// Interactive mock visual for each service (homepage tiles + service page heroes).
+import Building from '../mock/Building.astro';
+import Icon from '../mock/Icon.astro';
+
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+
+const units = [
+  { id: 'A1', rooms: 2, m2: '54,2', status: 'Vaba' },
+  { id: 'A2', rooms: 3, m2: '78,6', status: 'Broneeritud' },
+  { id: 'A3', rooms: 1, m2: '36,8', status: 'Vaba' },
+  { id: 'A4', rooms: 4, m2: '96,1', status: 'Müüdud' },
+];
+const badge = (s: string) => (s === 'Vaba' ? 'free' : s === 'Müüdud' ? 'sold' : 'held');
+---
+
+<div class="vis">
+  {
+    id === 'veebilehed' && (
+      <Fragment>
+                <div class="seg" role="tablist" aria-label="Disaini vaated">
+                  <button role="tab" aria-selected="true" data-view="desktop">Arvuti</button>
+                  <button role="tab" aria-selected="false" data-view="mobile">Mobiil</button>
+                  <button role="tab" aria-selected="false" data-view="system">Stiil</button>
+                </div>
+                <div class="view is-active" data-view="desktop">
+                  <div class="browser">
+                    <div class="browser-bar"><i></i><i></i><i></i><span>atelier-nord.ee</span></div>
+                    <div class="nord">
+                      <div class="nord-nav"><b>Atelier Nord</b><span>Menüü</span><span>Broneeri</span></div>
+                      <div class="nord-hero">
+                        <div><small>Restoran · Kalamaja</small><h4>Põhjamaine köök, aeglaselt tehtud.</h4><span class="mini-btn">Broneeri laud</span></div>
+                        <div class="plate"><i></i><i></i><i></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="view" data-view="mobile">
+                  <div class="phones">
+                    <div class="phone sm">
+                      <div class="nord-m"><b>Atelier Nord</b><div class="plate sm"><i></i><i></i><i></i></div><h4>Põhjamaine köök, aeglaselt tehtud.</h4><span class="mini-btn">Broneeri laud</span></div>
+                    </div>
+                    <div class="phone sm">
+                      <div class="nord-m"><b>Broneeri</b><div class="field"><small>Kuupäev</small>R, 17. okt</div><div class="field"><small>Kell</small>19:30</div><div class="field"><small>Inimesi</small>4</div><span class="mini-btn full">Kinnita</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="view" data-view="system">
+                  <div class="system">
+                    <p class="sys-aa">Aa</p>
+                    <div class="sys-sw"><span style="background:#1b0200"></span><span style="background:#4c0f05"></span><span style="background:#a21e02"></span><span style="background:#ce8c71"></span><span style="background:#e4ded3"></span></div>
+                    <div class="sys-btns"><span class="mini-btn">Esmane</span><span class="mini-btn ghost">Teisene</span></div>
+                  </div>
+                </div>
+      </Fragment>
+    )
+  }
+  {
+    id === 'platvormid' && (
+      <Fragment>
+                <div class="re">
+                  <svg class="plan" viewBox="0 0 320 200" role="img" aria-label="Korruseplaan">
+                    <rect x="6" y="6" width="308" height="188" rx="8" class="plan-outline" />
+                    <g class="units">
+                      <rect data-unit="A1" x="12" y="12" width="98" height="92" rx="6" />
+                      <rect data-unit="A2" x="116" y="12" width="118" height="92" rx="6" />
+                      <rect data-unit="A3" x="240" y="12" width="68" height="92" rx="6" />
+                      <rect data-unit="A4" x="12" y="110" width="176" height="78" rx="6" />
+                    </g>
+                    <rect x="194" y="110" width="114" height="78" rx="6" class="core" />
+                    <g class="labels"><text x="61" y="62">A1</text><text x="175" y="62">A2</text><text x="274" y="62">A3</text><text x="100" y="153">A4</text></g>
+                  </svg>
+                  <table class="units-table">
+                    <tbody>
+                      {
+                        units.map((u) => (
+                          <tr data-unit={u.id}>
+                            <td>{u.id}</td>
+                            <td>{u.rooms} tuba</td>
+                            <td>{u.m2} m²</td>
+                            <td>
+                              <span class:list={['badge', badge(u.status)]}>{u.status}</span>
+                            </td>
+                          </tr>
+                        ))
+                      }
+                    </tbody>
+                  </table>
+                </div>
+      </Fragment>
+    )
+  }
+  {
+    id === 'seo' && (
+      <Fragment>
+                <div class="serp">
+                  <div class="serp-q"><Icon name="search" size={14} />hambaarst kesklinn</div>
+                  <div class="serp-r top">
+                    <small>kesklinnahambakliinik.ee</small><b>Kesklinna Hambakliinik · Broneeri aeg</b>
+                    <span class="stars"><Icon name="star" size={11} /><Icon name="star" size={11} /><Icon name="star" size={11} /><Icon name="star" size={11} /><Icon name="star" size={11} /> Avatud täna 8–20</span>
+                  </div>
+                  <div class="serp-r"><small>naidis.ee</small><b>Hambaravi Tallinnas</b></div>
+                  <div class="serp-r"><small>naidis2.ee</small><b>Hambaarstid kesklinnas</b></div>
+                  <svg class="spark-chart" viewBox="0 0 200 60" aria-hidden="true"><defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a21e02" stop-opacity=".28" /><stop offset="1" stop-color="#a21e02" stop-opacity="0" /></linearGradient></defs><path d="M0 52 C30 50 45 46 70 40 S110 30 130 22 S170 10 200 4 V60 H0Z" fill="url(#sg)" /><path d="M0 52 C30 50 45 46 70 40 S110 30 130 22 S170 10 200 4" class="line" /></svg>
+                </div>
+      </Fragment>
+    )
+  }
+  {
+    id === 'meta' && (
+      <Fragment>
+                <div class="meta">
+                  <div class="phone xs">
+                    <div class="ig">
+                      <div class="ig-head"><i></i><div><b>savi.stuudio</b><small>Sponsitud</small></div></div>
+                      <div class="ig-media"><span class="vase"></span><span class="vase two"></span></div>
+                      <div class="ig-cta">Osta nüüd <Icon name="arrow" size={12} /></div>
+                    </div>
+                  </div>
+                  <div class="report">
+                    <small>Kuu kokkuvõte · näidis</small>
+                    <div class="rep-row"><span>Reklaam A</span><i style="--w:84%"></i><b>21</b></div>
+                    <div class="rep-row"><span>Reklaam B</span><i style="--w:56%"></i><b>14</b></div>
+                    <div class="rep-row off"><span>Reklaam C</span><i style="--w:12%"></i><b>3</b></div>
+                    <p>päringut · C peatatud, raha A-le</p>
+                  </div>
+                </div>
+      </Fragment>
+    )
+  }
+  {
+    id === 'reklaampildid' && (
+      <Fragment>
+                <div class="creatives">
+                  <div class="cr sq"><small>1:1</small><b>Sügisel −20%</b><em>savi.stuudio</em></div>
+                  <div class="cr pt"><small>4:5</small><b>Uus kollektsioon</b><em>Atelier Nord</em></div>
+                  <div class="cr st"><small>9:16</small><b>Avatud uksed</b><em>Kalaranna</em></div>
+                </div>
+      </Fragment>
+    )
+  }
+  {
+    id === 'video' && (
+      <Fragment>
+                <div class="video">
+                  <div class="frame">
+                    <div class="footage"><Building class="v-art" /></div>
+                    <span class="rec"><i></i>AI · 0:15</span>
+                    <p class="cap"><span>Merevaade.</span><span>Valmib 2027.</span><span>Broneeri nüüd.</span></p>
+                    <div class="scrub"><i></i></div>
+                  </div>
+                  <ul class="scenes"><li class="on">Stseen 1</li><li>Stseen 2</li><li>Stseen 3</li><li>Logo</li></ul>
+                </div>
+      </Fragment>
+    )
+  }
+  {
+    id === 'automatiseerimine' && (
+      <Fragment>
+                <div class="flow" data-flow>
+                  <div class="flow-step" data-step="0"><span class="ico"><Icon name="mail" size={18} /></span><div><strong>Päring saabub</strong><small>„Soovime pakkumist fassaadile…“</small></div></div>
+                  <div class="flow-line"><i></i></div>
+                  <div class="flow-step" data-step="1"><span class="ico"><Icon name="spark" size={18} /></span><div><strong>AI liigitab</strong><small>Fassaad · ~420 m² · kõrge prioriteet</small></div></div>
+                  <div class="flow-line"><i></i></div>
+                  <div class="flow-split">
+                    <div class="flow-step" data-step="2"><span class="ico"><Icon name="doc" size={18} /></span><div><strong>Pakkumine</strong><small>Mustand valmis</small></div></div>
+                    <div class="flow-step" data-step="2"><span class="ico"><Icon name="stack" size={18} /></span><div><strong>CRM</strong><small>Kirje lisatud</small></div></div>
+                    <div class="flow-step" data-step="2"><span class="ico"><Icon name="bell" size={18} /></span><div><strong>Teavitus</strong><small>Sinu telefoni</small></div></div>
+                  </div>
+                </div>
+      </Fragment>
+    )
+  }
+  {
+    id === 'koolitused' && (
+      <Fragment>
+                <div class="course">
+                  <div class="course-top"><b>AI igapäevatöös</b><span>3 / 5</span></div>
+                  <div class="bar"><i></i></div>
+                  <ul>
+                    <li class="done">ChatGPT ja Claude: põhitõed</li>
+                    <li class="done">Kirjad ja pakkumised 5 minutiga</li>
+                    <li class="done">Tabelid ja raportid</li>
+                    <li class="now">Oma töövoogude automatiseerimine</li>
+                    <li>Turvalisus ja andmed</li>
+                  </ul>
+                </div>
+      </Fragment>
+    )
+  }
+  {
+    id === 'ettevotte-ai' && (
+      <Fragment>
+                <div class="chat">
+                  <div class="msg me">Koosta Kalaranna pakkumine eelmise malli põhjal.</div>
+                  <div class="msg ai">
+                    <span class="ai-av"><Icon name="spark" size={12} /></span>
+                    <div>
+                      Valmis. Kasutasin 2026. aasta hinnakirja ja eelmist pakkumist. Kas saadan Martinile üle vaatamiseks?
+                      <div class="src"><span><Icon name="doc" size={12} />Hinnakiri_2026.xlsx</span><span><Icon name="doc" size={12} />Pakkumine_Merivälja.pdf</span></div>
+                    </div>
+                  </div>
+                  <div class="chat-in"><span>Küsi midagi oma ettevõtte kohta…</span><i><Icon name="up" size={16} /></i></div>
+                </div>
+      </Fragment>
+    )
+  }
+</div>
