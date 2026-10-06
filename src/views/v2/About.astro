@@ -18,25 +18,25 @@ const photo = Object.values(photos)[0]?.default;
 
 const c = {
   et: {
-    title: 'Meist: Robin ja Karlos Rattasepp | drealm',
-    description: 'drealmi taga on Robin ja Karlos Rattasepp: arendus, disain ja AI ning turundus, strateegia ja äriarendus.',
+    title: 'Meist: Robin ja Karlos Rattasep | drealm',
+    description: 'drealmi taga on Robin ja Karlos Rattasep: arendus, disain ja AI ning turundus, strateegia ja äriarendus.',
     chip: 'Meist',
-    h1: 'Robin ja Karlos. Meie eesmärk: sinu äri kasvab veebis.',
+    h1: 'Meie eesmärk: sinu äri kasvab veebis.',
     lead: 'Robin ehitab ja automatiseerib. Karlos mõtleb, kuidas see sinu äris raha teenib. Räägid alati otse nendega.',
-    photoAlt: 'Robin ja Karlos Rattasepp',
-    caption: 'Robin ja Karlos Rattasepp',
+    photoAlt: 'Robin ja Karlos Rattasep',
+    caption: 'Robin ja Karlos Rattasep',
     peopleChip: 'Kes me oleme',
     peopleH: 'Tegijad, kellega räägid otse.',
     people: [
       {
-        name: 'Robin Rattasepp',
+        name: 'Robin Rattasep',
         role: 'Asutaja · arendus, disain ja AI',
         icon: 'web',
         text: 'Robin disainib ja ehitab veebilehti ning veebirakendusi algusest lõpuni ja viib ettevõtetes läbi AI-töötubasid. Tema vastutab selle eest, et kõik, mida lubame, ka päriselt töötab.',
         skills: ['Veebilehed ja veebirakendused', 'Kasutajaliidese disain', 'AI-automatiseerimine', 'AI-töötoad ja koolitused'],
       },
       {
-        name: 'Karlos Rattasepp',
+        name: 'Karlos Rattasep',
         role: 'Turundus, strateegia ja äriarendus',
         icon: 'target',
         text: 'Karlos õpib Estonian Business Schoolis ärijuhtimist ja vastutab drealmis turunduse, strateegia ja äriarenduse eest. Tema küsib alati esimesena: mis on üks päring sulle väärt?',
@@ -55,25 +55,25 @@ const c = {
     ctaP: 'Kirjelda paari lausega ja vastame ühe tööpäeva jooksul.',
   },
   en: {
-    title: 'About: Robin and Karlos Rattasepp | drealm',
-    description: 'drealm is run by Robin and Karlos Rattasepp: development, design and AI, plus marketing, strategy and business development.',
+    title: 'About: Robin and Karlos Rattasep | drealm',
+    description: 'drealm is run by Robin and Karlos Rattasep: development, design and AI, plus marketing, strategy and business development.',
     chip: 'About',
-    h1: 'Robin and Karlos. Our goal: growing your business online.',
+    h1: 'Our goal: growing your business online.',
     lead: 'Robin builds and automates. Karlos works out how it makes money for your business. You always talk to them directly.',
-    photoAlt: 'Robin and Karlos Rattasepp',
-    caption: 'Robin and Karlos Rattasepp',
+    photoAlt: 'Robin and Karlos Rattasep',
+    caption: 'Robin and Karlos Rattasep',
     peopleChip: 'Who we are',
     peopleH: 'The people you talk to directly.',
     people: [
       {
-        name: 'Robin Rattasepp',
+        name: 'Robin Rattasep',
         role: 'Founder · development, design and AI',
         icon: 'web',
         text: 'Robin designs and builds websites and web apps end to end and runs AI workshops for companies. He makes sure everything we promise actually works.',
         skills: ['Websites and web apps', 'Interface design', 'AI automation', 'AI workshops and training'],
       },
       {
-        name: 'Karlos Rattasepp',
+        name: 'Karlos Rattasep',
         role: 'Marketing, strategy and business development',
         icon: 'target',
         text: 'Karlos studies business administration at Estonian Business School and leads marketing, strategy and business development at drealm. He always asks first: what is one enquiry worth to you?',
@@ -137,7 +137,14 @@ const jsonLd = [
             </div>
           )
         }
-        <figcaption><span class="dot"></span>{c.caption}</figcaption>
+        {
+          photo && (
+            <Fragment>
+              <span class="name-tag nt-robin">Robin</span>
+              <span class="name-tag nt-karlos">Karlos</span>
+            </Fragment>
+          )
+        }
       </figure>
     </div>
   </section>
