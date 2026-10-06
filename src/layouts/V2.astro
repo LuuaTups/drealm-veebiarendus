@@ -35,7 +35,6 @@ const org = {
   email: EMAIL,
   logo: `${SITE_URL}/logo.png`,
   image: `${SITE_URL}/og.png`,
-  address: { '@type': 'PostalAddress', addressLocality: 'Tallinn', addressCountry: 'EE' },
   areaServed: { '@type': 'Country', name: 'Estonia' },
   knowsLanguage: ['et', 'en'],
 };
@@ -133,7 +132,7 @@ const org = {
         <div class="foot-shade" aria-hidden="true"></div>
         <div class="foot-grid">
           <div>
-            <p class="chip on-dark"><Icon name="spark" size={14} />{t.footReviewChip}</p>
+            <p class="chip on-dark">{t.footReviewChip}</p>
             <h2>{t.footH}</h2>
             <p class="foot-sub">{t.footSub}</p>
             <p class="foot-mail">{t.footMail} <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>

@@ -62,7 +62,7 @@ const jsonLd = [
           <nav class="crumbs" aria-label="Breadcrumb">
             <a href={r('home', lang)}>{t.home}</a><span>/</span><a href={r('services', lang)}>{t.services}</a><span>/</span><a href={serviceHref(parent, lang)}>{parent.name}</a><span>/</span><span aria-current="page">{c.name}</span>
           </nav>
-          <p class="chip on-dark"><Icon name={sub.icon} size={14} />{GROUP_LABEL[lang][parent.group]} · {parent.name}</p>
+          <p class="chip on-dark">{GROUP_LABEL[lang][parent.group]} · {parent.name}</p>
           <h1 class="sv-h1">{c.h1}</h1>
           <p class="sv-lead">{c.lead}</p>
           <div class="sv-ctas">
@@ -87,7 +87,7 @@ const jsonLd = [
         {c.body.map((p) => <p>{p}</p>)}
       </div>
       <aside class="incl-card" data-glow>
-        <p class="chip"><Icon name="check" size={14} />{L.incl}</p>
+        <p class="chip">{L.incl}</p>
         <ul>
           {
             c.includes.map((i) => (
@@ -108,7 +108,7 @@ const jsonLd = [
   <section class="sv-sec">
     <div class="wrap">
       <div class="faq faq-wide">
-        <p class="chip"><Icon name="chat" size={14} />{t.faq}</p>
+        <p class="chip">{t.faq}</p>
         {
           c.faqs.map((f, i) => (
             <details open={i === 0}>
@@ -130,7 +130,7 @@ const jsonLd = [
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="chip"><Icon name={parent.icon} size={14} />{L.more}: {parent.name}</p>
+          <p class="chip">{L.more}: {parent.name}</p>
           <h2 class="grad h-md">{parent.h1}</h2>
         </div>
         <a class="link-arrow" href={serviceHref(parent, lang)}>{L.all} <Icon name="arrow" size={16} /></a>

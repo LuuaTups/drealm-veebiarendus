@@ -3511,3 +3511,101 @@ dd {
     display: inline-block;
   }
 }
+
+/* ---------- LESS ORNAMENT (2026-10-06) ---------- */
+/* section labels: plain text with a short rule, no pill or icon */
+.chip {
+  gap: 0.7rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+.chip::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+.chip .icon {
+  display: none;
+}
+.chip.on-dark {
+  border: 0;
+  background: none;
+  color: rgba(255, 228, 214, 0.7);
+}
+/* icon boxes: flat outline instead of glossy gradient */
+.ibox {
+  color: var(--r-500);
+  background: transparent;
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+.tile.dark .ibox,
+.dark-card .ibox,
+.stage-card .ibox,
+.person.dark .ibox,
+.dd-panel .ibox,
+.inq .ibox {
+  color: #ffb48e;
+  border-color: rgba(255, 220, 205, 0.18);
+  background: transparent;
+}
+/* ticks, step dots, checkboxes: flat */
+.tick {
+  width: auto;
+  height: auto;
+  background: none;
+  color: var(--r-500);
+}
+.step-dot {
+  background: var(--ink);
+  box-shadow: 0 0 0 6px var(--card);
+}
+.course li.done::before {
+  background:
+    linear-gradient(45deg, transparent 45%, #fff 45%, #fff 57%, transparent 57%) no-repeat 3px 7px / 6px 6px,
+    linear-gradient(-45deg, transparent 45%, #fff 45%, #fff 57%, transparent 57%) no-repeat 6px 3px / 9px 9px,
+    var(--r-500);
+}
+.inq-progress li.on span,
+.inq-progress li.done span {
+  background: #fff;
+  color: var(--ink);
+}
+.ai-av {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--r-500);
+}
+/* tags on tiles: plain small text */
+.tile-head .tag,
+.rel-card .tag {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 0.72rem;
+}
+/* buttons: no orange glow */
+.cta-glow,
+.cta-glow:hover {
+  box-shadow: 0 10px 30px -14px rgba(0, 0, 0, 0.6);
+}
+.btn-light,
+.btn-light:hover {
+  box-shadow: none;
+}
+.ichip input:checked + span {
+  box-shadow: none;
+}
+.chip {
+  display: flex;
+  width: fit-content;
+}

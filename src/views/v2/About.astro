@@ -12,17 +12,17 @@ interface Props {
 const { lang } = Astro.props;
 const t = UI[lang];
 
-// Team photo: drop the file at src/assets/photos/vennad.jpg and it appears automatically.
-const photos = import.meta.glob<{ default: ImageMetadata }>('../../assets/photos/vennad.{jpg,jpeg,png,webp}', { eager: true });
+// Team photo: drop the file at src/assets/photos/tiim.jpg and it appears automatically.
+const photos = import.meta.glob<{ default: ImageMetadata }>('../../assets/photos/tiim.{jpg,jpeg,png,webp}', { eager: true });
 const photo = Object.values(photos)[0]?.default;
 
 const c = {
   et: {
     title: 'Meist: Robin ja Karlos Rattasepp | drealm',
-    description: 'drealm on Tallinna digistuudio, mille taga on vennad Robin ja Karlos Rattasepp: arendus, disain ja AI ning turundus, strateegia ja äriarendus.',
+    description: 'drealmi taga on Robin ja Karlos Rattasepp: arendus, disain ja AI ning turundus, strateegia ja äriarendus.',
     chip: 'Meist',
-    h1: 'Kaks venda, üks eesmärk: sinu äri kasvab veebis.',
-    lead: 'drealm on Tallinna digistuudio, mille taga on vennad Robin ja Karlos Rattasepp. Robin ehitab ja automatiseerib, Karlos mõtleb, kuidas see sinu äris raha teenib.',
+    h1: 'Robin ja Karlos. Meie eesmärk: sinu äri kasvab veebis.',
+    lead: 'Robin ehitab ja automatiseerib. Karlos mõtleb, kuidas see sinu äris raha teenib. Räägid alati otse nendega.',
     photoAlt: 'Robin ja Karlos Rattasepp',
     caption: 'Robin ja Karlos Rattasepp',
     peopleChip: 'Kes me oleme',
@@ -56,10 +56,10 @@ const c = {
   },
   en: {
     title: 'About: Robin and Karlos Rattasepp | drealm',
-    description: 'drealm is a digital studio in Tallinn run by brothers Robin and Karlos Rattasepp: development, design and AI, plus marketing, strategy and business development.',
+    description: 'drealm is run by Robin and Karlos Rattasepp: development, design and AI, plus marketing, strategy and business development.',
     chip: 'About',
-    h1: 'Two brothers, one goal: growing your business online.',
-    lead: 'drealm is a digital studio in Tallinn run by brothers Robin and Karlos Rattasepp. Robin builds and automates, Karlos works out how it makes money for your business.',
+    h1: 'Robin and Karlos. Our goal: growing your business online.',
+    lead: 'Robin builds and automates. Karlos works out how it makes money for your business. You always talk to them directly.',
     photoAlt: 'Robin and Karlos Rattasepp',
     caption: 'Robin and Karlos Rattasepp',
     peopleChip: 'Who we are',
@@ -117,7 +117,7 @@ const jsonLd = [
       <div class="sv-shade" aria-hidden="true"></div>
       <div class="page-hero">
         <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><span aria-current="page">{t.about}</span></nav>
-        <p class="chip on-dark"><Icon name="spark" size={14} />{c.chip}</p>
+        <p class="chip on-dark">{c.chip}</p>
         <h1 class="sv-h1 about-h1">{c.h1}</h1>
         <p class="sv-lead">{c.lead}</p>
       </div>
@@ -146,7 +146,7 @@ const jsonLd = [
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="chip"><Icon name="chat" size={14} />{c.peopleChip}</p>
+          <p class="chip">{c.peopleChip}</p>
           <h2 class="grad">{c.peopleH}</h2>
         </div>
       </div>
@@ -180,7 +180,7 @@ const jsonLd = [
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="chip"><Icon name="check" size={14} />{c.valuesChip}</p>
+          <p class="chip">{c.valuesChip}</p>
           <h2 class="grad">{c.valuesH}</h2>
         </div>
       </div>

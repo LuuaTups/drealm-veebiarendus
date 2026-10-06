@@ -25,25 +25,25 @@ const tileClass: Record<string, string> = {
 const c = {
   et: {
     title: 'drealm — kodulehed, turundus ja AI ettevõtetele',
-    description: 'Digistuudio Tallinnas: kodulehed ja platvormid, SEO ja reklaamid ning AI-lahendused ettevõtetele. Fikseeritud hind, otsekontakt.',
-    kicker: 'drealm · digistuudio Tallinnas',
+    description: 'Teeme ettevõtetele kodulehti, toome kliente Google’ist ja reklaamidest ning automatiseerime tööd AI-ga. Fikseeritud hind.',
+    kicker: 'Kodulehed · Turundus · AI',
     h1: 'Kodulehed, mis näevad välja sama head kui sinu teenus.',
-    lead: 'Veebilehed, turundus ja AI ühest kohast. Disainime, ehitame ja paneme tööle.',
+    lead: 'Teeme kodulehti, toome kliente Google’ist ja reklaamidest ning automatiseerime tööd AI-ga.',
     cta: 'Küsi hinda',
     servicesH: 'Mida teeme',
-    servicesP: 'Veeb, turundus ja AI. Võta üks teenus või kõik korraga. Iga ploki juures näed, kuidas see päriselt välja näeb.',
+    servicesP: 'Vali teenus, et näha, kuidas see töötab ja mis see maksab.',
     painsChip: 'Kliendid ütlevad meile',
     talk: 'Räägime sellest',
   },
   en: {
     title: 'drealm — websites, marketing and AI for businesses',
-    description: 'A digital studio in Tallinn: websites and platforms, SEO and ads, and AI solutions for businesses. Fixed prices, direct contact.',
-    kicker: 'drealm · digital studio in Tallinn',
+    description: 'We build websites for businesses, bring clients from Google and ads, and automate work with AI. Fixed prices.',
+    kicker: 'Websites · Marketing · AI',
     h1: 'Websites that look as good as your service.',
-    lead: 'Websites, marketing and AI in one place. We design, build and make it work.',
+    lead: 'We build websites, bring clients from Google and ads, and automate work with AI.',
     cta: 'Get a quote',
     servicesH: 'What we do',
-    servicesP: 'Web, marketing and AI. Take one service or all of them. Each block shows what it actually looks like.',
+    servicesP: 'Pick a service to see how it works and what it costs.',
     painsChip: 'What clients tell us',
     talk: 'Let’s talk about it',
   },
@@ -57,7 +57,6 @@ const c = {
       <div class="stage-shade" aria-hidden="true"></div>
       <div class="stage-content">
         <p class="stage-kicker">{c.kicker}</p>
-        <span class="stage-mark" aria-hidden="true"><Icon name="spark" size={58} /></span>
         <h1>{c.h1}</h1>
         <p class="stage-lead">{c.lead}</p>
         <a class="cta-glow" href={r('contact', lang)}><span class="box"><Icon name="arrow" size={16} /></span>{c.cta}</a>
@@ -72,7 +71,7 @@ const c = {
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="chip"><Icon name="stack" size={14} />{t.services}</p>
+          <p class="chip">{t.services}</p>
           <h2 class="grad">{c.servicesH}</h2>
         </div>
         <p>{c.servicesP}</p>
@@ -105,7 +104,7 @@ const c = {
       <div class="pains-compact">
         <div class="pains-top">
           <div>
-            <p class="chip on-dark"><Icon name="chat" size={14} />{c.painsChip}</p>
+            <p class="chip on-dark">{c.painsChip}</p>
             <h2 id="pains-h" class="grad-dark">{t.soundsFamiliar}</h2>
           </div>
           <a class="btn-glass" href={r('contact', lang)}><span>{c.talk}</span><Icon name="arrow" size={16} /></a>

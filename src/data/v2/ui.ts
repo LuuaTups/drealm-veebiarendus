@@ -50,7 +50,7 @@ export const UI = {
     footSub: '5-minutiline video sinu kodulehest: mis töötab, mis mitte ja mida parandada esimesena. Ühe tööpäeva jooksul, tasuta.',
     footMail: 'Või kirjuta otse:',
     footNav: 'Jaluse menüü',
-    rights: '© 2026 drealm · Tallinn',
+    rights: '© 2026 drealm',
     form: {
       url: 'Kodulehe aadress',
       email: 'Kuhu ülevaade saata',
@@ -95,7 +95,7 @@ export const UI = {
     footSub: 'A 5-minute video about your website: what works, what doesn’t and what to fix first. Within one working day, free.',
     footMail: 'Or email us directly:',
     footNav: 'Footer menu',
-    rights: '© 2026 drealm · Tallinn, Estonia',
+    rights: '© 2026 drealm',
     form: {
       url: 'Website address',
       email: 'Where to send the review',

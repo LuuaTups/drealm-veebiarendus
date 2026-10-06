@@ -46,7 +46,7 @@ const icons = { Veeb: 'web', Turundus: 'target', AI: 'spark' } as const;
       <div class="sv-shade" aria-hidden="true"></div>
       <div class="page-hero">
         <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><span aria-current="page">{t.services}</span></nav>
-        <p class="chip on-dark"><Icon name="stack" size={14} />{t.services}</p>
+        <p class="chip on-dark">{t.services}</p>
         <h1 class="sv-h1">{c.h1}</h1>
         <p class="sv-lead">{c.lead}</p>
         <ul class="stage-tags left">
@@ -62,9 +62,7 @@ const icons = { Veeb: 'web', Turundus: 'target', AI: 'spark' } as const;
         <div class="wrap">
           <div class="sec-head">
             <div>
-              <p class="chip">
-                <Icon name={icons[g]} size={14} />
-                {GROUP_LABEL[lang][g]}
+              <p class="chip">{GROUP_LABEL[lang][g]}
               </p>
               <h2 class="grad h-md">{c.groups[g]}</h2>
             </div>

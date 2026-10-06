@@ -58,7 +58,7 @@ const jsonLd = [
           <nav class="crumbs" aria-label="Breadcrumb">
             <a href={r('home', lang)}>{t.home}</a><span>/</span><a href={r('services', lang)}>{t.services}</a><span>/</span><span aria-current="page">{s.name}</span>
           </nav>
-          <p class="chip on-dark"><Icon name={s.icon} size={14} />{GROUP_LABEL[lang][s.group]} · {s.name}</p>
+          <p class="chip on-dark">{GROUP_LABEL[lang][s.group]} · {s.name}</p>
           <h1 class="sv-h1">{s.h1}</h1>
           <p class="sv-lead">{s.lead}</p>
           <div class="sv-ctas">
@@ -83,9 +83,7 @@ const jsonLd = [
         <div class="wrap">
           <div class="sec-head">
             <div>
-              <p class="chip">
-                <Icon name="stack" size={14} />
-                {SUBL.chip}
+              <p class="chip">{SUBL.chip}
               </p>
               <h2 class="grad h-md">{SUBL.h}</h2>
             </div>
@@ -114,7 +112,7 @@ const jsonLd = [
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="chip"><Icon name="check" size={14} />{t.forYouIf}</p>
+          <p class="chip">{t.forYouIf}</p>
           <h2 class="grad">{t.soundsFamiliar}</h2>
         </div>
         <p class="sv-quote">„{s.pain}“</p>
@@ -136,7 +134,7 @@ const jsonLd = [
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="chip"><Icon name="stack" size={14} />{t.whatYouGet}</p>
+          <p class="chip">{t.whatYouGet}</p>
           <h2 class="grad">{t.getEverything}</h2>
         </div>
         <p>{t.getEverythingSub}</p>
@@ -161,7 +159,7 @@ const jsonLd = [
     <div class="wrap">
       <div class="steps-card">
         <div class="steps-head">
-          <p class="chip"><Icon name="flow" size={14} />{t.howItWorks}</p>
+          <p class="chip">{t.howItWorks}</p>
           <p class="steps-time"><Icon name="bell" size={16} />{s.timeline}</p>
         </div>
         <ol class="steps-row">
@@ -182,7 +180,7 @@ const jsonLd = [
   <section class="sv-sec">
     <div class="wrap pf-grid">
       <div class="price-card dark-card" data-glow>
-        <p class="chip on-dark"><Icon name="doc" size={14} />{t.price}</p>
+        <p class="chip on-dark">{t.price}</p>
         {
           s.priceFrom ? (
             <p class="price-big">
@@ -207,7 +205,7 @@ const jsonLd = [
         <a class="btn btn-light" href={quoteHref}><span>{t.askPrice}</span><Icon name="arrow" size={18} /></a>
       </div>
       <div class="faq">
-        <p class="chip"><Icon name="chat" size={14} />{t.faq}</p>
+        <p class="chip">{t.faq}</p>
         {
           s.faqs.map((f, i) => (
             <details open={i === 0}>
@@ -229,7 +227,7 @@ const jsonLd = [
     <div class="wrap">
       <div class="sec-head">
         <div>
-          <p class="chip"><Icon name="plus" size={14} />{t.goesWith}</p>
+          <p class="chip">{t.goesWith}</p>
           <h2 class="grad">{t.goesWithH}</h2>
         </div>
         <a class="link-arrow" href={r('services', lang)}>{t.allServices} <Icon name="arrow" size={16} /></a>

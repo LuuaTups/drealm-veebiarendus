@@ -44,7 +44,7 @@ const c = {
       <div class="sv-shade" aria-hidden="true"></div>
       <div class="page-hero post-hero">
         <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><a href={r('blog', lang)}>{t.blog}</a></nav>
-        <p class="chip on-dark"><Icon name="doc" size={14} /><time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time> · {readingTime(post.body)} {c.min}</p>
+        <p class="chip on-dark"><time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time> · {readingTime(post.body)} {c.min}</p>
         <h1 class="sv-h1">{post.data.title}</h1>
         <p class="sv-lead">{post.data.description}</p>
       </div>
