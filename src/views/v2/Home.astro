@@ -37,7 +37,7 @@ const c = {
   },
   en: {
     title: 'drealm — websites, marketing and AI for businesses',
-    description: 'We build websites for businesses, bring clients from Google and ads, and automate work with AI. Fixed prices.',
+    description: 'We build websites and platforms for businesses, bring clients from Google and Meta ads, and automate routine work with AI. Fixed prices in writing.',
     kicker: 'Websites · Marketing · AI',
     h1: 'Websites that look as good as your service.',
     lead: 'We build websites, bring clients from Google and ads, and automate work with AI.',
@@ -74,7 +74,10 @@ const c = {
           <p class="chip">{t.services}</p>
           <h2 class="grad">{c.servicesH}</h2>
         </div>
-        <p>{c.servicesP}</p>
+        <div class="sec-side">
+          <p>{c.servicesP}</p>
+          <a class="link-arrow" href={r('solutions', lang)}>{t.allSolutions} <Icon name="arrow" size={16} /></a>
+        </div>
       </div>
       <div class="bento">
         {

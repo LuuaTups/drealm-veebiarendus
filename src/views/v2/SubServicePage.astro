@@ -2,8 +2,9 @@
 import V2 from '../../layouts/V2.astro';
 import Icon from '../../components/mock/Icon.astro';
 import ServiceMock from '../../components/v2/ServiceMock.astro';
-import { GROUP_LABEL, byId, serviceHref, type Lang } from '../../data/v2/services';
+import { priceOffer, GROUP_LABEL, byId, serviceHref, type Lang } from '../../data/v2/services';
 import { subHref, subsOf, type SubService } from '../../data/v2/subservices';
+import { solHref, solutionsFor } from '../../data/v2/solutions';
 import { SITE_URL, UI, r } from '../../data/v2/ui';
 
 interface Props {
@@ -18,9 +19,10 @@ const siblings = subsOf(sub.parent).filter((x) => x.id !== sub.id);
 const alternates = { et: subHref(sub, 'et'), en: subHref(sub, 'en') };
 const url = new URL(subHref(sub, lang), SITE_URL).href;
 const quoteHref = `${r('contact', lang)}?t=${parent.id}`;
+const sols = solutionsFor(parent.id).slice(0, 9);
 const L = {
-  et: { incl: 'Mis sisaldub', more: 'Veel teenuses', all: 'Vaata kogu teenust' },
-  en: { incl: 'What’s included', more: 'More in', all: 'See the full service' },
+  et: { incl: 'Mis sisaldub', more: 'Veel teenuses', all: 'Vaata kogu teenust', sol: 'Lahendused', solH: 'Konkreetsed lahendused valdkondade kaupa.' },
+  en: { incl: 'What’s included', more: 'More in', all: 'See the full service', sol: 'Solutions', solH: 'Specific solutions by industry and use case.' },
 }[lang];
 const jsonLd = [
   {
@@ -33,6 +35,7 @@ const jsonLd = [
     inLanguage: lang,
     areaServed: { '@type': 'Country', name: 'Estonia' },
     provider: { '@id': `${SITE_URL}/#org` },
+    offers: priceOffer(parent),
   },
   {
     '@context': 'https://schema.org',
@@ -125,6 +128,35 @@ const jsonLd = [
       </div>
     </div>
   </section>
+
+  {
+    sols.length > 0 && (
+      <section class="sv-sec">
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <p class="chip">{L.sol}</p>
+              <h2 class="h-md">{L.solH}</h2>
+            </div>
+            <a class="link-arrow" href={r('solutions', lang)}>{t.allSolutions} <Icon name="arrow" size={16} /></a>
+          </div>
+          <ul class="sol-links">
+            {sols.map((x) => (
+              <li>
+                <a href={solHref(x, lang)}>
+                  <span class="ibox sm">
+                    <Icon name={x.icon} size={15} />
+                  </span>
+                  <span>{x[lang].name}</span>
+                  <Icon name="arrow" size={14} />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
 
   <section class="sv-sec sv-last">
     <div class="wrap">

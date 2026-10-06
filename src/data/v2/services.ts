@@ -390,6 +390,17 @@ export const servicesFor = (lang: Lang) => (lang === 'en' ? SERVICES_EN : SERVIC
 export const serviceHref = (s: Service, lang: Lang = 'et') => (lang === 'en' ? `/en/services/${s.slug}` : `/teenused/${s.slug}`);
 export const byId = (id: string, lang: Lang) => servicesFor(lang).find((s) => s.id === id);
 export const relatedOf = (s: Service, lang: Lang) => s.related.map((id) => byId(id, lang)).filter((x): x is Service => Boolean(x));
+/** schema.org Offer with the starting price, when the service has a fixed "from" price. */
+export const priceOffer = (s: Service) => {
+  if (!s.priceFrom) return undefined;
+  const n = Number(s.priceFrom.replace(/[^0-9]/g, ''));
+  return {
+    '@type': 'Offer',
+    priceCurrency: 'EUR',
+    priceSpecification: { '@type': 'PriceSpecification', minPrice: n, priceCurrency: 'EUR' },
+    availability: 'https://schema.org/InStock',
+  };
+};
 export const GROUP_LABEL: Record<Lang, Record<Group, string>> = {
   et: { Veeb: 'Veeb', Turundus: 'Turundus', AI: 'AI' },
   en: { Veeb: 'Web', Turundus: 'Marketing', AI: 'AI' },

@@ -167,7 +167,7 @@ export const SUBSERVICES: SubService[] = [
       slug: 'website-redesign',
       name: 'Website redesign',
       metaTitle: 'Website Redesign | drealm',
-      metaDescription: 'Redesign your old website: new design, speed and structure without losing Google rankings or old links.',
+      metaDescription: 'Redesign your old website: new design, speed and structure without losing Google rankings, enquiries or the links that point to your site.',
       h1: 'Your old website made new, without losing anything.',
       lead: 'We refresh design, speed and structure so your Google rankings, old links and content stay intact.',
       body: [
@@ -366,7 +366,7 @@ export const SUBSERVICES: SubService[] = [
       slug: 'local-seo',
       name: 'Local SEO and Google Maps',
       metaTitle: 'Local SEO & Google Business Profile | drealm',
-      metaDescription: 'Local SEO: Google Business Profile, Maps search, reviews and area pages so nearby clients find you first.',
+      metaDescription: 'Local SEO: Google Business Profile, Maps search, reviews and area pages so nearby clients find you first when they search for your service.',
       h1: 'Nearby clients find you first.',
       lead: 'Google Business Profile, Maps and reviews in order, so for “your service + town” it’s you.',
       body: [
@@ -468,7 +468,7 @@ export const SUBSERVICES: SubService[] = [
       slug: 'facebooki-reklaamid',
       name: 'Facebooki reklaamid',
       metaTitle: 'Facebooki reklaamid ettevõttele | drealm',
-      metaDescription: 'Facebooki reklaamid, mis toovad päringuid ja müüki: sihtimine, reklaamid, mõõtmine ja igakuine aus kokkuvõte.',
+      metaDescription: 'Facebooki reklaamid, mis toovad päringuid ja müüki: sihtimine, reklaampildid ja videod, korrektne mõõtmine ja igakuine aus kokkuvõte tulemustest.',
       h1: 'Facebooki reklaam, mis toob päringuid.',
       lead: 'Sihtimine, reklaamid ja mõõtmine nii, et näed täpselt, mitu päringut iga euro tõi.',
       body: [
@@ -485,7 +485,7 @@ export const SUBSERVICES: SubService[] = [
       slug: 'facebook-ads',
       name: 'Facebook ads',
       metaTitle: 'Facebook Ads for Business | drealm',
-      metaDescription: 'Facebook ads that bring enquiries and sales: targeting, creatives, tracking and an honest monthly summary.',
+      metaDescription: 'Facebook ads that bring enquiries and sales: targeting, ad images and videos, proper tracking and an honest monthly summary of results.',
       h1: 'Facebook ads that bring enquiries.',
       lead: 'Targeting, creatives and tracking so you see exactly how many enquiries every euro brought.',
       body: [
@@ -524,7 +524,7 @@ export const SUBSERVICES: SubService[] = [
       slug: 'instagram-ads',
       name: 'Instagram ads',
       metaTitle: 'Instagram Ads & Reels | drealm',
-      metaDescription: 'Instagram ads in feed, Stories and Reels: visuals and short videos that stop the scroll and drive sales.',
+      metaDescription: 'Instagram ads in feed, Stories and Reels: visuals and short videos that stop the scroll, plus tracking that shows which ads drive sales.',
       h1: 'Instagram ads that stop the scroll.',
       lead: 'Visuals and short videos for feed, Stories and Reels, designed for each format separately.',
       body: [
@@ -604,7 +604,7 @@ export const SUBSERVICES: SubService[] = [
       slug: 'display-banners',
       name: 'Display banners',
       metaTitle: 'Display Banners & Web Ads | drealm',
-      metaDescription: 'Display banners for Google, portals and news sites in every size, from one design. Animated too.',
+      metaDescription: 'Display banners for Google, property portals and news sites in every size from one design, static or animated, ready to upload to any ad network.',
       h1: 'Banners in every size, from one design.',
       lead: 'Google Display, news portals, KV.ee and City24: every size you need at once, animated too.',
       body: [
@@ -628,7 +628,7 @@ export const SUBSERVICES: SubService[] = [
       slug: 'tootevideod',
       name: 'Tootevideod',
       metaTitle: 'AI tootevideod e-poele ja reklaamile | drealm',
-      metaDescription: 'Lühikesed tootevideod e-poele ja sotsiaalmeediale sinu tootepiltide põhjal, ilma võttepäevata.',
+      metaDescription: 'Lühikesed tootevideod e-poele, Instagramile ja reklaamidesse sinu olemasolevate tootepiltide põhjal, ilma võttepäeva ja stuudiota.',
       h1: 'Tootevideo ilma võttepäevata.',
       lead: 'Sinu tootepiltidest saavad lühikesed videod e-poe, Reelsi ja reklaami jaoks.',
       body: [
@@ -725,7 +725,7 @@ export const SUBSERVICES: SubService[] = [
       slug: 'email-automation',
       name: 'Email automation',
       metaTitle: 'Email & Enquiry Automation with AI | drealm',
-      metaDescription: 'AI reads incoming emails, sorts enquiries and drafts replies. You review and send. Gmail and Outlook.',
+      metaDescription: 'AI reads incoming emails, sorts enquiries and drafts replies in your tone. You review and send. Works with Gmail and Outlook, set up in days.',
       h1: 'An inbox that sorts itself.',
       lead: 'AI reads incoming emails, sorts enquiries and drafts replies in your tone.',
       body: [
@@ -764,7 +764,7 @@ export const SUBSERVICES: SubService[] = [
       slug: 'quote-automation',
       name: 'Quote automation',
       metaTitle: 'Quote Automation with AI | drealm',
-      metaDescription: 'Quotes in minutes: AI drafts a quote from the enquiry, your price list and past quotes, in your template.',
+      metaDescription: 'Quotes in minutes: AI drafts a quote from the enquiry, your price list and past quotes, in your own template. You check it and send it.',
       h1: 'A quote in minutes, not hours.',
       lead: 'AI drafts a quote from the enquiry, your price list and past quotes, in your template.',
       body: [
@@ -786,7 +786,7 @@ export const SUBSERVICES: SubService[] = [
       slug: 'arvete-tootlus',
       name: 'Arvete töötlus',
       metaTitle: 'Arvete töötluse automatiseerimine | drealm',
-      metaDescription: 'Ostuarvete automaatne lugemine, kontroll ja raamatupidamisse saatmine. Vähem käsitööd, vähem vigu.',
+      metaDescription: 'Ostuarvete automaatne lugemine, kontroll ja raamatupidamisse saatmine (Merit, SmartAccounts jt). Vähem käsitööd ja vähem vigu igal kuul.',
       h1: 'Arved liiguvad raamatupidamisse ise.',
       lead: 'Ostuarved loetakse e-kirjast, kontrollitakse ja saadetakse raamatupidamisse ilma käsitsi sisestamiseta.',
       body: [

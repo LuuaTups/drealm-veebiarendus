@@ -37,6 +37,29 @@ const org = {
   image: `${SITE_URL}/og.png`,
   areaServed: { '@type': 'Country', name: 'Estonia' },
   knowsLanguage: ['et', 'en'],
+  priceRange: '€€',
+  founder: [
+    { '@type': 'Person', name: 'Robin Rattasep', jobTitle: lang === 'et' ? 'Asutaja, arendaja ja disainer' : 'Founder, developer and designer' },
+    { '@type': 'Person', name: 'Karlos Rattasep', jobTitle: lang === 'et' ? 'Turundus ja äriarendus' : 'Marketing and business development' },
+  ],
+  knowsAbout: services.map((s) => s.name),
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: t.services,
+    itemListElement: services.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: s.name, url: new URL(serviceHref(s, lang), SITE_URL).href },
+    })),
+  },
+};
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
+  name: 'drealm',
+  url: SITE_URL,
+  inLanguage: ['et', 'en'],
+  publisher: { '@id': `${SITE_URL}/#org` },
 };
 ---
 
@@ -45,7 +68,7 @@ const org = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
     <meta name="theme-color" content="#1b0200" />
     <link rel="preload" href={sansUrl} as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
@@ -60,11 +83,18 @@ const org = {
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:locale:alternate" content={lang === 'et' ? 'en_GB' : 'et_EE'} />
     <meta property="og:image" content={`${SITE_URL}/og.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="drealm" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
+    <script type="application/ld+json" set:html={JSON.stringify(website)} />
     {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
   </head>
   <body id="top">
@@ -93,9 +123,13 @@ const org = {
                   </div>
                 ))
               }
-              <a class="dd-all" href={r('services', lang)}>{t.allServices} <Icon name="arrow" size={14} /></a>
+              <div class="dd-foot">
+                <a class="dd-all" href={r('services', lang)}>{t.allServices} <Icon name="arrow" size={14} /></a>
+                <a class="dd-all" href={r('solutions', lang)}>{t.allSolutions} <Icon name="arrow" size={14} /></a>
+              </div>
             </div>
           </div>
+          <a href={r('solutions', lang)} class:list={{ on: path.startsWith(r('solutions', lang)) }}>{t.solutions}</a>
           <a href="#ulevaade">{t.review}</a>
           <a href={r('about', lang)} class:list={{ on: path === r('about', lang) }}>{t.about}</a>
           <a href={r('blog', lang)} class:list={{ on: path.startsWith(r('blog', lang)) }}>{t.blog}</a>
@@ -113,6 +147,7 @@ const org = {
       <nav class="nav-sheet" aria-label={t.mainNav}>
         <a href={r('services', lang)}>{t.services}</a>
         {services.map((s) => <a href={serviceHref(s, lang)} class="sub">{s.name}</a>)}
+        <a href={r('solutions', lang)}>{t.solutions}</a>
         <a href="#ulevaade">{t.review}</a>
         <a href={r('about', lang)}>{t.about}</a>
         <a href={r('blog', lang)}>{t.blog}</a>
@@ -145,6 +180,7 @@ const org = {
           <Logo />
           <nav aria-label={t.footNav}>
             <a href={r('services', lang)}>{t.services}</a>
+            <a href={r('solutions', lang)}>{t.solutions}</a>
             <a href={r('about', lang)}>{t.about}</a>
             <a href={r('blog', lang)}>{t.blog}</a>
             <a href={r('contact', lang)}>{t.contact}</a>

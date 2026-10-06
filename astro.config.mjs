@@ -8,11 +8,9 @@ export default defineConfig({
   build: { format: 'file' },
   integrations: [
     sitemap({
+      // hreflang lives in each page's <head> (slugs differ per language, so no sitemap i18n)
       filter: (page) => !page.includes('/404'),
-      i18n: {
-        defaultLocale: 'et',
-        locales: { et: 'et-EE', en: 'en' },
-      },
+      lastmod: new Date(),
     }),
   ],
 });

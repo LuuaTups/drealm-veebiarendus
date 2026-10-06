@@ -1,0 +1,104 @@
+---
+import V2 from '../../layouts/V2.astro';
+import Icon from '../../components/mock/Icon.astro';
+import { servicesFor, serviceHref, type Lang } from '../../data/v2/services';
+import { SOLUTIONS, solHref } from '../../data/v2/solutions';
+import { ROUTES, SITE_URL, UI, r } from '../../data/v2/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const c = {
+  et: {
+    title: 'Lahendused: portaalid, platvormid, valdkonnad ja AI | drealm',
+    description: 'Kinnisvaraportaalid, B2B tellimiskeskkonnad, valdkondade kodulehed, e-poe SEO, Meta reklaamid, AI videod, automatiseerimine ja AI koolitused.',
+    h1: 'Lahendused sinu olukorra jaoks.',
+    lead: 'Vali, mida täpselt vajad. Iga lahenduse juures on kirjas, mida see sisaldab, kellele see sobib ja kuidas see käib.',
+    see: 'Vaata teenust',
+  },
+  en: {
+    title: 'Solutions: portals, platforms, industries and AI | drealm',
+    description: 'Property portals, B2B ordering portals, industry websites, e-commerce SEO, Meta ads, AI video, automation and AI training for teams.',
+    h1: 'Solutions for your situation.',
+    lead: 'Pick exactly what you need. Each solution shows what it includes, who it suits and how it works.',
+    see: 'See the service',
+  },
+}[lang];
+const groups = servicesFor(lang)
+  .map((s) => ({ s, items: SOLUTIONS.filter((x) => x.services[0] === s.id) }))
+  .filter((g) => g.items.length > 0);
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: c.h1,
+    description: c.description,
+    url: new URL(r('solutions', lang), SITE_URL).href,
+    inLanguage: lang,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: groups
+        .flatMap((g) => g.items)
+        .map((x, i) => ({ '@type': 'ListItem', position: i + 1, name: x[lang].name, url: new URL(solHref(x, lang), SITE_URL).href })),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.home, item: new URL(r('home', lang), SITE_URL).href },
+      { '@type': 'ListItem', position: 2, name: t.solutions, item: new URL(r('solutions', lang), SITE_URL).href },
+    ],
+  },
+];
+---
+
+<V2 lang={lang} title={c.title} description={c.description} alternates={{ et: ROUTES.solutions.et, en: ROUTES.solutions.en }} jsonLd={jsonLd}>
+  <section class="stage">
+    <div class="stage-card page-card">
+      <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>
+      <div class="sv-shade" aria-hidden="true"></div>
+      <div class="page-hero">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><span aria-current="page">{t.solutions}</span></nav>
+        <p class="chip on-dark">{t.solutions}</p>
+        <h1 class="sv-h1">{c.h1}</h1>
+        <p class="sv-lead">{c.lead}</p>
+        <ul class="stage-tags left">
+          {groups.map((g) => <li><a href={`#${g.s.id}`}>{g.s.name}</a></li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {
+    groups.map((g, gi) => (
+      <section class:list={['sv-sec', { 'sv-last': gi === groups.length - 1 }]} id={g.s.id}>
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <p class="chip">{g.s.name}</p>
+              <h2 class="h-md">{g.s.h1}</h2>
+            </div>
+            <a class="link-arrow" href={serviceHref(g.s, lang)}>{c.see} <Icon name="arrow" size={16} /></a>
+          </div>
+          <div class="rel-grid">
+            {g.items.map((x) => (
+              <a class="rel-card" href={solHref(x, lang)} data-glow>
+                <span class="ibox">
+                  <Icon name={x.icon} size={20} />
+                </span>
+                <h3>{x[lang].name}</h3>
+                <p>{x[lang].lead}</p>
+                <span class="tile-more">
+                  {t.see} <Icon name="arrow" size={15} />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+</V2>
