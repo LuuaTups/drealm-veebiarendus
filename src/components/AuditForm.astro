@@ -1,28 +1,32 @@
 ---
 // Free website review request: URL + email → /api/contact.php (type=audit).
 import Icon from './mock/Icon.astro';
+import { UI } from '../data/v2/ui';
+import type { Lang } from '../data/v2/services';
 
 interface Props {
   dark?: boolean;
   page: string;
+  lang?: Lang;
 }
-const { dark = false, page } = Astro.props;
+const { dark = false, page, lang = 'et' } = Astro.props;
+const f = UI[lang].form;
 ---
 
-<form class:list={['audit', { dark }]} method="post" action="/api/contact.php" data-audit novalidate>
+<form class:list={['audit', { dark }]} method="post" action="/api/contact.php" data-audit data-ok={f.ok} data-fail={f.fail} novalidate>
   <input type="hidden" name="type" value="audit" />
-  <input type="hidden" name="lang" value="et" />
+  <input type="hidden" name="lang" value={lang} />
   <input type="hidden" name="page" value={page} />
   <input type="hidden" name="ts" value="" data-ts />
   <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
   <label class="f">
-    <span>Kodulehe aadress</span>
-    <input name="url" type="text" inputmode="url" autocomplete="url" placeholder="sinuettevote.ee" required maxlength="300" />
+    <span>{f.url}</span>
+    <input name="url" type="text" inputmode="url" autocomplete="url" placeholder={f.urlPh} required maxlength="300" />
   </label>
   <label class="f">
-    <span>Kuhu ülevaade saata</span>
-    <input name="email" type="email" autocomplete="email" placeholder="nimi@ettevote.ee" required maxlength="160" />
+    <span>{f.email}</span>
+    <input name="email" type="email" autocomplete="email" placeholder={f.emailPh} required maxlength="160" />
   </label>
-  <button class:list={['btn', dark ? 'btn-light' : 'btn-dark']} type="submit"><span>Saada mulle ülevaade</span><Icon name="arrow" size={18} /></button>
+  <button class:list={['btn', dark ? 'btn-light' : 'btn-dark']} type="submit"><span>{f.send}</span><Icon name="arrow" size={18} /></button>
   <p class="audit-status" role="status" aria-live="polite"></p>
 </form>

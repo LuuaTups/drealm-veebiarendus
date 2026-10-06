@@ -44,13 +44,15 @@ $lead = [
     'service' => field('service', 120),
     'budget' => field('budget', 60),
     'message' => field('message', 5000),
+    'timeline' => field('timeline', 60),
+    'url' => field('url', 300),
     'lang' => $lang,
     'page' => field('page', 200),
 ];
 
 // Free website review request: only URL + email are asked
 if (field('type', 20) === 'audit') {
-    $url = field('url', 300);
+    $url = $lead['url'];
     if ($url === '') reply(false);
     if (!preg_match('~^https?://~i', $url)) $url = 'https://' . $url;
     $lead['service'] = 'Tasuta kodulehe ülevaade';

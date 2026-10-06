@@ -17,13 +17,17 @@ npm run deploy   # build + rsync Zone'i serverisse
 
 | Kus | Mis |
 |---|---|
-| `src/data/services/*.ts` | Kõigi teenuselehtede sisu (ET + EN). Uus teenus = uus objekt massiivi. |
-| `src/data/site.ts` | Marsruudid, menüüd, kasutajaliidese tekstid |
+| `src/data/v2/services.ts`, `services.en.ts` | 9 teenuse sisu (ET + EN, samad `id`-d). Avalehe plokid ja teenuselehed tulevad siit. |
+| `src/data/v2/ui.ts` | Marsruudid ja kasutajaliidese tekstid mõlemas keeles |
 | `src/content/blog/{et,en}/*.md` | Blogipostitused (sama `translationKey` seob keeled) |
-| `src/views/*.astro` | Lehemallid (avaleht, hinnad, tööd jne) |
+| `src/views/v2/*.astro` | Lehemallid (avaleht, teenused, teenuseleht, kontakt, blogi, privaatsus) |
 | `src/pages/` | URL-id (õhukesed failid, mis kasutavad vaateid) |
-| `public/api/contact.php` | Päringuvorm → e-post (Zone'i meil, PHP `mail()`) |
-| `public/.htaccess` | https, www → apex, puhtad URL-id, vahemälu |
+| `src/layouts/V2.astro` + `src/styles/v2.css` | Navbar, jalus (3D + tasuta ülevaate vorm), disainisüsteem |
+| `src/scripts/hero-scene.ts` | three.js 3D-taust (hõljuvad kaardid) |
+| `src/components/v2/ServiceMock.astro` | Teenuste interaktiivsed näidised |
+| `src/components/v2/InquiryForm.astro` | „Küsi hinda“ kolmeastmeline vorm |
+| `public/api/contact.php` | Vormid → e-post (Zone'i meil, PHP `mail()`) |
+| `public/.htaccess` | https, www → apex, puhtad URL-id, vanade aadresside 301-suunamised |
 
 ## Zone'i seadistus
 

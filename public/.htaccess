@@ -10,6 +10,22 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^ https://drealm.ee%{REQUEST_URI} [R=301,L]
 
+# --- 2026-10 uus sait: vanad aadressid → uued (301) ---
+RewriteRule ^uus/?$ / [R=301,L]
+RewriteRule ^uus/(.+)$ /$1 [R=301,L]
+RewriteRule ^(kodulehe-tegemine|e-poe-tegemine|maandumisleht|kodulehe-uuendamine|restorani-koduleht|ehitusettevotte-koduleht|ilusalongi-koduleht)/?$ /teenused/veebilehed [R=301,L]
+RewriteRule ^(kinnisvara-koduleht|arendusprojekti-koduleht|veebirakenduse-arendus)/?$ /teenused/platvormid [R=301,L]
+RewriteRule ^(ai-automatiseerimine|ai-kinnisvarale)/?$ /teenused/ai-automatiseerimine [R=301,L]
+RewriteRule ^ai-chatbot/?$ /teenused/ettevotte-ai [R=301,L]
+RewriteRule ^hinnad/?$ /teenused [R=301,L]
+RewriteRule ^(tood|tood/marmi-futerno|meist)/?$ / [R=301,L]
+RewriteRule ^en/(website-development|ecommerce-development|landing-page|website-redesign|restaurant-website|construction-company-website|beauty-salon-website)/?$ /en/services/website-development [R=301,L]
+RewriteRule ^en/(real-estate-website|property-development-website|web-app-development)/?$ /en/services/platforms [R=301,L]
+RewriteRule ^en/(ai-automation|ai-for-real-estate)/?$ /en/services/ai-automation [R=301,L]
+RewriteRule ^en/ai-chatbot/?$ /en/services/company-ai [R=301,L]
+RewriteRule ^en/pricing/?$ /en/services [R=301,L]
+RewriteRule ^en/(work|work/marmi-futerno|about)/?$ /en [R=301,L]
+
 # /leht.html ja /leht/ → /leht
 RewriteCond %{THE_REQUEST} \s/([^?\s]*?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]

@@ -1,0 +1,93 @@
+---
+import V2 from '../../layouts/V2.astro';
+import Icon from '../../components/mock/Icon.astro';
+import { GROUP_LABEL, servicesFor, serviceHref, type Lang } from '../../data/v2/services';
+import { ROUTES, UI, r } from '../../data/v2/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const services = servicesFor(lang);
+const c = {
+  et: {
+    title: 'Teenused: kodulehed, SEO, reklaamid ja AI | drealm',
+    description: 'Kõik drealmi teenused: veebilehed ja platvormid, SEO, Meta reklaamid, reklaampildid, AI videoreklaamid, AI automatiseerimine, koolitused ja ettevõtte AI-assistent.',
+    h1: 'Veeb, turundus ja AI ühest kohast.',
+    lead: 'Üheksa teenust kolmes suunas. Vali see, mis praegu kõige rohkem kripeldab, või lase meil kogu veebipool enda kanda võtta.',
+    groups: {
+      Veeb: 'Koduleht või tööriist, mis näeb hea välja ja teeb tööd.',
+      Turundus: 'Kliendid leiavad sind Google’ist ja sotsiaalmeediast.',
+      AI: 'Rutiin liigub ise, tiim keskendub päris tööle.',
+    },
+  },
+  en: {
+    title: 'Services: websites, SEO, ads and AI | drealm',
+    description: 'All drealm services: websites and platforms, SEO, Meta ads, ad creatives, AI video ads, AI automation, training and your own company AI assistant.',
+    h1: 'Web, marketing and AI in one place.',
+    lead: 'Nine services in three directions. Pick what bothers you most right now, or let us take care of your whole online side.',
+    groups: {
+      Veeb: 'A website or tool that looks good and does the work.',
+      Turundus: 'Clients find you on Google and social media.',
+      AI: 'Routine runs itself, your team focuses on real work.',
+    },
+  },
+}[lang];
+const groups = ['Veeb', 'Turundus', 'AI'] as const;
+const icons = { Veeb: 'web', Turundus: 'target', AI: 'spark' } as const;
+---
+
+<V2 lang={lang} title={c.title} description={c.description} alternates={{ et: ROUTES.services.et, en: ROUTES.services.en }}>
+  <section class="stage">
+    <div class="stage-card page-card">
+      <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>
+      <div class="sv-shade" aria-hidden="true"></div>
+      <div class="page-hero">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><span aria-current="page">{t.services}</span></nav>
+        <p class="chip on-dark"><Icon name="stack" size={14} />{t.services}</p>
+        <h1 class="sv-h1">{c.h1}</h1>
+        <p class="sv-lead">{c.lead}</p>
+        <ul class="stage-tags left">
+          {groups.map((g) => <li><a href={`#${g.toLowerCase()}`}>{GROUP_LABEL[lang][g]}</a></li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {
+    groups.map((g) => (
+      <section class="sv-sec" id={g.toLowerCase()}>
+        <div class="wrap">
+          <div class="sec-head">
+            <div>
+              <p class="chip">
+                <Icon name={icons[g]} size={14} />
+                {GROUP_LABEL[lang][g]}
+              </p>
+              <h2 class="grad h-md">{c.groups[g]}</h2>
+            </div>
+          </div>
+          <div class="rel-grid">
+            {services
+              .filter((s) => s.group === g)
+              .map((s) => (
+                <a class="rel-card" href={serviceHref(s, lang)} data-glow>
+                  <span class="ibox">
+                    <Icon name={s.icon} size={20} />
+                  </span>
+                  <span class="tag">{s.priceFrom ? `${t.from} ${s.priceFrom}` : s.timeline}</span>
+                  <h3>{s.name}</h3>
+                  <p>{s.short}</p>
+                  <span class="tile-more">
+                    {t.seeMore} <Icon name="arrow" size={15} />
+                  </span>
+                </a>
+              ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+  <div class="sv-last"></div>
+</V2>

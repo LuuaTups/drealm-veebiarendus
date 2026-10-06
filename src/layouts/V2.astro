@@ -1,77 +1,120 @@
 ---
-// drealm v2 layout: rust/3D design system, floating nav, 3D footer CTA.
+// drealm v2 layout: rust/3D design system, floating nav, 3D footer CTA. Estonian + English.
 import '../styles/v2.css';
 import Logo from '../components/Logo.astro';
 import Icon from '../components/mock/Icon.astro';
 import AuditForm from '../components/AuditForm.astro';
-import { SERVICES, serviceHref } from '../data/v2/services';
+import { GROUP_LABEL, servicesFor, serviceHref, type Lang } from '../data/v2/services';
+import { EMAIL, SITE_URL, UI, r } from '../data/v2/ui';
 
 interface Props {
+  lang: Lang;
   title: string;
   description: string;
-  path: string;
+  /** this page's path in each language */
+  alternates: { et: string; en: string };
   jsonLd?: Record<string, unknown>[];
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
 }
-const { title, description, path, jsonLd = [] } = Astro.props;
+const { lang, title, description, alternates, jsonLd = [], ogType = 'website', noindex = false } = Astro.props;
+const t = UI[lang];
+const path = alternates[lang];
+const canonical = new URL(path, SITE_URL).href;
+const services = servicesFor(lang);
 const groups = ['Veeb', 'Turundus', 'AI'] as const;
+const other: Lang = lang === 'et' ? 'en' : 'et';
+
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE_URL}/#org`,
+  name: 'drealm',
+  url: SITE_URL,
+  email: EMAIL,
+  logo: `${SITE_URL}/logo.png`,
+  image: `${SITE_URL}/og.png`,
+  address: { '@type': 'PostalAddress', addressLocality: 'Tallinn', addressCountry: 'EE' },
+  areaServed: { '@type': 'Country', name: 'Estonia' },
+  knowsLanguage: ['et', 'en'],
+};
 ---
 
 <!doctype html>
-<html lang="et">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex, nofollow" />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#1b0200" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="et" href={new URL(alternates.et, SITE_URL).href} />
+    <link rel="alternate" hreflang="en" href={new URL(alternates.en, SITE_URL).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(alternates.et, SITE_URL).href} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="drealm" />
+    <meta property="og:locale" content={lang === 'et' ? 'et_EE' : 'en_GB'} />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://drealm.ee/og.png" />
+    <meta property="og:image" content={`${SITE_URL}/og.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script type="application/ld+json" set:html={JSON.stringify(org)} />
     {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
   </head>
   <body>
     <header class="nav" data-nav>
       <div class="nav-in">
-        <a href="/uus" class="brand" aria-label="drealm avaleht"><Logo /></a>
-        <nav class="nav-pill" aria-label="Peamenüü">
+        <a href={r('home', lang)} class="brand" aria-label={`drealm – ${t.home}`}><Logo /></a>
+        <nav class="nav-pill" aria-label={t.mainNav}>
           <div class="nav-dd" data-dd>
-            <button class="nav-dd-btn" aria-expanded="false" data-dd-btn>Teenused <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5" /></svg></button>
+            <button class="nav-dd-btn" aria-expanded="false" data-dd-btn>{t.services} <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5L6 8l3.5-3.5" /></svg></button>
             <div class="dd-panel">
               {
                 groups.map((g) => (
                   <div class="dd-col">
-                    <p>{g}</p>
-                    {SERVICES.filter((s) => s.group === g).map((s) => (
-                      <a href={serviceHref(s)} class:list={{ on: path === serviceHref(s) }}>
-                        <span class="ibox sm"><Icon name={s.icon} size={16} /></span>
-                        {s.name}
-                      </a>
-                    ))}
+                    <p>{GROUP_LABEL[lang][g]}</p>
+                    {services
+                      .filter((s) => s.group === g)
+                      .map((s) => (
+                        <a href={serviceHref(s, lang)} class:list={{ on: path === serviceHref(s, lang) }}>
+                          <span class="ibox sm">
+                            <Icon name={s.icon} size={16} />
+                          </span>
+                          {s.name}
+                        </a>
+                      ))}
                   </div>
                 ))
               }
-              <a class="dd-all" href="/uus/teenused">Kõik teenused <Icon name="arrow" size={14} /></a>
+              <a class="dd-all" href={r('services', lang)}>{t.allServices} <Icon name="arrow" size={14} /></a>
             </div>
           </div>
-          <a href="/uus#kliendid">Kõlab tuttavalt?</a>
-          <a href="#kontakt">Tasuta ülevaade</a>
-          <a href="/uus/kontakt" class:list={{ on: path === '/uus/kontakt' }}>Kontakt</a>
+          <a href="#ulevaade">{t.review}</a>
+          <a href={r('blog', lang)} class:list={{ on: path.startsWith(r('blog', lang)) }}>{t.blog}</a>
+          <a href={r('contact', lang)} class:list={{ on: path === r('contact', lang) }}>{t.contact}</a>
         </nav>
         <div class="nav-right">
-          <span class="lang" aria-label="Keel"><b>ET</b><a href="/en">EN</a></span>
-          <a class="nav-cta" href="#kontakt">Alusta projekti <span class="box"><Icon name="arrow" size={14} /></span></a>
-          <button class="nav-toggle" aria-label="Ava menüü" aria-expanded="false" data-nav-toggle><span></span><span></span></button>
+          <span class="lang" aria-label={t.lang}>
+            {lang === 'et' ? <b>ET</b> : <a href={alternates.et} hreflang="et" lang="et">ET</a>}
+            {lang === 'en' ? <b>EN</b> : <a href={alternates.en} hreflang="en" lang="en">EN</a>}
+          </span>
+          <a class="nav-cta" href={r('contact', lang)}>{t.askPrice} <span class="box"><Icon name="arrow" size={14} /></span></a>
+          <button class="nav-toggle" aria-label={t.menu} aria-expanded="false" data-nav-toggle><span></span><span></span></button>
         </div>
       </div>
-      <nav class="nav-sheet" aria-label="Mobiilimenüü">
-        <a href="/uus/teenused">Teenused</a>
-        {SERVICES.map((s) => <a href={serviceHref(s)} class="sub">{s.name}</a>)}
-        <a href="#kontakt">Tasuta ülevaade</a>
-        <a href="/uus/kontakt">Kontakt</a>
-        <a href="/en">English</a>
+      <nav class="nav-sheet" aria-label={t.mainNav}>
+        <a href={r('services', lang)}>{t.services}</a>
+        {services.map((s) => <a href={serviceHref(s, lang)} class="sub">{s.name}</a>)}
+        <a href="#ulevaade">{t.review}</a>
+        <a href={r('blog', lang)}>{t.blog}</a>
+        <a href={r('contact', lang)}>{t.contact}</a>
+        <a href={alternates[other]} hreflang={other}>{other === 'en' ? 'English' : 'Eesti keeles'}</a>
+        <a href={r('contact', lang)} class="sheet-cta">{t.askPrice} <Icon name="arrow" size={16} /></a>
       </nav>
     </header>
 
@@ -79,29 +122,30 @@ const groups = ['Veeb', 'Turundus', 'AI'] as const;
       <slot />
     </main>
 
-    <footer class="foot" id="kontakt">
+    <footer class="foot" id="ulevaade">
       <div class="dark-card foot-card">
         <canvas class="stage-gl" data-gl aria-hidden="true"></canvas>
         <div class="foot-shade" aria-hidden="true"></div>
         <div class="foot-grid">
           <div>
-            <p class="chip on-dark"><Icon name="spark" size={14} />Tasuta kodulehe ülevaade</p>
-            <h2>Saada aadress. Ülejäänu teeme meie.</h2>
-            <p class="foot-sub">5-minutiline video sinu kodulehest: mis töötab, mis mitte ja mida parandada esimesena. Ühe tööpäeva jooksul, tasuta.</p>
-            <p class="foot-mail">Või kirjuta otse: <a href="mailto:info@drealm.ee">info@drealm.ee</a></p>
+            <p class="chip on-dark"><Icon name="spark" size={14} />{t.footReviewChip}</p>
+            <h2>{t.footH}</h2>
+            <p class="foot-sub">{t.footSub}</p>
+            <p class="foot-mail">{t.footMail} <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
           </div>
           <div class="glass-form">
-            <AuditForm dark page={`${path}#footer`} />
+            <AuditForm dark lang={lang} page={`${path}#footer`} />
           </div>
         </div>
         <div class="foot-bottom">
           <Logo />
-          <nav aria-label="Jaluse menüü">
-            <a href="/uus/teenused">Teenused</a>
-            <a href="/uus/kontakt">Kontakt</a>
-            <a href="/privaatsus">Privaatsus</a>
+          <nav aria-label={t.footNav}>
+            <a href={r('services', lang)}>{t.services}</a>
+            <a href={r('blog', lang)}>{t.blog}</a>
+            <a href={r('contact', lang)}>{t.contact}</a>
+            <a href={r('privacy', lang)}>{t.privacy}</a>
           </nav>
-          <span>© 2026 drealm · Tallinn</span>
+          <span>{t.rights}</span>
         </div>
       </div>
     </footer>
@@ -162,9 +206,9 @@ const groups = ['Veeb', 'Turundus', 'AI'] as const;
             const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
             if (!res.ok) throw new Error();
             form.reset();
-            status.textContent = 'Aitäh! Saadame ülevaate ühe tööpäeva jooksul.';
+            status.textContent = form.dataset.ok!;
           } catch {
-            status.textContent = 'Saatmine ebaõnnestus. Kirjuta palun info@drealm.ee';
+            status.textContent = form.dataset.fail!;
           } finally {
             btn.disabled = false;
           }

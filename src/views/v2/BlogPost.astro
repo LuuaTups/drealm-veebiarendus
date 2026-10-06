@@ -1,0 +1,77 @@
+---
+import { render } from 'astro:content';
+import V2 from '../../layouts/V2.astro';
+import Icon from '../../components/mock/Icon.astro';
+import { POST_SERVICE, getTranslation, postUrl, readingTime, type Post } from '../../data/v2/blog';
+import { byId, serviceHref, type Lang } from '../../data/v2/services';
+import { ROUTES, SITE_URL, UI, r } from '../../data/v2/ui';
+
+interface Props {
+  post: Post;
+  lang: Lang;
+}
+const { post, lang } = Astro.props;
+const t = UI[lang];
+const { Content } = await render(post);
+const other = await getTranslation(post, lang === 'et' ? 'en' : 'et');
+const alternates = {
+  et: lang === 'et' ? postUrl(post) : other ? postUrl(other) : ROUTES.blog.et,
+  en: lang === 'en' ? postUrl(post) : other ? postUrl(other) : ROUTES.blog.en,
+};
+const service = byId(POST_SERVICE[post.data.service] ?? '', lang);
+const fmt = new Intl.DateTimeFormat(lang === 'et' ? 'et-EE' : 'en-GB', { dateStyle: 'long' });
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  inLanguage: lang,
+  mainEntityOfPage: new URL(postUrl(post), SITE_URL).href,
+  author: { '@id': `${SITE_URL}/#org` },
+  publisher: { '@id': `${SITE_URL}/#org` },
+};
+const c = {
+  et: { min: 'min lugemist', related: 'Seotud teenus', back: 'Kõik postitused' },
+  en: { min: 'min read', related: 'Related service', back: 'All posts' },
+}[lang];
+---
+
+<V2 lang={lang} title={`${post.data.title} | drealm`} description={post.data.description} alternates={alternates} jsonLd={[ld]} ogType="article">
+  <section class="stage">
+    <div class="stage-card page-card">
+      <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>
+      <div class="sv-shade" aria-hidden="true"></div>
+      <div class="page-hero post-hero">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><a href={r('blog', lang)}>{t.blog}</a></nav>
+        <p class="chip on-dark"><Icon name="doc" size={14} /><time datetime={post.data.pubDate.toISOString()}>{fmt.format(post.data.pubDate)}</time> · {readingTime(post.body)} {c.min}</p>
+        <h1 class="sv-h1">{post.data.title}</h1>
+        <p class="sv-lead">{post.data.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-sec sv-last">
+    <div class="wrap post-layout">
+      <article class="prose"><Content /></article>
+      <aside class="post-aside">
+        {
+          service && (
+            <a class="rel-card" href={serviceHref(service, lang)} data-glow>
+              <span class="ibox">
+                <Icon name={service.icon} size={20} />
+              </span>
+              <span class="tag">{c.related}</span>
+              <h3>{service.name}</h3>
+              <p>{service.short}</p>
+              <span class="tile-more">
+                {t.seeMore} <Icon name="arrow" size={15} />
+              </span>
+            </a>
+          )
+        }
+        <a class="link-arrow" href={r('blog', lang)}>{c.back} <Icon name="arrow" size={16} /></a>
+      </aside>
+    </div>
+  </section>
+</V2>

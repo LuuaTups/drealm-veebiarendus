@@ -1,4 +1,5 @@
-// drealm v2: the nine services. Single source for the homepage tiles and /uus/teenused/[slug] pages.
+// drealm v2: the nine services (Estonian). English lives in services.en.ts with the same ids.
+import { SERVICES_EN } from './services.en';
 
 export type IconName =
   | 'web' | 'plan' | 'rank' | 'target' | 'frame' | 'play' | 'flow' | 'learn' | 'chat'
@@ -113,7 +114,7 @@ export const SERVICES: Service[] = [
       { q: 'Kas saab ühendada KV.ee või City24-ga?', a: 'Jah, objektid saab sünkroniseerida kinnisvaraportaalidega, et sama infot ei peaks kaks korda sisestama.' },
       { q: 'Kas teete ka mitmekeelseid platvorme?', a: 'Jah. Eesti, inglise, vene ja soome keel on tavapärased.' },
     ],
-    related: ['veebilehed', 'ai-automatiseerimine', 'meta-reklaamid'],
+    related: ['veebilehed', 'automatiseerimine', 'meta'],
   },
   {
     id: 'seo',
@@ -152,7 +153,7 @@ export const SERVICES: Service[] = [
       { q: 'Kas garanteerite esikoha?', a: 'Ei. Seda ei saa keegi ausalt lubada. Lubame selge plaani, tehtud töö ja läbipaistva raporti.' },
       { q: 'Kas pean pikaks ajaks lepingu sõlmima?', a: 'Ei pea. Töötame kuupõhiselt ja lõpetada saad millal tahes.' },
     ],
-    related: ['meta-reklaamid', 'veebilehed', 'reklaampildid'],
+    related: ['meta', 'veebilehed', 'reklaampildid'],
   },
   {
     id: 'meta',
@@ -191,7 +192,7 @@ export const SERVICES: Service[] = [
       { q: 'Kes teeb reklaamipildid?', a: 'Meie. Kujundame need sinu brändi järgi ja vajadusel teeme ka AI-videoreklaami.' },
       { q: 'Kas pean lepingu pikaks ajaks sõlmima?', a: 'Ei. Töötame kuupõhiselt.' },
     ],
-    related: ['reklaampildid', 'ai-videoreklaamid', 'seo'],
+    related: ['reklaampildid', 'video', 'seo'],
   },
   {
     id: 'reklaampildid',
@@ -228,7 +229,7 @@ export const SERVICES: Service[] = [
       { q: 'Kas kasutate minu fotosid?', a: 'Jah, kui need on olemas. Vajadusel loome pildid ise või kasutame AI-d, et need näeksid välja nagu päris fotod.' },
       { q: 'Kas saan enne avaldamist üle vaadata?', a: 'Alati. Midagi ei lähe välja ilma sinu kinnituseta.' },
     ],
-    related: ['meta-reklaamid', 'ai-videoreklaamid', 'veebilehed'],
+    related: ['meta', 'video', 'veebilehed'],
   },
   {
     id: 'video',
@@ -265,7 +266,7 @@ export const SERVICES: Service[] = [
       { q: 'Kas video näeb välja nagu AI?', a: 'Eesmärk on, et ei näeks. Kasutame AI-d tööriistana ja viimistleme tulemuse käsitsi.' },
       { q: 'Kas saab kasutada minu toote pilte?', a: 'Jah. Sinu päris tootepildid on parim lähtepunkt.' },
     ],
-    related: ['meta-reklaamid', 'reklaampildid', 'ai-automatiseerimine'],
+    related: ['meta', 'reklaampildid', 'automatiseerimine'],
   },
   {
     id: 'automatiseerimine',
@@ -305,7 +306,7 @@ export const SERVICES: Service[] = [
       { q: 'Kas pean vahetama oma tarkvara?', a: 'Ei. Ühendame tööriistad, mida juba kasutad.' },
       { q: 'Mis siis, kui AI eksib?', a: 'Seetõttu jääb inimene otsustajaks: AI teeb mustandi, sina kinnitad.' },
     ],
-    related: ['ettevotte-ai', 'ai-koolitused', 'platvormid'],
+    related: ['ettevotte-ai', 'koolitused', 'platvormid'],
   },
   {
     id: 'koolitused',
@@ -342,7 +343,7 @@ export const SERVICES: Service[] = [
       { q: 'Kas osalejad peavad tehnikast aru saama?', a: 'Ei. Töötuba on mõeldud tavalistele kontoritöötajatele ja juhtidele.' },
       { q: 'Millised tööriistad?', a: 'Peamiselt ChatGPT ja Claude, vajadusel ka Copilot, Gemini ja automatiseerimise tööriistad.' },
     ],
-    related: ['ai-automatiseerimine', 'ettevotte-ai', 'veebilehed'],
+    related: ['automatiseerimine', 'ettevotte-ai', 'veebilehed'],
   },
   {
     id: 'ettevotte-ai',
@@ -379,9 +380,17 @@ export const SERVICES: Service[] = [
       { q: 'Kas assistent võib ka klientidele vastata?', a: 'Jah, näiteks kodulehe vestlusaknas, aga ainult info põhjal, mille sina lubad.' },
       { q: 'Kas andmed lähevad AI treenimiseks?', a: 'Ei. Kasutame teenuseid, mis ei treeni sinu andmetel.' },
     ],
-    related: ['ai-automatiseerimine', 'ai-koolitused', 'platvormid'],
+    related: ['automatiseerimine', 'koolitused', 'platvormid'],
   },
 ];
 
-export const getService = (slug: string) => SERVICES.find((s) => s.slug === slug || s.id === slug);
-export const serviceHref = (s: Service) => `/uus/teenused/${s.slug}`;
+export type Lang = 'et' | 'en';
+
+export const servicesFor = (lang: Lang) => (lang === 'en' ? SERVICES_EN : SERVICES);
+export const serviceHref = (s: Service, lang: Lang = 'et') => (lang === 'en' ? `/en/services/${s.slug}` : `/teenused/${s.slug}`);
+export const byId = (id: string, lang: Lang) => servicesFor(lang).find((s) => s.id === id);
+export const relatedOf = (s: Service, lang: Lang) => s.related.map((id) => byId(id, lang)).filter((x): x is Service => Boolean(x));
+export const GROUP_LABEL: Record<Lang, Record<Group, string>> = {
+  et: { Veeb: 'Veeb', Turundus: 'Turundus', AI: 'AI' },
+  en: { Veeb: 'Web', Turundus: 'Marketing', AI: 'AI' },
+};

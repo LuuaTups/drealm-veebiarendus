@@ -1,12 +1,11 @@
 ---
-import BlogPost from '../../views/BlogPost.astro';
-import { getPosts, postSlug } from '../../data/blog';
+import BlogPost from '../../views/v2/BlogPost.astro';
+import { getPosts, postSlug, type Post } from '../../data/v2/blog';
 
 export async function getStaticPaths() {
-  const posts = await getPosts('et');
-  return posts.map((post) => ({ params: { slug: postSlug(post) }, props: { post } }));
+  return (await getPosts('et')).map((post) => ({ params: { slug: postSlug(post) }, props: { post } }));
 }
-const { post } = Astro.props;
+const { post } = Astro.props as { post: Post };
 ---
 
 <BlogPost post={post} lang="et" />

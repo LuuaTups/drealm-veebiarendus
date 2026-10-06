@@ -1,0 +1,71 @@
+---
+import V2 from '../../layouts/V2.astro';
+import Icon from '../../components/mock/Icon.astro';
+import { getPosts, postUrl, readingTime } from '../../data/v2/blog';
+import { type Lang } from '../../data/v2/services';
+import { ROUTES, UI, r } from '../../data/v2/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const posts = await getPosts(lang);
+const fmt = new Intl.DateTimeFormat(lang === 'et' ? 'et-EE' : 'en-GB', { dateStyle: 'long' });
+const c = {
+  et: {
+    title: 'Blogi: kodulehed, SEO ja AI ettevõttele | drealm',
+    description: 'Praktilised juhendid kodulehe tegemise, kinnisvara veebilehtede, SEO ja AI-automatiseerimise kohta.',
+    h1: 'Juhendid, mitte müügijutt.',
+    lead: 'Ausad vastused küsimustele, mida kliendid meilt kõige sagedamini küsivad.',
+    min: 'min lugemist',
+    read: 'Loe edasi',
+  },
+  en: {
+    title: 'Blog: websites, SEO and AI for business | drealm',
+    description: 'Practical guides on website development, property development websites, SEO and AI automation.',
+    h1: 'Guides, not sales talk.',
+    lead: 'Honest answers to the questions clients ask us most.',
+    min: 'min read',
+    read: 'Read more',
+  },
+}[lang];
+---
+
+<V2 lang={lang} title={c.title} description={c.description} alternates={{ et: ROUTES.blog.et, en: ROUTES.blog.en }}>
+  <section class="stage">
+    <div class="stage-card page-card">
+      <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>
+      <div class="sv-shade" aria-hidden="true"></div>
+      <div class="page-hero">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><span aria-current="page">{t.blog}</span></nav>
+        <p class="chip on-dark"><Icon name="doc" size={14} />{t.blog}</p>
+        <h1 class="sv-h1">{c.h1}</h1>
+        <p class="sv-lead">{c.lead}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-sec sv-last">
+    <div class="wrap">
+      <div class="post-grid">
+        {
+          posts.map((p, i) => (
+            <a class:list={['post-card', { feature: i === 0 }]} href={postUrl(p)} data-glow>
+              <span class="post-meta">
+                <time datetime={p.data.pubDate.toISOString()}>{fmt.format(p.data.pubDate)}</time>
+                <span>·</span>
+                {readingTime(p.body)} {c.min}
+              </span>
+              <h2>{p.data.title}</h2>
+              <p>{p.data.description}</p>
+              <span class="tile-more">
+                {c.read} <Icon name="arrow" size={15} />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</V2>

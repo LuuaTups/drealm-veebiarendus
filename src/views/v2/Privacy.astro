@@ -1,0 +1,65 @@
+---
+import V2 from '../../layouts/V2.astro';
+import Icon from '../../components/mock/Icon.astro';
+import { type Lang } from '../../data/v2/services';
+import { EMAIL, ROUTES, UI, r } from '../../data/v2/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const c = {
+  et: {
+    title: 'Privaatsuspoliitika | drealm',
+    description: 'Kuidas drealm kogub, kasutab ja kaitseb kodulehe külastajate ja päringu saatjate isikuandmeid.',
+    h1: 'Privaatsuspoliitika',
+    blocks: [
+      ['Milliseid andmeid kogume', 'Kui saadad hinnapäringu või tasuta ülevaate soovi, kogume sinu nime, e-posti aadressi ning vabatahtlikult telefoni, ettevõtte nime, kodulehe aadressi, eelarve ja sõnumi sisu. Me ei kasuta jälgimisküpsiseid ega reklaamipiksleid.'],
+      ['Milleks andmeid kasutame', 'Andmeid kasutame ainult sinu päringule vastamiseks, ülevaate tegemiseks ja võimaliku pakkumise koostamiseks. Me ei müü ega jaga sinu andmeid kolmandatele osapooltele turunduse eesmärgil.'],
+      ['Volitatud töötlejad', 'Lehte ja e-posti majutab Zone Media OÜ (Eesti). Andmed asuvad Euroopa Liidus ja neid töödeldakse meie nimel vastavalt GDPR-i nõuetele.'],
+      ['Säilitamine', 'Päringuid säilitame kuni 24 kuud või kauem, kui sõlmime lepingu (raamatupidamise ja lepingu täitmise eesmärgil).'],
+      ['Sinu õigused', `Sul on õigus oma andmeid vaadata, parandada ja kustutada ning esitada kaebus Andmekaitse Inspektsioonile. Kirjuta meile: ${EMAIL}.`],
+    ],
+  },
+  en: {
+    title: 'Privacy Policy | drealm',
+    description: 'How drealm collects, uses and protects the personal data of website visitors and people who send an enquiry.',
+    h1: 'Privacy policy',
+    blocks: [
+      ['What we collect', 'When you send a quote request or ask for a free review, we collect your name and email address, and optionally your phone number, company, website address, budget and message. We do not use tracking cookies or advertising pixels.'],
+      ['How we use it', 'We use your data only to respond to your request, prepare your review and a possible quote. We never sell or share your data with third parties for marketing.'],
+      ['Processors', 'The website and email are hosted by Zone Media OÜ (Estonia). Data is stored in the European Union and processed on our behalf in line with GDPR.'],
+      ['Retention', 'We keep enquiries for up to 24 months, or longer if we sign a contract (for accounting and contract purposes).'],
+      ['Your rights', `You have the right to access, correct and delete your data and to complain to the Estonian Data Protection Inspectorate. Email us: ${EMAIL}.`],
+    ],
+  },
+}[lang];
+---
+
+<V2 lang={lang} title={c.title} description={c.description} alternates={{ et: ROUTES.privacy.et, en: ROUTES.privacy.en }}>
+  <section class="stage">
+    <div class="stage-card page-card">
+      <div class="sv-shade" aria-hidden="true"></div>
+      <div class="page-hero">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><span aria-current="page">{t.privacy}</span></nav>
+        <p class="chip on-dark"><Icon name="check" size={14} />GDPR</p>
+        <h1 class="sv-h1">{c.h1}</h1>
+      </div>
+    </div>
+  </section>
+  <section class="sv-sec sv-last">
+    <div class="wrap">
+      <div class="prose narrow">
+        {
+          c.blocks.map(([h, p]) => (
+            <Fragment>
+              <h2>{h}</h2>
+              <p>{p}</p>
+            </Fragment>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</V2>

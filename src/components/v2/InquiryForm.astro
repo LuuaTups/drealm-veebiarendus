@@ -1,0 +1,281 @@
+---
+// "Küsi hinda" — three-step quote request with a live summary. Works without JS (all steps visible).
+import Icon from '../mock/Icon.astro';
+import { servicesFor, type Lang } from '../../data/v2/services';
+
+interface Props {
+  lang?: Lang;
+  page: string;
+  preselect?: string;
+}
+const { lang = 'et', page, preselect } = Astro.props;
+const services = servicesFor(lang);
+
+const T = {
+  et: {
+    steps: ['Mida vajad?', 'Räägi lähemalt', 'Kontaktid'],
+    s1h: 'Mis sind huvitab?',
+    s1p: 'Vali üks või mitu. Kui ei tea veel, vali „Ei oska öelda“.',
+    unsure: 'Ei oska öelda',
+    s2h: 'Kirjelda, mida soovid',
+    msg: 'Sinu soov või küsimus',
+    msgPh: 'Nt: Teeme köögimööblit, praegune koduleht on vana ja päringuid tuleb vähe. Tahaksime uut lehte koos tööde galeriiga.',
+    url: 'Praegune koduleht',
+    urlPh: 'kui on, nt ettevote.ee',
+    budget: 'Eelarve',
+    budgets: ['Alla 1 000 €', '1 000–3 000 €', '3 000–7 000 €', 'Üle 7 000 €', 'Ei oska öelda'],
+    when: 'Millal?',
+    whens: ['Võimalikult kiiresti', '1–2 kuu jooksul', 'Pole kiiret'],
+    s3h: 'Kuidas sinuga ühendust võtta?',
+    name: 'Nimi',
+    namePh: 'Mari Maasikas',
+    email: 'E-post',
+    emailPh: 'mari@ettevote.ee',
+    phone: 'Telefon',
+    phonePh: 'valikuline',
+    company: 'Ettevõte',
+    companyPh: 'valikuline',
+    privacy: 'Kasutame andmeid ainult sinu päringule vastamiseks.',
+    next: 'Edasi',
+    back: 'Tagasi',
+    send: 'Saada hinnapäring',
+    sumH: 'Sinu päring',
+    sumEmpty: 'Vali vasakult, mis sind huvitab.',
+    sumBudget: 'Eelarve',
+    sumWhen: 'Aeg',
+    reply: 'Vastame ühe tööpäeva jooksul konkreetse hinnapakkumise või paari täpsustava küsimusega.',
+    okH: 'Aitäh! Päring on kohal.',
+    okP: 'Vaatame selle üle ja vastame ühe tööpäeva jooksul. Kui on kiire, kirjuta info@drealm.ee.',
+    fail: 'Saatmine ebaõnnestus. Kirjuta palun info@drealm.ee',
+    need: 'Palun kirjelda paari lausega, mida soovid.',
+  },
+  en: {
+    steps: ['What you need', 'Tell us more', 'Contact'],
+    s1h: 'What are you interested in?',
+    s1p: 'Pick one or more. Not sure yet? Choose “Not sure”.',
+    unsure: 'Not sure',
+    s2h: 'Describe what you need',
+    msg: 'Your request or question',
+    msgPh: 'E.g. We make kitchen furniture, our website is outdated and we get few enquiries. We’d like a new site with a project gallery.',
+    url: 'Current website',
+    urlPh: 'if any, e.g. company.com',
+    budget: 'Budget',
+    budgets: ['Under €1,000', '€1,000–3,000', '€3,000–7,000', 'Over €7,000', 'Not sure'],
+    when: 'When?',
+    whens: ['As soon as possible', 'Within 1–2 months', 'No rush'],
+    s3h: 'How can we reach you?',
+    name: 'Name',
+    namePh: 'Jane Smith',
+    email: 'Email',
+    emailPh: 'jane@company.com',
+    phone: 'Phone',
+    phonePh: 'optional',
+    company: 'Company',
+    companyPh: 'optional',
+    privacy: 'We only use your details to reply to your request.',
+    next: 'Next',
+    back: 'Back',
+    send: 'Send quote request',
+    sumH: 'Your request',
+    sumEmpty: 'Pick what you’re interested in on the left.',
+    sumBudget: 'Budget',
+    sumWhen: 'Timing',
+    reply: 'We reply within one working day with a concrete quote or a couple of clarifying questions.',
+    okH: 'Thank you! Your request is in.',
+    okP: 'We’ll review it and reply within one working day. In a hurry? Email info@drealm.ee.',
+    fail: 'Sending failed. Please email info@drealm.ee',
+    need: 'Please describe in a couple of sentences what you need.',
+  },
+}[lang];
+---
+
+<div class="inq" data-inq data-fail={T.fail} data-need={T.need}>
+  <form class="inq-form" method="post" action="/api/contact.php" novalidate>
+    <input type="hidden" name="lang" value={lang} />
+    <input type="hidden" name="page" value={page} />
+    <input type="hidden" name="ts" value="" data-ts />
+    <input type="hidden" name="service" value="" data-service />
+    <div class="hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+
+    <ol class="inq-progress" aria-hidden="true">
+      {
+        T.steps.map((s, i) => (
+          <li data-progress={i}>
+            <span>{i + 1}</span>
+            {s}
+          </li>
+        ))
+      }
+    </ol>
+
+    <!-- STEP 1 -->
+    <fieldset class="inq-step" data-step="0">
+      <legend>{T.s1h}</legend>
+      <p class="inq-hint">{T.s1p}</p>
+      <div class="inq-chips">
+        {
+          services.map((s) => (
+            <label class="ichip">
+              <input type="checkbox" name="svc" value={s.name} data-id={s.id} checked={preselect === s.id} />
+              <span>
+                <Icon name={s.icon} size={18} />
+                {s.name}
+              </span>
+            </label>
+          ))
+        }
+        <label class="ichip">
+          <input type="checkbox" name="svc" value={T.unsure} />
+          <span><Icon name="plus" size={18} />{T.unsure}</span>
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- STEP 2 -->
+    <fieldset class="inq-step" data-step="1">
+      <legend>{T.s2h}</legend>
+      <label class="ifield">
+        <span>{T.msg}</span>
+        <textarea name="message" rows="5" required maxlength="5000" placeholder={T.msgPh}></textarea>
+      </label>
+      <label class="ifield">
+        <span>{T.url}</span>
+        <input name="url" type="text" inputmode="url" maxlength="300" placeholder={T.urlPh} />
+      </label>
+      <div class="igroup">
+        <p>{T.budget}</p>
+        <div class="inq-chips sm">
+          {
+            T.budgets.map((b) => (
+              <label class="ichip">
+                <input type="radio" name="budget" value={b} />
+                <span>{b}</span>
+              </label>
+            ))
+          }
+        </div>
+      </div>
+      <div class="igroup">
+        <p>{T.when}</p>
+        <div class="inq-chips sm">
+          {
+            T.whens.map((w) => (
+              <label class="ichip">
+                <input type="radio" name="timeline" value={w} />
+                <span>{w}</span>
+              </label>
+            ))
+          }
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- STEP 3 -->
+    <fieldset class="inq-step" data-step="2">
+      <legend>{T.s3h}</legend>
+      <div class="igrid">
+        <label class="ifield"><span>{T.name}</span><input name="name" required autocomplete="name" maxlength="120" placeholder={T.namePh} /></label>
+        <label class="ifield"><span>{T.email}</span><input name="email" type="email" required autocomplete="email" maxlength="160" placeholder={T.emailPh} /></label>
+        <label class="ifield"><span>{T.phone}</span><input name="phone" type="tel" autocomplete="tel" maxlength="40" placeholder={T.phonePh} /></label>
+        <label class="ifield"><span>{T.company}</span><input name="company" autocomplete="organization" maxlength="120" placeholder={T.companyPh} /></label>
+      </div>
+      <p class="inq-hint"><Icon name="check" size={14} />{T.privacy}</p>
+    </fieldset>
+
+    <div class="inq-nav">
+      <button type="button" class="btn-ghost" data-back><Icon name="arrow" size={16} class="flip" />{T.back}</button>
+      <button type="button" class="btn btn-light" data-next><span>{T.next}</span><Icon name="arrow" size={18} /></button>
+      <button type="submit" class="btn btn-light" data-submit><span>{T.send}</span><Icon name="arrow" size={18} /></button>
+    </div>
+    <p class="audit-status" role="status" aria-live="polite"></p>
+  </form>
+
+  <aside class="inq-sum" aria-live="polite">
+    <p class="chip on-dark"><Icon name="doc" size={14} />{T.sumH}</p>
+    <ul class="sum-svcs" data-sum-svcs><li class="empty">{T.sumEmpty}</li></ul>
+    <dl class="sum-meta">
+      <div><dt>{T.sumBudget}</dt><dd data-sum-budget>—</dd></div>
+      <div><dt>{T.sumWhen}</dt><dd data-sum-when>—</dd></div>
+    </dl>
+    <p class="sum-reply"><Icon name="bell" size={16} />{T.reply}</p>
+  </aside>
+
+  <div class="inq-done" hidden>
+    <span class="ibox lg"><Icon name="check" size={30} /></span>
+    <h3>{T.okH}</h3>
+    <p>{T.okP}</p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-inq]').forEach((root) => {
+    const form = root.querySelector('form')!;
+    const steps = [...root.querySelectorAll<HTMLElement>('[data-step]')];
+    const progress = [...root.querySelectorAll<HTMLElement>('[data-progress]')];
+    const back = root.querySelector<HTMLButtonElement>('[data-back]')!;
+    const next = root.querySelector<HTMLButtonElement>('[data-next]')!;
+    const submit = root.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const status = root.querySelector('.audit-status')!;
+    const sumSvcs = root.querySelector('[data-sum-svcs]')!;
+    const empty = sumSvcs.innerHTML;
+    form.querySelector<HTMLInputElement>('[data-ts]')!.value = String(Date.now());
+    root.classList.add('js');
+    let cur = 0;
+
+    const show = (i: number) => {
+      cur = i;
+      steps.forEach((s, k) => (s.hidden = k !== i));
+      progress.forEach((p, k) => {
+        p.classList.toggle('on', k === i);
+        p.classList.toggle('done', k < i);
+      });
+      back.hidden = i === 0;
+      next.hidden = i === steps.length - 1;
+      submit.hidden = i !== steps.length - 1;
+      status.textContent = '';
+    };
+    const valid = (i: number) => {
+      const fields = [...steps[i].querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea')];
+      for (const f of fields) if (!f.checkValidity()) return f.reportValidity(), false;
+      if (i === 1 && (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim().length < 10) {
+        status.textContent = root.dataset.need!;
+        return false;
+      }
+      return true;
+    };
+    next.addEventListener('click', () => valid(cur) && show(cur + 1));
+    back.addEventListener('click', () => show(cur - 1));
+    progress.forEach((p, k) => p.addEventListener('click', () => (k < cur || valid(cur)) && k <= cur + 1 && show(k)));
+
+    const sync = () => {
+      const picked = [...form.querySelectorAll<HTMLInputElement>('input[name="svc"]:checked')].map((c) => c.value);
+      (form.querySelector('[data-service]') as HTMLInputElement).value = picked.join(', ');
+      sumSvcs.innerHTML = picked.length ? picked.map((p) => `<li>${p}</li>`).join('') : empty;
+      const val = (n: string) => (form.querySelector<HTMLInputElement>(`input[name="${n}"]:checked`)?.value ?? '—');
+      root.querySelector('[data-sum-budget]')!.textContent = val('budget');
+      root.querySelector('[data-sum-when]')!.textContent = val('timeline');
+    };
+    const pre = new URLSearchParams(location.search).get('t');
+    const preBox = pre && form.querySelector<HTMLInputElement>(`input[data-id="${CSS.escape(pre)}"]`);
+    if (preBox) preBox.checked = true;
+    form.addEventListener('change', sync);
+    sync();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!valid(cur)) return;
+      submit.disabled = true;
+      try {
+        const res = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) });
+        if (!res.ok) throw new Error();
+        root.classList.add('sent');
+        root.querySelector<HTMLElement>('.inq-done')!.hidden = false;
+      } catch {
+        status.textContent = root.dataset.fail!;
+      } finally {
+        submit.disabled = false;
+      }
+    });
+    show(0);
+  });
+</script>

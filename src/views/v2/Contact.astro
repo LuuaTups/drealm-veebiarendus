@@ -1,0 +1,71 @@
+---
+import V2 from '../../layouts/V2.astro';
+import Icon from '../../components/mock/Icon.astro';
+import InquiryForm from '../../components/v2/InquiryForm.astro';
+import { type Lang } from '../../data/v2/services';
+import { EMAIL, ROUTES, UI, r } from '../../data/v2/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const c = {
+  et: {
+    title: 'Küsi hinda | drealm',
+    description: 'Kirjelda, mida vajad, ja saad ühe tööpäeva jooksul hinnapakkumise. Kodulehed, turundus ja AI. info@drealm.ee',
+    chip: 'Hinnapäring',
+    h1: 'Küsi hinda.',
+    lead: 'Kirjelda paari lausega, mida vajad. Vastame ühe tööpäeva jooksul konkreetse pakkumise või paari täpsustava küsimusega. Kohustusi pole.',
+    email: 'E-post',
+    where: 'Asukoht',
+    whereV: 'Tallinn, Eesti',
+    reply: 'Vastame',
+    replyV: 'ühe tööpäeva jooksul',
+    formChip: 'Kolm lühikest sammu',
+  },
+  en: {
+    title: 'Get a quote | drealm',
+    description: 'Describe what you need and get a quote within one working day. Websites, marketing and AI. info@drealm.ee',
+    chip: 'Quote request',
+    h1: 'Get a quote.',
+    lead: 'Describe in a couple of sentences what you need. We reply within one working day with a concrete quote or a few clarifying questions. No obligation.',
+    email: 'Email',
+    where: 'Location',
+    whereV: 'Tallinn, Estonia',
+    reply: 'We reply',
+    replyV: 'within one working day',
+    formChip: 'Three short steps',
+  },
+}[lang];
+---
+
+<V2 lang={lang} title={c.title} description={c.description} alternates={{ et: ROUTES.contact.et, en: ROUTES.contact.en }}>
+  <section class="stage">
+    <div class="stage-card page-card">
+      <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>
+      <div class="sv-shade" aria-hidden="true"></div>
+      <div class="page-hero contact-hero">
+        <div>
+          <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><span aria-current="page">{t.contact}</span></nav>
+          <p class="chip on-dark"><Icon name="mail" size={14} />{c.chip}</p>
+          <h1 class="sv-h1">{c.h1}</h1>
+          <p class="sv-lead">{c.lead}</p>
+        </div>
+        <div class="contact-list">
+          <a href={`mailto:${EMAIL}`} class="contact-item"><span class="ibox"><Icon name="mail" size={18} /></span><span><small>{c.email}</small>{EMAIL}</span></a>
+          <div class="contact-item"><span class="ibox"><Icon name="target" size={18} /></span><span><small>{c.where}</small>{c.whereV}</span></div>
+          <div class="contact-item"><span class="ibox"><Icon name="bell" size={18} /></span><span><small>{c.reply}</small>{c.replyV}</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sv-sec sv-last" id="vorm">
+    <div class="wrap">
+      <div class="inq-card dark-card">
+        <InquiryForm lang={lang} page={r('contact', lang)} />
+      </div>
+    </div>
+  </section>
+</V2>
