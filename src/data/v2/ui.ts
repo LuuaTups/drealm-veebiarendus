@@ -5,11 +5,21 @@ export const SITE_URL = 'https://drealm.ee';
 export const EMAIL = 'info@drealm.ee';
 export const GA_ID = 'G-B42TX6G2GQ';
 
+/** Legal entity details. Empty values are simply not rendered (footer, About page, Organization schema). */
+export const COMPANY = {
+  legalName: '',
+  regCode: '',
+  vatNumber: '',
+  /** public profiles of the company: Äriregister, Inforegister, LinkedIn, Google Business Profile, etc. */
+  sameAs: [] as string[],
+};
+
 export const ROUTES = {
   home: { et: '/', en: '/en' },
   services: { et: '/teenused', en: '/en/services' },
   solutions: { et: '/lahendused', en: '/en/solutions' },
   work: { et: '/tood', en: '/en/work' },
+  faq: { et: '/kkk', en: '/en/faq' },
   contact: { et: '/kontakt', en: '/en/contact' },
   about: { et: '/meist', en: '/en/about' },
   blog: { et: '/blogi', en: '/en/blog' },
@@ -25,6 +35,9 @@ export const UI = {
     allServices: 'Kõik teenused',
     solutions: 'Lahendused',
     work: 'Tööd',
+    faqShort: 'KKK',
+    regCode: 'Registrikood',
+    vat: 'KMKR',
     allWork: 'Kõik tööd',
     ownProject: 'Oma projekt',
     visit: 'Ava leht',
@@ -81,6 +94,9 @@ export const UI = {
     allServices: 'All services',
     solutions: 'Solutions',
     work: 'Work',
+    faqShort: 'FAQ',
+    regCode: 'Reg. code',
+    vat: 'VAT',
     allWork: 'All work',
     ownProject: 'Own project',
     visit: 'Visit site',

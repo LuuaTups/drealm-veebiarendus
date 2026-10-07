@@ -5,7 +5,7 @@ import Logo from '../components/Logo.astro';
 import Icon from '../components/mock/Icon.astro';
 import AuditForm from '../components/AuditForm.astro';
 import { GROUP_LABEL, servicesFor, serviceHref, type Lang } from '../data/v2/services';
-import { EMAIL, GA_ID, SITE_URL, UI, r } from '../data/v2/ui';
+import { COMPANY, EMAIL, GA_ID, SITE_URL, UI, r } from '../data/v2/ui';
 import sansUrl from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 
 interface Props {
@@ -31,6 +31,10 @@ const org = {
   '@type': 'ProfessionalService',
   '@id': `${SITE_URL}/#org`,
   name: 'drealm',
+  ...(COMPANY.legalName ? { legalName: COMPANY.legalName } : {}),
+  ...(COMPANY.regCode ? { identifier: { '@type': 'PropertyValue', propertyID: 'Äriregistri kood', value: COMPANY.regCode } } : {}),
+  ...(COMPANY.vatNumber ? { vatID: COMPANY.vatNumber } : {}),
+  ...(COMPANY.sameAs.length ? { sameAs: COMPANY.sameAs } : {}),
   url: SITE_URL,
   email: EMAIL,
   logo: `${SITE_URL}/logo.png`,
@@ -176,6 +180,7 @@ const website = {
         <a href="#ulevaade">{t.review}</a>
         <a href={r('about', lang)}>{t.about}</a>
         <a href={r('blog', lang)}>{t.blog}</a>
+        <a href={r('faq', lang)}>{t.faqShort}</a>
         <a href={r('contact', lang)}>{t.contact}</a>
         <a href={alternates[other]} hreflang={other}>{other === 'en' ? 'English' : 'Eesti keeles'}</a>
         <a href={r('contact', lang)} class="sheet-cta">{t.askPrice} <Icon name="arrow" size={16} /></a>
@@ -209,11 +214,12 @@ const website = {
             <a href={r('work', lang)}>{t.work}</a>
             <a href={r('about', lang)}>{t.about}</a>
             <a href={r('blog', lang)}>{t.blog}</a>
+            <a href={r('faq', lang)}>{t.faqShort}</a>
             <a href={r('contact', lang)}>{t.contact}</a>
             <a href={r('privacy', lang)}>{t.privacy}</a>
             <button type="button" class="foot-link" data-consent-open>{t.cookies}</button>
           </nav>
-          <span>{t.rights}</span>
+          <span>{t.rights}{COMPANY.legalName && ` · ${COMPANY.legalName}`}{COMPANY.regCode && ` · ${t.regCode} ${COMPANY.regCode}`}</span>
           <a class="to-top" href="#top">{lang === 'et' ? 'Üles' : 'Top'} <Icon name="up" size={14} /></a>
         </div>
       </div>

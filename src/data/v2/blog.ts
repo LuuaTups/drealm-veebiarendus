@@ -16,6 +16,7 @@ export const POST_SERVICE: Record<string, string> = {
   'local-seo': 'seo',
   'meta-ads': 'meta',
   seo: 'seo',
+  'company-ai': 'ettevotte-ai',
 };
 
 export async function getPosts(lang: Lang) {
