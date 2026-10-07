@@ -1045,7 +1045,7 @@ export const SOLUTIONS: Solution[] = [
       ],
       faqs: [
         { q: 'Kas SEO toimib ka Shopifys ja WooCommerce’is?', a: 'Jah. Mõlemal on omad tehnilised kitsaskohad, mille korrastame.' },
-        { q: 'Kui kiiresti tulemusi näha?', a: 'Tehnilised parandused mõjuvad sageli nädalatega, sisu ja kategooriate töö tavaliselt 3–6 kuuga.' },
+        { q: 'Kui kiiresti tulemusi näha?', a: 'Tehnilised parandused mõjuvad sageli nädalatega, sisu ja kategooriate töö tavaliselt 2–4 kuuga.' },
         { q: 'Kas peame ise tekste kirjutama?', a: 'Ei pea. Kirjutame kategoorialehtede tekstid ise ja sina kinnitad need.' },
       ],
     },
@@ -1070,7 +1070,7 @@ export const SOLUTIONS: Solution[] = [
       ],
       faqs: [
         { q: 'Does SEO work on Shopify and WooCommerce?', a: 'Yes. Both have their own technical quirks, which we fix.' },
-        { q: 'How fast will we see results?', a: 'Technical fixes often show within weeks, content and category work usually in 3–6 months.' },
+        { q: 'How fast will we see results?', a: 'Technical fixes often show within weeks, content and category work usually in 2–4 months.' },
         { q: 'Do we have to write the copy?', a: 'No. We write category copy and you approve it.' },
       ],
     },
@@ -1604,7 +1604,7 @@ export const SOLUTIONS: Solution[] = [
       faqs: [
         { q: 'Milliste CRM-idega ühendate?', a: 'Pipedrive, HubSpot, Google Sheets ja teised, millel on liides.' },
         { q: 'Kas automaatvastus kõlab robotlikult?', a: 'Ei. Vastus kirjutatakse sinu tooni järgi ja keerulised juhud jäävad inimesele.' },
-        { q: 'Kui kiiresti saab käivitada?', a: 'Lihtsam töövoog 1–2 nädalaga.' },
+        { q: 'Kui kiiresti saab käivitada?', a: 'Lihtsam töövoog tavaliselt 2–4 nädalaga.' },
       ],
     },
     en: {
@@ -1629,7 +1629,7 @@ export const SOLUTIONS: Solution[] = [
       faqs: [
         { q: 'Which CRMs do you connect to?', a: 'Pipedrive, HubSpot, Google Sheets and others with an API.' },
         { q: 'Does the auto-reply sound robotic?', a: 'No. Replies follow your tone and complex cases stay with a person.' },
-        { q: 'How fast can it launch?', a: 'A simpler workflow in 1–2 weeks.' },
+        { q: 'How fast can it launch?', a: 'A simpler workflow usually in 2–4 weeks.' },
       ],
     },
   },

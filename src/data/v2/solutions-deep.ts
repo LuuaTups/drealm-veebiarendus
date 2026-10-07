@@ -1,4 +1,4 @@
-// Extra, industry-specific depth for the 10 priority solution pages (ET + EN).
+// Extra, industry-specific depth for the priority solution pages (ET + EN).
 // Rendered by SolutionPage.astro under the intro. Pages without an entry here are noindex until written.
 export interface SolDeep {
   /** 3–4 paragraphs, industry-specific: who it is for, the typical problems in THIS industry in Estonia, how the solution works day to day */
@@ -730,6 +730,582 @@ export const SOL_DEEP: Record<string, { et: SolDeep; en: SolDeep }> = {
         { q: 'Should old blog posts come along?', a: 'Those with traffic or external links should move or redirect to a similar page. Completely empty posts can be deleted.' },
         { q: 'How long should redirects stay in place?', a: 'At least a year, ideally longer. Removing them early loses the value of external links and breaks old bookmarks.' },
         { q: 'Should the new site launch with exactly the same content?', a: 'Not necessarily, but big content changes during the move make it harder to find the cause if visibility shifts.' },
+      ],
+    },
+  },
+
+  // ======================= AI CHATBOT FOR E-COMMERCE =======================
+  'ai-epood': {
+    et: {
+      body: [
+        'AI chatbot sobib e-poele, kus klient küsib enne ostu ikka ja jälle sama: kas see mahub, kas see sobib minu seadmega, millal pakk kohale jõuab, kas saan tagastada. Kui vastust tuleb oodata järgmise tööpäevani, ostab ta sageli mujalt. Kõige rohkem on botist kasu poodidel, kus tooteid on palju ja valik vajab selgitust: rõivad ja jalanõud, kosmeetika, varuosad, elektroonika või aiakaubad.',
+        'Eesti e-poe klientide küsimused on üsna etteaimatavad. Küsitakse suurusi, tarneaega Omniva, DPD või Smartposti automaati, tagastamise tingimusi ja seda, kas toode on laos. Eraisikust ostjal on internetiostul üldjuhul 14-päevane taganemisõigus ja bot peab seda selgitama täpselt nii, nagu on kirjas sinu müügitingimustes, mitte üldise internetiteadmise järgi. Sellepärast saab bot ainult sinu tooteinfo, suuruste tabelid, tarneinfo ja tingimused.',
+        'Tellimuse seisu ütlemiseks peab bot e-poest andmeid lugema. See on isikuandmete töötlemine, nii et klient kinnitab enne tellimuse numbri ja e-posti aadressi ning bot näitab ainult selle tellimuse staatust ja jälgimislinki. Muid kliendi andmeid vestlusesse ei tooda. Vestluste säilitamise aja lepime kokku ja see kirjutatakse privaatsustingimustesse.',
+        'ELi tehisintellekti määrus nõuab, et inimene teaks, kui ta suhtleb AI-ga, nii et vestlusaken ütleb seda kohe alguses. Vestluse saab igal hetkel anda inimesele: bot kogub küsimuse ja kontakti ning sinu klienditeenindaja jätkab e-posti teel. Kord nädalas vaatad üle küsimused, millele bot vastata ei osanud, ja lisad puuduva info. Nii kasvab aja jooksul nende küsimuste hulk, millele bot oskab vastata, ilma et keegi peaks midagi ümber programmeerima.',
+      ],
+      example: {
+        title: 'Näide: jalanõude e-pood umbes 600 tootega',
+        text: 'Oletame, et e-pood müüb jalanõusid eesti ja vene keeles ning klienditeenindaja vastab iga päev e-kirjadele suuruste ja tagastuste kohta. Bot saab iga mudeli kohta sisemõõdud ja märkused, näiteks et mudel on kitsas või jääb väikeseks. Klient kirjutab oma tavalise numbri ja jala pikkuse ning bot soovitab suurust koos selgitusega, millele soovitus põhineb. Kui klient küsib tellimuse kohta, palub bot tellimuse numbrit ja e-posti ning annab pakiautomaadi jälgimislingi. Reklamatsioonid ja erisoovid lähevad alati klienditeenindajale koos vestluse kokkuvõttega.',
+        scope: [
+          'Suuruse nõuanne mudeli mõõtude põhjal',
+          'Tellimuse staatus pärast kontrolli',
+          'Tarne ja tagastuse küsimused tingimustest',
+          'Eesti- ja venekeelne vestlus',
+          'Vastamata küsimuste nädalaülevaade',
+        ],
+      },
+      process: [
+        { t: 'Küsimuste kogumine', d: 'Vaatame läbi viimaste kuude kliendikirjad ja paneme kirja, mida küsitakse kõige sagedamini.' },
+        { t: 'Info korrastamine', d: 'Täiendame tootekirjeldusi, suuruste tabeleid ja tingimusi, sest bot vastab ainult sellest, mis on kirjas.' },
+        { t: 'Testvestlused', d: 'Proovime botti päris küsimustega, ka keeruliste ja eksitavatega, enne kui see poes nähtavaks läheb.' },
+        { t: 'Avamine ja ülevaatus', d: 'Esimestel nädalatel loeme vestlusi koos ja parandame vastuseid seal, kus bot eksis või kõhkles.' },
+      ],
+      pricing: [
+        'Ettevõtte AI-lahendustel ei ole fikseeritud algushinda, sest hind sõltub dokumentide mahust ja kanalitest. E-poe boti puhul mõjutab hinda kõige rohkem see, kas bot vastab ainult tooteinfo põhjal või loeb ka e-poest tellimusi, ning see, kui korras on tooteinfo praegu.',
+        'Lisaks mõjutavad hinda keelte arv, e-poe platvorm ja see, kas vestlus antakse üle e-postiga või mõnda klienditeeninduse tööriista. Lahendus valmib tavaliselt 3–6 nädalaga.',
+      ],
+      faqs: [
+        { q: 'Kas bot võib lubada soodustust või erandit?', a: 'Ei. Bot ei anna soodustusi ega tee erandeid tingimustest. Kui klient seda palub, annab bot küsimuse sinu meeskonnale.' },
+        { q: 'Kas bot soovitab ainult laos olevaid tooteid?', a: 'Jah, kui e-poe liides näitab laoseisu. Siis jätab bot otsas olevad tooted soovitustest välja.' },
+        { q: 'Kas vestlused salvestatakse?', a: 'Vestlusi hoitakse ülevaatuse jaoks kokkulepitud aja jooksul. Privaatsustingimustes on kirjas, mida ja kui kaua hoitakse.' },
+      ],
+    },
+    en: {
+      body: [
+        'An AI chatbot suits online stores whose customers ask the same things again and again before buying: will it fit, does it work with my device, when will the parcel arrive, can I return it. If the answer only comes the next working day, they often buy elsewhere. Stores with large ranges where choosing needs explaining benefit most: clothing and shoes, cosmetics, spare parts, electronics or garden goods.',
+        'Estonian shoppers’ questions are fairly predictable. They ask about sizes, delivery time to an Omniva, DPD or Smartpost locker, return terms and whether a product is in stock. A consumer buying online generally has a 14-day right of withdrawal, and the bot has to explain it exactly as your terms of sale say, not from general internet knowledge. That’s why the bot only gets your product information, size charts, delivery details and terms.',
+        'To give order status the bot has to read data from your store. That is personal data processing, so the customer first confirms the order number and email address, and the bot shows only that order’s status and tracking link. No other customer data enters the chat. We agree how long conversations are kept and that goes into your privacy notice.',
+        'The EU AI Act requires that people know when they are talking to AI, so the chat window says so right at the start. The conversation can be handed to a person at any point: the bot collects the question and contact details and your customer service continues by email. Once a week you review questions the bot couldn’t answer and add the missing information. Over time the range of questions it can answer grows without anyone reprogramming anything.',
+      ],
+      example: {
+        title: 'Example: a shoe store with around 600 products',
+        text: 'Suppose a store sells shoes in Estonian and Russian, and customer service answers emails about sizes and returns every day. The bot gets each model’s inner measurements and notes, such as the model being narrow or running small. A customer types their usual size and foot length, and the bot suggests a size with an explanation of what it is based on. When a customer asks about an order, the bot asks for the order number and email and gives the parcel locker tracking link. Complaints and special requests always go to customer service with a summary of the conversation.',
+        scope: [
+          'Size advice from model measurements',
+          'Order status after verification',
+          'Delivery and return questions from your terms',
+          'Chat in Estonian and Russian',
+          'Weekly overview of unanswered questions',
+        ],
+      },
+      process: [
+        { t: 'Collecting questions', d: 'We go through recent months of customer emails and list what gets asked most.' },
+        { t: 'Tidying information', d: 'We fill gaps in product descriptions, size charts and terms, because the bot only answers from what is written.' },
+        { t: 'Test conversations', d: 'We try the bot with real questions, including tricky and misleading ones, before it goes live in the store.' },
+        { t: 'Launch and review', d: 'In the first weeks we read conversations together and fix answers where the bot was wrong or unsure.' },
+      ],
+      pricing: [
+        'Company AI solutions have no fixed starting price, because the price depends on the volume of documents and the channels. For a store bot the biggest factors are whether it answers only from product information or also reads orders from the store, and how complete your product information is today.',
+        'The number of languages, the store platform and whether conversations are handed over by email or into a customer service tool also affect the price. The solution usually takes 3–6 weeks.',
+      ],
+      faqs: [
+        { q: 'Can the bot promise a discount or an exception?', a: 'No. The bot doesn’t give discounts or make exceptions to your terms. If a customer asks, it passes the question to your team.' },
+        { q: 'Does the bot only recommend products in stock?', a: 'Yes, if the store’s API exposes stock levels. Then out-of-stock products are left out of recommendations.' },
+        { q: 'Are conversations stored?', a: 'Conversations are kept for review for an agreed period. Your privacy notice states what is kept and for how long.' },
+      ],
+    },
+  },
+
+  // ======================= SALES LEAD AUTOMATION =======================
+  'auto-paringud': {
+    et: {
+      body: [
+        'Müügipäringute automatiseerimine sobib ettevõttele, kelle müük algab päringust, mitte ostukorvist: ehitus- ja remondifirmad, tootjad, B2B teenusepakkujad, sündmuste korraldajad, transpordi- ja logistikafirmad. Päringuid ei pruugi tulla palju, aga iga üks võib olla suur tehing. Kui sellele vastatakse alles mitme päeva pärast, on klient jõudnud teiselt pakkujalt hinna juba saada.',
+        'Tavaline olukord on see, et päringud on laiali. Osa tuleb kodulehe vormist üldisele aadressile, osa müügijuhi isiklikule e-postile, osa Facebooki ja Instagrami sõnumitesse ning osa portaalidest, kus sinu teenus on kirjas. Puhkuse või haiguse ajal ei näe neid keegi. Esimene samm on panna kõik päringud jõudma ühte kohta, olgu see CRM või ühine tabel.',
+        'AI loeb päringu läbi ja paneb kirja, mida küsitakse, kui suur on maht, kas on tähtaeg ja mis infot on puudu. Selle põhjal saadab töövoog kliendile esmavastuse, mis kinnitab, et päring on kätte saadud, ja küsib puuduvat infot, näiteks objekti aadressi või koguseid. Hinda ega tähtaega esmavastus ei luba. Need paneb paika inimene, kes päringu enda peale võtab.',
+        'Päringutes on isikuandmed: nimi, telefon, vahel ka aadress. Need liiguvad ainult süsteemidesse, mida sa juba kasutad, ja kasutame ettevõtetele mõeldud AI-teenust, mis sinu andmetel ei treeni. Kui päring jääb kokkulepitud ajaks avamata, saab müügijuht teavituse ning juht näeb nädala lõpus, mitu päringut tuli, kust need tulid ja kui kiiresti neile vastati.',
+      ],
+      example: {
+        title: 'Näide: kaubaaluste ja pakendite tootja',
+        text: 'Kujutame ette tootjat, kelle kliendid on tootmis- ja logistikaettevõtted. Päringud tulevad kodulehe vormist, e-postiga ja telefoni teel ning müügijuht vastab neile sageli õhtuti. Uues töövoos jõuavad vormi ja e-posti päringud CRM-i, AI märgib toote tüübi, koguse ja soovitud tarneaja ning kui mõõdud on puudu, küsib esmavastus need kohe üle. Telefonikõne kohta paneb müügijuht CRM-i lühikese märkme ja edasi käib kõik samamoodi. Kui päring on avamata kauem kui neli tööaja tundi, tuleb meeldetuletus. Kui saadetud pakkumisele pole kolme päeva jooksul vastatud, tekib järelküsimise mustand, mille müügijuht saadab ise.',
+        scope: [
+          'Vormi ja e-posti päringud CRM-i',
+          'Toote, koguse ja tähtaja tuvastus',
+          'Esmavastus puuduva info küsimisega',
+          'Meeldetuletus avamata päringutele',
+          'Järelküsimise mustand pakkumisele',
+        ],
+      },
+      process: [
+        { t: 'Päringute teekond', d: 'Paneme kirja, kust päringud tulevad, kes neid praegu loeb ja kus need kõige sagedamini kinni jäävad.' },
+        { t: 'Liigitus ja vastused', d: 'Lepime kokku päringute tüübid ja kirjutame esmavastused sinu tooni järgi.' },
+        { t: 'Proov vanade päringutega', d: 'Laseme töövoost läbi eelmise kuu päringud ja kontrollime, kas AI liigitas need õigesti.' },
+        { t: 'Kasutusele ja jälgimine', d: 'Töövoog läheb käiku ja esimestel nädalatel vaatame koos üle, mida parandada.' },
+      ],
+      pricing: [
+        'Automatiseerimine algab 800 eurost ja see sisaldab ühe protsessi auditit ja lahendust. Tüüpiline päringute töövoog, kus kodulehe vorm ja üks postkast jõuavad CRM-i koos liigituse ja meeldetuletustega, ongi selline üks protsess.',
+        'Hind tõuseb, kui kanaleid on mitu ja iga kanal vajab eraldi ühendust või kui CRM-il pole liidest ja tuleb leida muu lahendus. Lisaks mõjutab hinda see, kas päringud tuleb jagada mitme müügiinimese vahel piirkonna või toote järgi. Suuremad süsteemid lähevad pakkumise järgi. Lahendus valmib tavaliselt 2–4 nädalaga.',
+      ],
+      faqs: [
+        { q: 'Kas töövoog töötab ka siis, kui meil CRM-i pole?', a: 'Jah. Alustada saab ühisest tabelist, näiteks Google Sheetsis. Kui päringuid tuleb rohkem, saab hiljem CRM-i üle minna.' },
+        { q: 'Kas AI saab päringust kohe pakkumise teha?', a: 'See on eraldi samm. Päringute töövoog valmistab info ette ning pakkumise mustandi saab lisada eraldi lahendusena, kus hinna kinnitab inimene.' },
+        { q: 'Mis saab rämpspostist?', a: 'AI märgib reklaamkirjad ja ilmselged rämpspäringud eraldi, et need ei jõuaks müügi järjekorda. Kahtlased juhud jäävad inimesele üle vaatamiseks.' },
+      ],
+    },
+    en: {
+      body: [
+        'Sales lead automation suits companies whose sales start with an enquiry rather than a shopping cart: construction and renovation firms, manufacturers, B2B service providers, event organisers, transport and logistics companies. There may not be many enquiries, but each one can be a big deal. If it gets answered days later, the customer has already had a price from someone else.',
+        'The usual situation is that enquiries are scattered. Some come from the website form to a general address, some to a sales manager’s personal email, some to Facebook and Instagram messages and some from portals where your service is listed. During holidays or sick leave nobody sees them. The first step is to make every enquiry land in one place, be it a CRM or a shared spreadsheet.',
+        'AI reads the enquiry and notes what is being asked, how big the job is, whether there’s a deadline and what information is missing. Based on that, the workflow sends the customer a first reply confirming receipt and asking for missing details, such as the site address or quantities. The first reply never promises a price or a date. Those are set by the person who takes the enquiry on.',
+        'Enquiries contain personal data: name, phone, sometimes an address. It only moves into systems you already use, and we use a business AI service that doesn’t train on your data. If an enquiry stays unopened beyond the agreed time, the sales manager is notified, and at the end of the week the manager sees how many enquiries came in, from where and how fast they were answered.',
+      ],
+      example: {
+        title: 'Example: a pallet and packaging manufacturer',
+        text: 'Imagine a manufacturer whose customers are production and logistics companies. Enquiries arrive through the website form, by email and by phone, and the sales manager often answers them in the evening. In the new workflow form and email enquiries go into the CRM, AI tags product type, quantity and requested delivery date, and if dimensions are missing the first reply asks for them right away. For phone calls the sales manager adds a short note to the CRM and everything else runs the same way. If an enquiry stays unopened for more than four working hours, a reminder follows. If a sent quote has had no reply within three days, a follow-up draft appears that the sales manager sends personally.',
+        scope: [
+          'Form and email enquiries into the CRM',
+          'Detection of product, quantity and deadline',
+          'First reply asking for missing details',
+          'Reminders for unopened enquiries',
+          'Follow-up draft for sent quotes',
+        ],
+      },
+      process: [
+        { t: 'Enquiry journey', d: 'We map where enquiries come from, who reads them today and where they most often get stuck.' },
+        { t: 'Classification and replies', d: 'We agree enquiry types and write first replies in your tone.' },
+        { t: 'Test with past enquiries', d: 'We run last month’s enquiries through the workflow and check that AI classified them correctly.' },
+        { t: 'Go-live and monitoring', d: 'The workflow goes live and in the first weeks we review together what to improve.' },
+      ],
+      pricing: [
+        'Automation starts from €800, which covers the audit and solution for one process. A typical enquiry workflow, where the website form and one inbox flow into the CRM with classification and reminders, is exactly that kind of single process.',
+        'The price rises if there are several channels each needing its own connection, or if your CRM has no API and another route is needed. Whether enquiries have to be split between several salespeople by region or product also affects the price. Larger systems are quoted separately. The solution usually takes 2–4 weeks.',
+      ],
+      faqs: [
+        { q: 'Does it work if we don’t have a CRM?', a: 'Yes. You can start with a shared spreadsheet, for example in Google Sheets, and move to a CRM later as enquiries grow.' },
+        { q: 'Can AI turn an enquiry straight into a quote?', a: 'That’s a separate step. The enquiry workflow prepares the information, and a quote draft can be added as a separate solution where a person confirms the price.' },
+        { q: 'What happens to spam?', a: 'AI flags sales pitches and obvious junk separately so they don’t reach the sales queue. Doubtful cases stay with a person to check.' },
+      ],
+    },
+  },
+
+  // ======================= AI FOR PROPOSALS AND TENDERS =======================
+  'ai-pakkumised': {
+    et: {
+      body: [
+        'AI assistent pakkumiste jaoks on mõeldud ettevõttele, kes osaleb regulaarselt riigihangetes või vastab suurte klientide pakkumiskutsetele: ehitus- ja projekteerimisfirmad, IT-ettevõtted, koristus- ja hooldusfirmad, tarnijad ning konsultandid. Hange tähendab tavaliselt hanketeadet, hankedokumente, tehnilist kirjeldust, lepingu projekti ja mitut lisa. Kõik need tuleb läbi lugeda enne, kui on üldse selge, kas osaleda.',
+        'Esimene küsimus on alati, kas hange sobib. Assistent toob välja kvalifitseerimistingimused, näiteks nõutud käibe, varasemad sarnased lepingud ja spetsialistide kvalifikatsiooni, samuti hindamiskriteeriumid ja tähtajad. Sinu varasemate tööde ja referentside põhjal märgib ta, millised nõuded on täidetud ja kus on küsimärk. Otsuse osaleda teed sina.',
+        'Kui otsustad osaleda, koostab assistent nõuete kontrollnimekirja, kus iga nõude juures on viide dokumendi kohale, ja kirjutab pakkumise tekstiosade mustandi, näiteks tööde kirjelduse, meeskonna tutvustuse ja ajakava. Riigihangete registri vorme ja ESPD-d täidad endiselt registris, aga assistent aitab sinna minevad andmed kokku koguda. Ebaselged kohad pannakse kirja küsimustena, mille saad esitada hankijale selgitustaotlusena.',
+        'AI võib dokumenti valesti mõista või jätta nõude märkamata, eriti kui see on peidetud lepingu projekti või lisasse. Seepärast näitab assistent iga väite juures allikat ning pakkumise kontrollib ja allkirjastab alati inimene. Varasemad pakkumised, hinnad ja referentsid jäävad sinu kontrolli alla, ligipääs on ainult neil, kes pakkumisi teevad, ja kasutatav AI-teenus ei treeni sinu andmetel.',
+      ],
+      example: {
+        title: 'Näide: hooldusfirma, mis osaleb omavalitsuste hangetes',
+        text: 'Oletame, et firma teeb koolide ja lasteaedade hoonete hooldust ning osaleb mitmes hankes aastas. Iga hanke läbitöötamine võtab praegu projektijuhilt päevi ja varasemaid pakkumisi otsitakse kaustadest käsitsi. Assistendile antakse firma varasemad pakkumised, referentsobjektide nimekiri, töötajate kvalifikatsioonid ja standardtekstid. Uue hanke dokumendid laaditakse üles ning assistent teeb kokkuvõtte, märgib kvalifitseerimistingimused ja tähtajad ning pakub välja sobivad referentsobjektid. Projektijuht kontrollib nimekirja, paneb hinna ise paika ja kasutab tööde kirjelduse mustandit lähtekohana.',
+        scope: [
+          'Hankedokumentide kokkuvõte viidetega',
+          'Kvalifitseerimistingimuste kontroll',
+          'Referentsobjektide valik',
+          'Tekstiosade mustand varasemate pakkumiste põhjal',
+          'Küsimuste nimekiri hankijale',
+        ],
+      },
+      process: [
+        { t: 'Pakkumiste arhiiv', d: 'Kogume kokku varasemad pakkumised, referentsid ja standardtekstid ning otsustame, mis assistendile antakse.' },
+        { t: 'Kontrollnimekirja vorm', d: 'Lepime kokku, millises vormis nõuete nimekiri ja kokkuvõte sinu tiimile kõige paremini sobivad.' },
+        { t: 'Proov lõppenud hankega', d: 'Assistent töötab läbi hanke, mille tulemus on teada, ja võrdleme tema nimekirja sinu omaga.' },
+        { t: 'Kasutusele', d: 'Tiim kasutab assistenti uute hangete puhul ja arhiiv täieneb iga uue pakkumisega.' },
+      ],
+      pricing: [
+        'Ettevõtte AI-lahendustel ei ole fikseeritud algushinda, sest hind sõltub dokumentide mahust ja kanalitest. Pakkumiste assistendi puhul tähendab see eelkõige seda, kui palju varasemaid pakkumisi ja referentse on ning kui korrastatult neid hoitakse.',
+        'Hinda mõjutavad veel kasutajate arv, ligipääsuõigused ja see, kas assistent peab töötama ka ingliskeelsete hangetega. Kui soovid lisaks ühte kindlat töövoogu, näiteks et mustand tekiks otse sinu pakkumise põhjale, saab selle teha automatiseerimisena, mis algab 800 eurost. Lahendus valmib tavaliselt 3–6 nädalaga.',
+      ],
+      faqs: [
+        { q: 'Kas assistent oskab hinda arvutada?', a: 'Hinna paned paika sina. Assistent võib näidata, mis hinnaga sarnaseid töid varem pakuti, aga hinnastamise otsus jääb inimesele.' },
+        { q: 'Kas see töötab ka skannitud PDF-idega?', a: 'Enamasti jah, kui skann on loetav. Halva kvaliteediga skannide puhul tuleb tekst üle kontrollida, sest tekstituvastus võib eksida.' },
+        { q: 'Kas assistent leiab lepingu projektist riskid?', a: 'Ta toob välja tingimused nagu leppetrahvid, garantiiajad ja maksetähtajad. Juriidilise hinnangu nende kohta annab jurist, mitte AI.' },
+      ],
+    },
+    en: {
+      body: [
+        'An AI assistant for proposals is for companies that regularly take part in public procurement or answer large clients’ requests for proposals: construction and design firms, IT companies, cleaning and facility maintenance firms, suppliers and consultants. A tender usually means a contract notice, procurement documents, a technical specification, a draft contract and several annexes. All of it has to be read before it’s even clear whether to bid.',
+        'The first question is always whether the tender fits. The assistant pulls out the qualification criteria, such as required turnover, previous similar contracts and specialists’ qualifications, as well as award criteria and deadlines. Based on your past work and references it marks which requirements are met and where there’s a question mark. The decision to bid is yours.',
+        'Once you decide to bid, the assistant builds a requirements checklist with a reference to the place in the documents for each item, and drafts the text sections of the proposal, such as the description of works, team introduction and schedule. You still fill in the Estonian public procurement register’s forms and the ESPD in the register, but the assistant helps gather the data that goes into them. Unclear points are written up as questions you can submit to the contracting authority as a clarification request.',
+        'AI can misread a document or miss a requirement, especially one hidden in the draft contract or an annex. That’s why the assistant shows the source for every statement, and a person always checks and signs the proposal. Past proposals, prices and references stay under your control, only those who prepare proposals have access, and the AI service used doesn’t train on your data.',
+      ],
+      example: {
+        title: 'Example: a maintenance firm bidding in municipal tenders',
+        text: 'Suppose a firm maintains school and kindergarten buildings and bids in several tenders a year. Working through each tender currently takes the project manager days, and past proposals are dug out of folders by hand. The assistant is given the firm’s past proposals, a list of reference sites, staff qualifications and standard texts. New tender documents are uploaded and the assistant writes a summary, marks the qualification criteria and deadlines and suggests suitable reference sites. The project manager checks the list, sets the price personally and uses the draft description of works as a starting point.',
+        scope: [
+          'Tender document summary with references',
+          'Qualification criteria check',
+          'Choice of reference projects',
+          'Draft text sections from past proposals',
+          'List of questions for the contracting authority',
+        ],
+      },
+      process: [
+        { t: 'Proposal archive', d: 'We gather past proposals, references and standard texts and decide what the assistant gets.' },
+        { t: 'Checklist format', d: 'We agree the format of requirements list and summary that suits your team best.' },
+        { t: 'Test on a closed tender', d: 'The assistant works through a tender with a known outcome and we compare its list with yours.' },
+        { t: 'Go-live', d: 'The team uses the assistant on new tenders and the archive grows with every new proposal.' },
+      ],
+      pricing: [
+        'Company AI solutions have no fixed starting price, because the price depends on the volume of documents and the channels. For a proposal assistant that mainly means how many past proposals and references there are and how well organised they are.',
+        'The number of users, access rights and whether the assistant must also handle English-language tenders affect the price too. If you also want one specific workflow, such as drafts appearing directly in your proposal template, that can be built as automation, which starts from €800. The solution usually takes 3–6 weeks.',
+      ],
+      faqs: [
+        { q: 'Can the assistant calculate the price?', a: 'You set the price. The assistant can show what similar work was priced at before, but the pricing decision stays with a person.' },
+        { q: 'Does it work with scanned PDFs?', a: 'Mostly yes, if the scan is legible. With poor scans the text needs checking, because text recognition can make mistakes.' },
+        { q: 'Does the assistant spot risks in the draft contract?', a: 'It highlights terms such as contractual penalties, warranty periods and payment deadlines. A legal assessment of them comes from a lawyer, not AI.' },
+      ],
+    },
+  },
+
+  // ======================= REPORTING AUTOMATION =======================
+  'auto-aruanded': {
+    et: {
+      body: [
+        'Aruandluse automatiseerimine sobib ettevõttele, kus juht või raamatupidaja paneb igal nädalal või kuul numbreid kokku mitmest kohast: müük e-poest või CRM-ist, kulud ja arved raamatupidamisprogrammist, reklaamikulu Google’ist ja Metast. Tüüpiline tulemus on Exceli fail, mille ülesehitust teab ainult üks inimene ja mis jääb tegemata, kui see inimene on puhkusel.',
+        'Eesti väikeettevõttes ei ole andmeallikaid tavaliselt palju, aga need ei räägi omavahel. Raamatupidamine käib sageli Meritis, Directos või mõnes muus kohalikus programmis, e-pood Shopifys või WooCommerce’is ja müük Pipedrive’is või tabelis. Kui süsteemil on liides, saab andmed sealt automaatselt kätte. Kui liidest pole, saab sageli kasutada regulaarset eksporti, mis loetakse sisse ilma käsitsi kopeerimiseta.',
+        'Enne kui midagi ühendame, lepime kokku, mida numbrid tähendavad. Kas käive on koos käibemaksuga või ilma, kas tagastused arvestatakse maha, millal loetakse müük tehtuks? Kui definitsioonid on paigas, näeb iga vaataja sama numbrit ja arutelu käib asja, mitte arvutuse üle. Iga näitaja juures on kirjas, kust number tuleb ja millal see viimati uuenes.',
+        'AI kokkuvõte loeb ainult neid numbreid, mis ülevaates on, ja kirjutab lihtsas keeles, mis eelmise perioodiga võrreldes muutus. Ta ei arva, miks müük langes, kui andmetes põhjust pole, vaid toob muutuse välja, et inimene saaks seda uurida. Palgad ja muu tundlik info jäetakse vaadetest välja või näidatakse ainult neile, kellel on selleks õigus.',
+      ],
+      example: {
+        title: 'Näide: kahe kauplusega ja e-poega spordikaupade müüja',
+        text: 'Kujutame ette ettevõtet, kellel on kaks kauplust, e-pood ning reklaamid Google’is ja Metas. Juhataja paneb iga kuu alguses kokku müügi kanalite kaupa, reklaamikulu ja brutokasumi, mis võtab tal mitu tundi. Uues lahenduses tulevad kassade, e-poe ja raamatupidamise andmed ühte ülevaatesse, kui süsteemidel on liides või eksport. Esmaspäeva hommikul saab juhataja e-kirja, kus on eelmise nädala müük kanalite kaupa, võrdlus eelmise aasta sama nädalaga ja AI kokkuvõte suurematest muutustest. Kui ühe kaupluse müük langeb alla kokkulepitud piiri, tuleb eraldi teavitus.',
+        scope: [
+          'Kassa, e-poe ja raamatupidamise andmed',
+          'Ühtsed definitsioonid käibe ja kasumi jaoks',
+          'Nädala e-kiri AI kokkuvõttega',
+          'Teavitus kokkulepitud piiride juures',
+          'Eraldi vaade juhile ja raamatupidajale',
+        ],
+      },
+      process: [
+        { t: 'Otsused enne numbreid', d: 'Paneme kirja, milliste otsuste jaoks aruannet vaja on ja milliseid numbreid sa iga nädal päriselt vaatad.' },
+        { t: 'Allikad ja definitsioonid', d: 'Kontrollime, kust andmed tulevad, kas süsteemidel on liides ja kuidas iga näitajat arvutatakse.' },
+        { t: 'Paralleelne kuu', d: 'Üks kuu jookseb uus ülevaade vana aruande kõrval, et numbreid saaks omavahel võrrelda.' },
+        { t: 'Üleminek', d: 'Kui numbrid klapivad, jääb vana Exceli fail maha ja nädalaraport hakkab tulema ise.' },
+      ],
+      pricing: [
+        'Automatiseerimine algab 800 eurost, mis sisaldab ühe protsessi auditit ja lahendust. Aruandluse puhul on selleks sageli üks kindel aruanne, näiteks nädala müügiülevaade kahest või kolmest allikast.',
+        'Hinda mõjutab kõige rohkem allikate arv ja see, kas neil on liides. Lisaks mõjutavad hinda vaadete arv, ligipääsuõigused ja see, kas ülevaade tehakse olemasolevas tööriistas või eraldi juhtpaneelina. Suuremad süsteemid lähevad pakkumise järgi. Lahendus valmib tavaliselt 2–4 nädalaga.',
+      ],
+      faqs: [
+        { q: 'Mis siis, kui raamatupidamine jõuab kuu lõpuga järele alles hiljem?', a: 'Ülevaade näitab, millise kuupäevani on andmed kinnitatud. Kuu numbrid loetakse lõplikuks siis, kui raamatupidaja on perioodi sulgenud.' },
+        { q: 'Kas ülevaadet saab vaadata telefonist?', a: 'Jah. Nädalaraport tuleb e-kirjaga ja ülevaade avaneb ka telefonis, kuigi detailsemaid tabeleid on mugavam vaadata arvutis.' },
+        { q: 'Kas saame hiljem uusi näitajaid lisada?', a: 'Jah. Kui andmed on juba ühendatud, on uue näitaja või vaate lisamine tavaliselt väike töö.' },
+      ],
+    },
+    en: {
+      body: [
+        'Reporting automation suits companies where a manager or accountant puts numbers together every week or month from several places: sales from the store or CRM, costs and invoices from accounting software, ad spend from Google and Meta. The typical result is an Excel file whose structure only one person understands and which doesn’t get done when that person is on holiday.',
+        'An Estonian small business usually doesn’t have many data sources, but they don’t talk to each other. Accounting often runs in Merit, Directo or another local program, the store on Shopify or WooCommerce and sales in Pipedrive or a spreadsheet. If a system has an API, data can be pulled from it automatically. If not, a regular export can often be read in without manual copying.',
+        'Before connecting anything we agree what the numbers mean. Is revenue with or without VAT, are returns deducted, when does a sale count as made? Once definitions are set, everyone sees the same number and the discussion is about the business, not the calculation. Every metric shows where its number comes from and when it last updated.',
+        'The AI summary reads only the numbers in the overview and writes in plain language what changed compared with the previous period. It doesn’t guess why sales fell if the data holds no reason, but highlights the change so a person can look into it. Salaries and other sensitive information are left out of views or shown only to those entitled to see them.',
+      ],
+      example: {
+        title: 'Example: a sports retailer with two shops and an online store',
+        text: 'Imagine a company with two shops, an online store and ads on Google and Meta. At the start of every month the managing director compiles sales by channel, ad spend and gross profit, which takes several hours. In the new setup data from the tills, store and accounting flows into one overview, where the systems have an API or export. On Monday morning the director gets an email with last week’s sales by channel, a comparison with the same week last year and an AI summary of the larger changes. If one shop’s sales drop below an agreed threshold, a separate alert follows.',
+        scope: [
+          'Till, store and accounting data',
+          'Shared definitions for revenue and profit',
+          'Weekly email with an AI summary',
+          'Alerts at agreed thresholds',
+          'Separate views for manager and accountant',
+        ],
+      },
+      process: [
+        { t: 'Decisions before numbers', d: 'We list which decisions the report supports and which numbers you actually look at every week.' },
+        { t: 'Sources and definitions', d: 'We check where data comes from, whether systems have an API and how each metric is calculated.' },
+        { t: 'A parallel month', d: 'For one month the new overview runs alongside the old report so the numbers can be compared.' },
+        { t: 'Switch-over', d: 'Once the numbers match, the old Excel file is retired and the weekly report arrives by itself.' },
+      ],
+      pricing: [
+        'Automation starts from €800, which covers the audit and solution for one process. In reporting that is often one specific report, such as a weekly sales overview from two or three sources.',
+        'The biggest price factor is the number of sources and whether they have an API. The number of views, access rights and whether the overview lives in an existing tool or a custom dashboard also affect the price. Larger systems are quoted separately. The solution usually takes 2–4 weeks.',
+      ],
+      faqs: [
+        { q: 'What if accounting closes the month later?', a: 'The overview shows up to which date data is confirmed. Monthly numbers count as final once the accountant has closed the period.' },
+        { q: 'Can we view the overview on a phone?', a: 'Yes. The weekly report arrives by email and the overview opens on a phone too, though detailed tables are easier on a computer.' },
+        { q: 'Can we add new metrics later?', a: 'Yes. Once data is connected, adding a metric or view is usually a small job.' },
+      ],
+    },
+  },
+
+  // ======================= AI FOR HR =======================
+  'ai-hr': {
+    et: {
+      body: [
+        'AI assistent personalitööle sobib ettevõttele, kus on piisavalt töötajaid, et samad küsimused korduksid, aga personaliosakond on väike või seda polegi. Tihti teeb personalitööd juhataja, büroojuht või raamatupidaja muu töö kõrvalt. Küsimused on lihtsad, kuid katkestavad tööd: kuidas taotleda õppepuhkust, kas kodukontori päev tuleb kooskõlastada, kust saab tööriided, kellele teatada haigestumisest.',
+        'Vastused on tavaliselt olemas, aga laiali. Töökorralduse reeglid, puhkuste ajakava, kulude hüvitamise kord, ohutusjuhendid ja töötaja meelespea on eri kaustades ja eri vanuses. Enne assistendi seadistamist vaatame dokumendid läbi, sest kui kaks juhendit ütlevad eri asja, ei saa ka assistent õigesti vastata. Sageli on just see korrastus esimene kasu.',
+        'Assistent vastab üldistele küsimustele ettevõtte dokumentide põhjal ja lisab viite. Isiklikud andmed, näiteks konkreetse töötaja puhkusejääk, jäävad personaliprogrammi, kuhu töötaja logib ise sisse. Küsimused tervise, konfliktide või distsipliini kohta suunab assistent kohe inimesele, sest neile ei peaks vastama AI. Töötaja näeb alati, et ta suhtleb AI-ga.',
+        'Assistent ei tee otsuseid inimeste kohta. Ta ei vali kandidaate, ei hinda töötajaid ega jaga ülesandeid. ELi tehisintellekti määrus käsitleb selliseid tööalaseid kasutusviise suure riskiga süsteemidena ja need jäävad sellest lahendusest teadlikult välja. Assistendi töö on aidata infot leida, mitte asendada personalijuhi otsustust.',
+      ],
+      example: {
+        title: 'Näide: logistikaettevõte kolme vahetusega laos',
+        text: 'Oletame, et ettevõtte laos töötab kolmes vahetuses inimesi, kelle seas on eesti-, vene- ja ingliskeelseid. Uusi töötajaid alustab sageli ja vahetuse juhid vastavad iga päev samadele küsimustele vahetuste vahetamise, ületunnitöö ja ohutuse kohta. Assistent saab töökorralduse reeglid, vahetuste vahetamise korra, ohutusjuhendi ja sisseelamise kava. Uus töötaja küsib oma keeles ja saab vastuse koos lingiga dokumendile. Assistent töötab telefonis, sest kõigil laotöötajatel arvutit pole. Personalijuht näeb kord kuus, milliseid teemasid küsiti kõige rohkem ja millele assistent vastata ei osanud, ning täiendab selle põhjal juhendeid.',
+        scope: [
+          'Töökorralduse ja ohutuse dokumendid',
+          'Vastused eesti, vene ja inglise keeles',
+          'Sisseelamise kava esimesteks nädalateks',
+          'Ligipääs telefonist',
+          'Kuu ülevaade vastamata küsimustest',
+        ],
+      },
+      process: [
+        { t: 'Dokumentide ülevaatus', d: 'Kogume juhendid ja reeglid kokku, leiame vastuolud ning otsustame, mis assistendile antakse ja mis mitte.' },
+        { t: 'Ligipääsud ja kanal', d: 'Paneme paika, kes assistenti kasutab ja kas see töötab Teamsis, Slackis või veebis.' },
+        { t: 'Proov väikese grupiga', d: 'Mõni tiimijuht ja uus töötaja proovivad assistenti päris küsimustega ning märgivad valed vastused.' },
+        { t: 'Kogu ettevõttele', d: 'Assistent avatakse kõigile ja lepime kokku, kes uuendab dokumente, kui reeglid muutuvad.' },
+      ],
+      pricing: [
+        'Ettevõtte AI-lahendustel ei ole fikseeritud algushinda, sest hind sõltub dokumentide mahust ja kanalitest. Personaliassistendi puhul mõjutab hinda eelkõige see, kui palju dokumente on ja kui palju neid tuleb enne korrastada.',
+        'Lisaks mõjutavad hinda keelte arv, ligipääsuõiguste keerukus, näiteks kui eri osakonnad näevad eri dokumente, ja kanal, kus assistent töötab. Kui soovid assistendiga siduda ka ühe töövoo, näiteks puhkusetaotluse edastamise juhile, saab selle teha automatiseerimisena, mis algab 800 eurost. Lahendus valmib tavaliselt 3–6 nädalaga.',
+      ],
+      faqs: [
+        { q: 'Kas assistent vastab ka töölepingu seaduse kohta?', a: 'Ta vastab eelkõige sinu ettevõtte reeglite põhjal. Lisada saab ametlikke juhendmaterjale, aga keerulise töösuhte küsimuse korral suunab ta personalijuhi või juristi juurde.' },
+        { q: 'Kes hoolitseb, et vastused oleksid ajakohased?', a: 'Igal dokumendil on kokkulepitud omanik. Kui ta dokumenti uuendab, kasutab assistent uut versiooni ja vana jääb kõrvale.' },
+        { q: 'Kas juht näeb, mida töötaja küsis?', a: 'Selle otsustad sina ja töötajad peavad seda teadma. Tavaliselt näidatakse ülevaates küsimuste teemasid ilma nimedeta.' },
+      ],
+    },
+    en: {
+      body: [
+        'An AI assistant for HR suits companies with enough staff for the same questions to keep coming, but a small HR team or none at all. Often HR work is done by the managing director, office manager or accountant alongside everything else. The questions are simple but interrupt work: how to apply for study leave, whether a home office day needs approval, where to get workwear, who to tell when you’re ill.',
+        'The answers usually exist but are scattered. Work rules, the holiday schedule, expense policy, safety instructions and the employee handbook sit in different folders and date from different years. Before setting up the assistant we review the documents, because if two guides say different things the assistant can’t answer correctly either. That tidy-up is often the first benefit.',
+        'The assistant answers general questions from company documents and adds a reference. Personal data, such as a specific employee’s remaining leave, stays in the HR software where employees log in themselves. Questions about health, conflicts or discipline go straight to a person, because AI shouldn’t answer them. Employees always see that they are talking to AI.',
+        'The assistant makes no decisions about people. It doesn’t select candidates, assess employees or allocate tasks. The EU AI Act treats such employment uses as high-risk systems, and they are deliberately left out of this solution. The assistant’s job is to help find information, not to replace the HR manager’s judgement.',
+      ],
+      example: {
+        title: 'Example: a logistics company with a three-shift warehouse',
+        text: 'Suppose a warehouse runs three shifts with Estonian-, Russian- and English-speaking staff. New people start often, and shift leaders answer the same questions daily about swapping shifts, overtime and safety. The assistant gets the work rules, shift swap procedure, safety instructions and onboarding plan. A new employee asks in their own language and gets an answer with a link to the document. The assistant works on a phone, because not every warehouse worker has a computer. Once a month the HR manager sees which topics came up most and which questions the assistant couldn’t answer, and improves the guides accordingly.',
+        scope: [
+          'Work rules and safety documents',
+          'Answers in Estonian, Russian and English',
+          'Onboarding plan for the first weeks',
+          'Access from a phone',
+          'Monthly overview of unanswered questions',
+        ],
+      },
+      process: [
+        { t: 'Document review', d: 'We gather guides and rules, find contradictions and decide what the assistant gets and what it doesn’t.' },
+        { t: 'Access and channel', d: 'We set who uses the assistant and whether it runs in Teams, Slack or on the web.' },
+        { t: 'Small group trial', d: 'A few team leads and a new hire try the assistant with real questions and flag wrong answers.' },
+        { t: 'Company-wide', d: 'The assistant opens to everyone and we agree who updates documents when rules change.' },
+      ],
+      pricing: [
+        'Company AI solutions have no fixed starting price, because the price depends on the volume of documents and the channels. For an HR assistant it mainly depends on how many documents there are and how much tidying they need first.',
+        'The number of languages, how complex access rights are, for example when departments see different documents, and the channel the assistant runs in also affect the price. If you want to link one workflow to it, such as forwarding a leave request to the manager, that can be built as automation, which starts from €800. The solution usually takes 3–6 weeks.',
+      ],
+      faqs: [
+        { q: 'Does the assistant answer questions about employment law?', a: 'It answers mainly from your company’s rules. Official guidance can be added, but for a complex employment question it points to the HR manager or a lawyer.' },
+        { q: 'Who keeps the answers up to date?', a: 'Each document has an agreed owner. When they update it, the assistant uses the new version and the old one is set aside.' },
+        { q: 'Can the manager see what an employee asked?', a: 'You decide, and employees need to know. Usually the overview shows question topics without names.' },
+      ],
+    },
+  },
+
+  // ======================= E-COMMERCE SEO =======================
+  'seo-epood': {
+    et: {
+      body: [
+        'E-poe SEO sobib poele, mis saab praegu suurema osa müügist reklaamist ja tahab, et osa ostjaid tuleks Google’i tavaotsingust. Eesti turg on väike ja paljude toodete kohta otsitakse kuus üsna vähe. See tähendab, et iga sobiv otsing loeb ja et vene keeles otsijad on sageli eraldi ostjate grupp, keda eestikeelne leht ei leia.',
+        'E-poe platvormidel on tuntud tehnilised lõksud. Shopify loob sama toote jaoks mitu aadressi kategooriate kaudu, WooCommerce’i filtrid võivad tekitada tuhandeid parameetritega lehti ning lõpetatud tooted jäävad sageli 404 veaga lehtedeks. Need kulutavad Google’i tähelepanu lehtedele, mis müüki ei too. Tehnilise korrastuse käigus otsustame, millised lehed peaksid otsingus olema ja millised mitte.',
+        'Tootelehe tekst võetakse sageli tootja kirjeldusest ja sama tekst on ka teistel poodidel. Google’il pole siis põhjust just sinu lehte eelistada. Kõiki tooteid pole mõistlik ümber kirjutada, aga enim müüvatele ja kallimatele toodetele tasub lisada oma tekst: kellele toode sobib, millega seda võrrelda ja mida ostjad tavaliselt küsivad. Kategoorialehel aitab lühike sissejuhatus ja korduma kippuvad küsimused lehe allosas.',
+        'Struktureeritud andmed näitavad Google’ile toote hinda, saadavust ja tarneinfot. Sama tooteinfo saab saata ka Google Merchant Centerisse, kust tooteid saab näidata Google’i ostude vahekaardil ka tasuta. Iga kuu vaatame Search Console’ist ja analüütikast, millised kategooriad saavad näitamisi ja klikke ning kui palju müüki tuli tavaotsingust.',
+      ],
+      example: {
+        title: 'Näide: lemmikloomatarvete e-pood eesti ja vene keeles',
+        text: 'Kujutame ette poodi, kus on umbes 2 000 toodet ja mis müüb peamiselt Meta ja Google’i reklaamide kaudu. Tavaotsingust tuleb vähe liiklust, sest kategoorialehtedel on ainult tootenimekiri ja tootekirjeldused on tootjalt. Esimesena võtame filtrite lehed indekseerimisest välja ja suuname lõpetatud tooted sarnasele tootele või kategooriasse. Seejärel kirjutame kümnele tähtsamale kategooriale sissejuhatuse eesti ja vene keeles, näiteks neerudieedi kassitoit või koera talvejope, ning lisame struktureeritud andmed. Igakuises raportis on näha, kuidas nende kategooriate näitamised ja müük tavaotsingust muutuvad.',
+        scope: [
+          'Filtrilehtede indekseerimise kontroll',
+          'Lõpetatud toodete suunamised',
+          'Kategooriate tekstid kahes keeles',
+          'Tooteinfo struktureeritud andmed',
+          'Raport kategooriate kaupa',
+        ],
+      },
+      process: [
+        { t: 'Audit', d: 'Vaatame üle tehnilise seisu, indekseeritud lehed ja selle, millised kategooriad on otsingus esilehele juba lähedal.' },
+        { t: 'Tehniline korrastus', d: 'Parandame topeltlehed, filtrid, lõpetatud toodete käsitluse ja tooteinfo märgendid.' },
+        { t: 'Kategooriate sisu', d: 'Kirjutame tähtsamatele kategooriatele tekstid otsingute põhjal ja sina kinnitad need.' },
+        { t: 'Igakuine jälgimine', d: 'Iga kuu vaatame näitamisi, klikke ja müüki ning valime järgmised kategooriad.' },
+      ],
+      pricing: [
+        'SEO hind sõltub turust ja konkurentsist ning pakkumise saad pärast tasuta auditit. E-poe puhul mõjutavad hinda kõige rohkem toodete ja kategooriate arv, keelte arv ning see, kui palju tehnilist korrastust platvorm vajab.',
+        'Töötame kuupõhiselt. Alguses on rohkem tehnilist tööd, hiljem liigub raskuskoht sisule. Esimesed tulemused tulevad tavaliselt 2–4 kuuga. Kui e-pood tuleb uuesti üles ehitada või uuele platvormile kolida, on see eraldi veebilehtede töö.',
+      ],
+      faqs: [
+        { q: 'Kas e-pood vajab blogi?', a: 'Ainult siis, kui teemad toetavad kategooriaid, näiteks ostujuhend või võrdlus. Üldine blogi ilma seoseta toodetega toob harva müüki.' },
+        { q: 'Kas venekeelne versioon on SEO jaoks vajalik?', a: 'Kui sinu ostjate seas on venekeelseid, siis tasub. Venekeelne leht peab olema korralikult tõlgitud ja hreflang-märgenditega eestikeelsega seotud.' },
+        { q: 'Mida teha toodetega, mis tulevad hooajaks tagasi?', a: 'Hooajatoote lehte ei tasu kustutada. Märgi toode ajutiselt otsas olevaks, et leht säilitaks nähtavuse järgmiseks hooajaks.' },
+      ],
+    },
+    en: {
+      body: [
+        'E-commerce SEO suits stores that get most of their sales from ads today and want some buyers to come from ordinary Google search. The Estonian market is small and many products have fairly low monthly search volume. That means every relevant search counts, and Russian-language searchers are often a separate group of buyers an Estonian-only site never reaches.',
+        'Store platforms have well-known technical traps. Shopify creates several URLs for the same product through collections, WooCommerce filters can generate thousands of parameter pages, and discontinued products often end up as 404 pages. These spend Google’s attention on pages that don’t sell. During the technical clean-up we decide which pages belong in search and which don’t.',
+        'Product page copy is often taken from the manufacturer, and the same text appears on other stores. Google then has no reason to prefer yours. Rewriting every product isn’t sensible, but your best sellers and higher-priced products deserve their own copy: who the product suits, what to compare it with and what buyers usually ask. On category pages a short introduction and FAQs at the bottom help.',
+        'Structured data tells Google a product’s price, availability and shipping details. The same product data can go to Google Merchant Center, from where products can also appear in Google’s Shopping tab for free. Every month we check in Search Console and analytics which categories get impressions and clicks, and how much revenue came from organic search.',
+      ],
+      example: {
+        title: 'Example: a pet supplies store in Estonian and Russian',
+        text: 'Imagine a store with around 2,000 products selling mainly through Meta and Google ads. Little traffic comes from organic search, because category pages only list products and descriptions come from manufacturers. First we take filter pages out of the index and redirect discontinued products to a similar product or category. Then we write introductions in Estonian and Russian for the ten most important categories, such as renal diet cat food or dog winter coats, and add structured data. The monthly report shows how impressions and organic sales for those categories change.',
+        scope: [
+          'Indexing control for filter pages',
+          'Redirects for discontinued products',
+          'Category copy in two languages',
+          'Product structured data',
+          'Report by category',
+        ],
+      },
+      process: [
+        { t: 'Audit', d: 'We review the technical state, indexed pages and which categories are already close to page one.' },
+        { t: 'Technical clean-up', d: 'We fix duplicate pages, filters, discontinued product handling and product markup.' },
+        { t: 'Category content', d: 'We write copy for key categories based on searches and you approve it.' },
+        { t: 'Monthly tracking', d: 'Every month we review impressions, clicks and sales and pick the next categories.' },
+      ],
+      pricing: [
+        'SEO pricing depends on the market and competition, and you get a quote after a free audit. For a store the biggest factors are the number of products and categories, the number of languages and how much technical clean-up the platform needs.',
+        'We work month to month. Early on there is more technical work, later the focus shifts to content. First results usually come within 2–4 months. If the store needs rebuilding or moving to a new platform, that is separate website work.',
+      ],
+      faqs: [
+        { q: 'Does an online store need a blog?', a: 'Only if the topics support your categories, such as a buying guide or comparison. A general blog unconnected to products rarely sells.' },
+        { q: 'Is a Russian version needed for SEO?', a: 'If some of your buyers speak Russian, it pays off. The Russian page must be properly translated and linked to the Estonian one with hreflang tags.' },
+        { q: 'What about products that come back each season?', a: 'Don’t delete a seasonal product page. Mark the product temporarily out of stock so the page keeps its visibility for next season.' },
+      ],
+    },
+  },
+
+  // ======================= MARKETPLACE =======================
+  turuplats: {
+    et: {
+      body: [
+        'Turuplats on mõeldud ettevõttele, kes tahab tuua kokku mitu müüjat või teenusepakkujat ja nende kliendid: käsitöömeistrid ja ostjad, kohalikud tootjad ja restoranid, vabakutselised ja tellijad, tehnika omanikud ja rentijad. Eesti turul on mõlemat poolt vähem kui suurtes riikides, nii et nišš peab olema piisavalt kitsas, et ka väike hulk pakkujaid paistaks kliendile täisväärtusliku valikuna.',
+        'Turuplatsi kõige raskem osa ei ole tehnika, vaid käivitus. Ostja ei tule tühjale platvormile ja müüja ei lisa tooteid, kui ostjaid pole. Tavaliselt alustatakse pakkujatest: esimesed tuuakse platvormile isikliku kontakti kaudu ja alles siis kutsutakse ostjad. Esimene versioon peab seda toetama, näiteks lubama haldajal pakkujate kuulutused nende eest sisestada.',
+        'Raha liikumine on turuplatsil tehniliselt ja juriidiliselt kõige tundlikum koht. Kui platvorm võtab raha vastu ja maksab müüjale edasi, kasutatakse makseteenust, mis toetab maksete jagamist ja kontrollib ise müüjate isikut. Nii ei hoia sinu ettevõte teiste raha. Lisaks võib platvormile kehtida ELi DAC7 nõue raporteerida müüjate tulu maksuametile. Kas see sind puudutab, tasub kinnitada raamatupidaja või maksunõustajaga.',
+        'Igapäevaselt vajab turuplats haldajat. Uued pakkujad kinnitatakse või lükatakse tagasi, kaebuse saanud kuulutused vaadatakse üle ning ostja ja müüja vaidlused lahendatakse platvormi reeglite järgi. Need reeglid, kasutustingimused ja vahendustasu loogika kirjutatakse enne arendust, sest neist sõltub, mida halduspaneel peab oskama.',
+      ],
+      example: {
+        title: 'Näide: kohalike toidutootjate turuplats',
+        text: 'Oletame, et platvorm toob kokku väikesed talud ja tootjad, kes müüvad juustu, liha, mett ja köögivilju, ning linnainimesed, kes tahavad neilt otse osta. Iga tootja haldab oma tooteid ja laoseisu ning valib, kas ta saadab pakiautomaati, toob kauba ise või saab ostja selle järele tulla. Ostja maksab ühe korraga mitme tootja kauba eest ja makseteenus jagab raha tootjate ja platvormi vahel. Esimeses versioonis on tootjad ühest maakonnast ning arvustused ja sõnumid lisatakse alles siis, kui tellimusi tuleb regulaarselt.',
+        scope: [
+          'Tootjate kontod ja tooted',
+          'Mitme tootja ostukorv',
+          'Tarneviis iga tootja kohta',
+          'Maksete jagamine ja vahendustasu',
+          'Halduspaneel tootjate kinnitamiseks',
+        ],
+      },
+      process: [
+        { t: 'Reeglid ja ärimudel', d: 'Paneme kirja, kes on pakkujad, kuidas raha liigub, kui suur on vahendustasu ja mis juhtub vaidluse korral.' },
+        { t: 'Prototüüp mõlemale poolele', d: 'Klõpsatav vaade pakkuja registreerumisest ja ostja teekonnast enne arendust.' },
+        { t: 'Esimene versioon', d: 'Arendame väikseima töötava platvormi ja testime makseid päris pakkujatega.' },
+        { t: 'Pakkujad enne ostjaid', d: 'Aitame esimesed pakkujad platvormile ja avame selle ostjatele, kui valik on olemas.' },
+      ],
+      pricing: [
+        'Platvormid algavad 2 500 eurost, kuid see hind käib arendusprojekti lehe kohta, millel on korterivalik. Turuplats kahe kasutajatüübi, maksete jagamise ja halduspaneeliga on keerukam, nii et selle hinna saad pärast kaardistust.',
+        'Hinda mõjutavad kõige rohkem maksete loogika, see, kas müüakse tooteid või broneeritavaid teenuseid, tarneviiside arv, keeled ning see, kui palju tuleb esimesse versiooni. Mida väiksem on esimene versioon, seda kiiremini saab päris tehingutest õppida. Platvormi arendus võtab tavaliselt 4–8 nädalat.',
+      ],
+      faqs: [
+        { q: 'Kas pakkujad peavad olema ettevõtted?', a: 'Mitte tingimata. See sõltub makseteenuse tingimustest ja sinu reeglitest. Eraisikutest müüjate puhul tuleb rohkem tähelepanu pöörata maksu- ja tarbijaõiguse küsimustele.' },
+        { q: 'Kas platvorm saab arveid väljastada?', a: 'Vahendustasu arve saab platvorm koostada automaatselt. Kes väljastab arve ostjale, lepitakse kokku platvormi reeglites.' },
+        { q: 'Kuidas vältida, et ostja ja müüja lepivad kokku platvormist mööda?', a: 'Täielikult seda vältida ei saa. Aitab, kui platvorm annab mõlemale midagi, mida mujal pole, näiteks turvalise makse, arvustused ja vaidluste lahendamise.' },
+      ],
+    },
+    en: {
+      body: [
+        'A marketplace is for a business that wants to bring together several sellers or service providers and their customers: craftspeople and buyers, local producers and restaurants, freelancers and clients, equipment owners and renters. The Estonian market has fewer of both than larger countries, so the niche has to be narrow enough that even a small number of providers looks like a full choice to the customer.',
+        'The hardest part of a marketplace isn’t the technology but the launch. Buyers won’t come to an empty platform and sellers won’t list products if there are no buyers. Usually you start with providers: the first ones join through personal contact, and only then are buyers invited. The first version has to support that, for example by letting the admin enter listings on providers’ behalf.',
+        'Money flow is the most sensitive part of a marketplace, technically and legally. If the platform takes payment and passes it on to the seller, you use a payment provider that supports split payments and verifies sellers’ identity itself. That way your company doesn’t hold other people’s money. The platform may also fall under the EU DAC7 rules on reporting seller income to the tax authority. Whether that applies to you is worth confirming with an accountant or tax adviser.',
+        'Day to day a marketplace needs an operator. New providers are approved or rejected, reported listings are reviewed and disputes between buyer and seller are settled according to the platform’s rules. Those rules, the terms of use and the commission logic are written before development, because they determine what the admin panel needs to do.',
+      ],
+      example: {
+        title: 'Example: a marketplace for local food producers',
+        text: 'Suppose a platform brings together small farms and producers selling cheese, meat, honey and vegetables, and city dwellers who want to buy from them directly. Each producer manages their own products and stock and chooses whether to ship to a parcel locker, deliver themselves or offer collection. The buyer pays once for goods from several producers, and the payment provider splits the money between producers and the platform. In the first version producers come from one county, and reviews and messaging are added once orders arrive regularly.',
+        scope: [
+          'Producer accounts and products',
+          'A cart with several producers',
+          'Delivery method per producer',
+          'Split payments and commission',
+          'Admin panel for approving producers',
+        ],
+      },
+      process: [
+        { t: 'Rules and business model', d: 'We write down who the providers are, how money flows, the commission and what happens in a dispute.' },
+        { t: 'Prototype for both sides', d: 'A clickable view of provider sign-up and the buyer journey before development.' },
+        { t: 'First version', d: 'We build the smallest working platform and test payments with real providers.' },
+        { t: 'Providers before buyers', d: 'We help the first providers onto the platform and open it to buyers once there is a choice.' },
+      ],
+      pricing: [
+        'Platforms start from €2,500, but that price refers to a development project site with an apartment selector. A marketplace with two user types, split payments and an admin panel is more complex, so you get its price after mapping.',
+        'The biggest price factors are the payment logic, whether you sell products or bookable services, the number of delivery methods, languages and how much goes into the first version. The smaller the first version, the sooner you learn from real transactions. Platform development usually takes 4–8 weeks.',
+      ],
+      faqs: [
+        { q: 'Do providers have to be companies?', a: 'Not necessarily. It depends on the payment provider’s terms and your rules. With private sellers, tax and consumer law questions need more attention.' },
+        { q: 'Can the platform issue invoices?', a: 'The platform can generate commission invoices automatically. Who invoices the buyer is agreed in the platform rules.' },
+        { q: 'How do we stop buyers and sellers dealing around the platform?', a: 'You can’t prevent it completely. It helps when the platform gives both sides something they can’t get elsewhere, such as secure payment, reviews and dispute handling.' },
+      ],
+    },
+  },
+
+  // ======================= ONLINE COURSES =======================
+  kursused: {
+    et: {
+      body: [
+        'Oma kursuseplatvorm sobib koolitajale, coachile, treenerile, toitumisnõustajale või koolitusfirmale, kellel on juba sisu ja kuulajad ning kes ei taha sõltuda valmisplatvormi tingimustest ja kuutasust. Sageli on alguses olemas veebiseminaride salvestused, slaidid ja töövihikud, mida müüakse e-kirja ja ülekande teel ning jagatakse kausta lingiga.',
+        'Kursuse ülesehitus tuleb läbi mõelda enne platvormi. Kas osaleja saab kõik moodulid korraga või avanevad need nädalate kaupa? Kas kursusel on grupp, kes alustab koos, või saab alustada millal tahes? Kas ligipääs on piiramatu või kehtib kindla aja? Need otsused mõjutavad nii hinnastamist kui seda, kuidas platvorm ehitatakse.',
+        'Eestis müüvad paljud koolitajad nii eraisikutele kui ettevõtetele. Ettevõte tahab maksta arve alusel ja lisada ühe tellimusega mitu töötajat, eraisik maksab pangalingi või kaardiga. Kui müüd kursusi ka teiste ELi riikide eraisikutele, kehtib e-teenustele üldjuhul ostja riigi käibemaks, mida tuleb arvelduses arvestada. Selle kinnita raamatupidajaga. Kui oled täienduskoolitusasutus, lepime kokku, mis info peab tunnistusel olema, ja platvorm vormistab selle ise.',
+        'Videod on kursuseplatvormi kõige kallim ja tundlikum osa. Need majutatakse videoteenuses, mis lubab esitamist ainult sinu platvormil ja kohandab kvaliteeti kuulaja internetiühendusele. Ekraani salvestamist ei saa keegi täielikult takistada, aga lihtne lingi jagamine ei tööta. Halduses näed, kes on kursust alustanud, kus inimesed pooleli jäävad ja kes on lõpetanud, ning selle põhjal saad sisu parandada.',
+      ],
+      example: {
+        title: 'Näide: joogaõpetaja veebikursus ja kuutellimus',
+        text: 'Kujutame ette joogaõpetajat, kes annab stuudios tunde ja müüb lisaks kaheksanädalast algajate kursust, mille materjalid ta saadab praegu e-kirjaga lingina. Uuel platvormil avaneb igal nädalal uus moodul, osaleja näeb oma edenemist ja saab lõpus tunnistuse. Lisaks on kuutellimusega liikmeala, kuhu õpetaja lisab iga nädal uue tunni salvestuse. Ettevõtted saavad osta töötajatele grupipaketi arve alusel. Kodulehel on kursuse tutvustus ja tasuta proovitund, mis kogub uudiskirja liitujaid.',
+        scope: [
+          'Nädalate kaupa avanevad moodulid',
+          'Kuutellimusega liikmeala',
+          'Pangalink, kaart ja arve ettevõttele',
+          'Kaitstud videod',
+          'Tasuta proovitund ja uudiskiri',
+        ],
+      },
+      process: [
+        { t: 'Kursuse ülesehitus', d: 'Paneme paika moodulid, ligipääsu reeglid ja hinnastamise mudeli enne, kui midagi arendame.' },
+        { t: 'Sisu üleviimine', d: 'Laeme olemasolevad videod ja materjalid üles ning kontrollime, et kõik töötaks ka telefonis.' },
+        { t: 'Pilootgrupp', d: 'Mõni sinu olemasolev kuulaja läbib kursuse ja annab tagasisidet sisselogimise, maksete ja videote kohta.' },
+        { t: 'Müügi avamine', d: 'Seome platvormi kodulehe ja uudiskirjaga ning avame müügi.' },
+      ],
+      pricing: [
+        'Platvormid algavad 2 500 eurost, aga see hind kehtib arendusprojekti lehele, millel on korterivalik. Kursuseplatvormi hinna saad pärast kaardistust, kui on selge, kas vaja on ühekordseid oste, püsitellimusi, ettevõtte kontosid või kõike korraga.',
+        'Hinda mõjutavad veel kursuste ja moodulite arv, tunnistused, keeled ning see, kas platvorm peab ühenduma uudiskirja- või raamatupidamisprogrammiga. Videoteenusel on tavaliselt oma kuutasu, mis sõltub videote mahust. Platvormi arendus võtab tavaliselt 4–8 nädalat.',
+      ],
+      faqs: [
+        { q: 'Kas osaleja saab kursust vaadata telefonis?', a: 'Jah. Platvorm töötab brauseris nii arvutis kui telefonis ja osaleja jätkab sealt, kus pooleli jäi.' },
+        { q: 'Kas saan kursused kolida teiselt platvormilt?', a: 'Videod ja materjalid saab enamasti alla laadida ja uuesti üles laadida. Osalejate andmete üleviimine sõltub sellest, mida vana platvorm ekspordib.' },
+        { q: 'Kas kursusel saab olla teste ja kodutöid?', a: 'Jah. Moodulisse saab lisada valikvastustega testi ja koolitaja saab kodutööd tagasiside andmiseks vastu võtta.' },
+      ],
+    },
+    en: {
+      body: [
+        'Your own course platform suits trainers, coaches, fitness instructors, nutrition advisers and training companies that already have content and an audience and don’t want to depend on an off-the-shelf platform’s terms and monthly fee. Often the starting point is webinar recordings, slides and workbooks sold by email and bank transfer and shared through a folder link.',
+        'The course structure has to be thought through before the platform. Does a learner get all modules at once, or do they unlock week by week? Does a cohort start together, or can people start any time? Is access unlimited or time-bound? These decisions affect both pricing and how the platform is built.',
+        'In Estonia many trainers sell to both individuals and companies. A company wants to pay on invoice and add several employees in one order, while an individual pays by bank link or card. If you also sell courses to consumers in other EU countries, e-services are generally subject to the buyer’s country’s VAT, which billing has to account for. Confirm that with your accountant. If you are a continuing education provider, we agree what a certificate must contain and the platform issues it automatically.',
+        'Videos are the most expensive and sensitive part of a course platform. They are hosted with a video service that only allows playback on your platform and adapts quality to the learner’s connection. Nobody can fully prevent screen recording, but simple link sharing doesn’t work. In the admin you see who has started a course, where people drop off and who has finished, and can improve the content accordingly.',
+      ],
+      example: {
+        title: 'Example: a yoga teacher’s online course and membership',
+        text: 'Imagine a yoga teacher who runs studio classes and also sells an eight-week beginners’ course whose materials are currently emailed as a link. On the new platform a new module unlocks each week, learners see their progress and get a certificate at the end. There is also a monthly membership area where the teacher adds a new class recording every week. Companies can buy a group package for staff on invoice. The website has a course introduction and a free trial class that collects newsletter sign-ups.',
+        scope: [
+          'Modules unlocking week by week',
+          'Monthly membership area',
+          'Bank link, card and company invoice',
+          'Protected videos',
+          'Free trial class and newsletter',
+        ],
+      },
+      process: [
+        { t: 'Course structure', d: 'We set modules, access rules and the pricing model before developing anything.' },
+        { t: 'Moving content', d: 'We upload existing videos and materials and check everything works on a phone.' },
+        { t: 'Pilot group', d: 'A few of your existing learners take the course and give feedback on login, payments and videos.' },
+        { t: 'Opening sales', d: 'We connect the platform to your website and newsletter and open sales.' },
+      ],
+      pricing: [
+        'Platforms start from €2,500, but that price applies to a development project site with an apartment selector. You get a course platform’s price after mapping, once it’s clear whether you need one-off purchases, subscriptions, company accounts or all of them.',
+        'The number of courses and modules, certificates, languages and whether the platform must connect to newsletter or accounting software also affect the price. The video service usually has its own monthly fee depending on video volume. Platform development usually takes 4–8 weeks.',
+      ],
+      faqs: [
+        { q: 'Can learners watch on a phone?', a: 'Yes. The platform runs in the browser on computers and phones, and learners continue where they left off.' },
+        { q: 'Can I move my courses from another platform?', a: 'Videos and materials can usually be downloaded and uploaded again. Moving learner data depends on what the old platform exports.' },
+        { q: 'Can a course include quizzes and assignments?', a: 'Yes. A module can include a multiple-choice quiz, and the trainer can receive assignments to give feedback.' },
       ],
     },
   },
