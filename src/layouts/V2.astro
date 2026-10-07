@@ -132,7 +132,39 @@ const website = {
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
     <script type="application/ld+json" set:html={JSON.stringify(website)} />
     {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
-  </head>
+      <script is:inline>
+      // Lead source for the enquiry email: first touch of this visit (ad click, AI/search referrer or direct).
+      // No cookies: sessionStorage only, and it leaves the browser only if the visitor sends a form.
+      (function () {
+        var K = 'drealm-src', S;
+        try { S = sessionStorage; } catch (e) { return; }
+        try {
+          if (!S.getItem(K)) {
+            var p = new URLSearchParams(location.search), s = '';
+            if (p.get('gclid') || p.get('gbraid') || p.get('wbraid')) s = 'Google Ads' + (p.get('utm_campaign') ? ' / ' + p.get('utm_campaign') : '');
+            else if (p.get('utm_source')) s = p.get('utm_source') + (p.get('utm_campaign') ? ' / ' + p.get('utm_campaign') : '') + (p.get('utm_medium') ? ' (' + p.get('utm_medium') + ')' : '');
+            else if (document.referrer) {
+              var h = new URL(document.referrer).hostname.replace(/^www\./, '');
+              if (h !== location.hostname.replace(/^www\./, '')) {
+                var m = [[/google\./, 'Google otsing'], [/bing\./, 'Bing'], [/chatgpt\.com|openai\.com/, 'ChatGPT'], [/perplexity/, 'Perplexity'], [/claude\.ai/, 'Claude'], [/gemini\.google/, 'Gemini'], [/linkedin/, 'LinkedIn'], [/facebook|instagram|fb\./, 'Facebook/Instagram'], [/clutch/, 'Clutch'], [/sortlist/, 'Sortlist'], [/goodfirms/, 'GoodFirms'], [/designrush/, 'DesignRush']];
+                s = h;
+                for (var i = 0; i < m.length; i++) if (m[i][0].test(h)) { s = m[i][1] + (m[i][1] === 'Google otsing' ? '' : ''); break; }
+              }
+            }
+            S.setItem(K, (s || 'Otse / tundmatu') + ' → ' + location.pathname);
+          }
+        } catch (e) {}
+        document.addEventListener('submit', function (e) {
+          var f = e.target, v;
+          try { v = S.getItem(K); } catch (x) {}
+          if (!v || !f || !f.querySelector) return;
+          var inp = f.querySelector('input[name="source"]');
+          if (!inp) { inp = document.createElement('input'); inp.type = 'hidden'; inp.name = 'source'; f.appendChild(inp); }
+          inp.value = v;
+        }, true);
+      })();
+    </script>
+</head>
   <body id="top">
     <a class="skip" href="#sisu-algus">{lang === 'et' ? 'Liigu sisu juurde' : 'Skip to content'}</a>
     <header class="nav" data-nav>

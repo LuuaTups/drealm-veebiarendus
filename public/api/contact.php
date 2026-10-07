@@ -48,6 +48,7 @@ $lead = [
     'url' => field('url', 300),
     'lang' => $lang,
     'page' => field('page', 200),
+    'source' => field('source', 200),
 ];
 
 // Free website review request: only URL + email are asked
@@ -79,6 +80,7 @@ $labels = [
     'url' => 'Koduleht',
     'lang' => 'Keel',
     'page' => 'Leht',
+    'source' => 'Allikas',
 ];
 $rows = '';
 foreach ($labels as $k => $label) {
