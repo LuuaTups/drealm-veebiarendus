@@ -37,7 +37,7 @@ const c = {
 }[lang];
 ---
 
-<V2 lang={lang} title={post.data.title.length > 52 ? post.data.title : `${post.data.title} | drealm`} description={post.data.description} alternates={alternates} jsonLd={[ld]} ogType="article">
+<V2 lang={lang} title={post.data.seoTitle ?? (post.data.title.length > 51 ? post.data.title : `${post.data.title} | drealm`)} description={post.data.description} alternates={alternates} jsonLd={[ld]} ogType="article">
   <section class="stage">
     <div class="stage-card page-card">
       <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>

@@ -16,9 +16,12 @@ interface Props {
   alternates: { et: string; en: string };
   jsonLd?: Record<string, unknown>[];
   ogType?: 'website' | 'article';
+  /** page-specific share image (absolute URL, 1200×630); defaults to /og.png */
+  ogImage?: { src: string; alt: string };
   noindex?: boolean;
 }
-const { lang, title, description, alternates, jsonLd = [], ogType = 'website', noindex = false } = Astro.props;
+const { lang, title, description, alternates, jsonLd = [], ogType = 'website', noindex = false, ogImage } = Astro.props;
+const og = ogImage ?? { src: `${SITE_URL}/og.png`, alt: 'drealm' };
 const t = UI[lang];
 const path = alternates[lang];
 const canonical = new URL(path, SITE_URL).href;
@@ -88,10 +91,10 @@ const website = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:locale:alternate" content={lang === 'et' ? 'en_GB' : 'et_EE'} />
-    <meta property="og:image" content={`${SITE_URL}/og.png`} />
+    <meta property="og:image" content={og.src} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="drealm" />
+    <meta property="og:image:alt" content={og.alt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

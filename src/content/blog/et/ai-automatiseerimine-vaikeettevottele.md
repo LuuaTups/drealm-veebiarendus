@@ -1,5 +1,6 @@
 ---
 title: "AI-automatiseerimine väikeettevõttele: kust alustada"
+seoTitle: "AI-automatiseerimine väikeettevõttele: kust alustada"
 description: "Praktiline juhend väikeettevõttele: milliseid töid tasub AI abil esimesena automatiseerida, kuidas alustada väikselt ning hoida riskid ja GDPR kontrolli all."
 pubDate: 2026-10-05
 translationKey: "ai"

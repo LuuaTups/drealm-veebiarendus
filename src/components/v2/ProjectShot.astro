@@ -23,6 +23,7 @@ const photo = img(p.shots.photo);
 const phones = (p.shots.phones ?? []).map(img).filter((x): x is ImageMetadata => Boolean(x));
 const name = pName(p, lang);
 const alt = lang === 'et' ? `${name}: ${p.et.type}` : `${name}: ${p.en.type}`;
+const altMob = lang === 'et' ? `${name} telefonis` : `${name} on mobile`;
 const illus = lang === 'et' ? 'Illustreeriv pilt' : 'Illustrative image';
 const N = {
   et: { today: 'Täna', kcal: 'kcal', protein: 'Valk', meal: 'Lõuna', mealName: 'Kanafilee, riis ja salat', snap: 'Pildista toitu', week: 'Nädala kokkuvõte', weekTxt: 'Valku said 6 päeval 7-st. Kalorid jäid kahel päeval eesmärgist liiga madalaks.' },
@@ -47,7 +48,7 @@ const N = {
   {
     mob && (
       <div class="pshot-phone">
-        <Image src={mob} alt="" widths={[200, 320]} sizes="160px" loading={load} />
+        <Image src={mob} alt={altMob} widths={[200, 320]} sizes="160px" loading={load} />
       </div>
     )
   }
@@ -64,7 +65,7 @@ const N = {
       <div class="pshot-phones">
         {phones.map((ph, i) => (
           <div class="pshot-phone static">
-            <Image src={ph} alt={i === 0 ? alt : ''} widths={[240, 400]} sizes="200px" loading={load} />
+            <Image src={ph} alt={i === 0 ? alt : `${altMob} (${i + 1})`} widths={[240, 400]} sizes="200px" loading={load} />
           </div>
         ))}
       </div>

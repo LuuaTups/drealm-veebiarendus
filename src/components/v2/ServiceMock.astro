@@ -3,11 +3,15 @@
 import Building from '../mock/Building.astro';
 import Icon from '../mock/Icon.astro';
 
+import type { Demo } from '../../data/v2/demos';
+
 interface Props {
   id: string;
   lang?: 'et' | 'en';
+  /** industry demo business for the website mock (solution pages); defaults to the restaurant */
+  demo?: Demo;
 }
-const { id, lang = 'et' } = Astro.props;
+const { id, lang = 'et', demo } = Astro.props;
 const EN: Record<string, string> = {
   "Arvuti": "Desktop",
   "Mobiil": "Mobile",
@@ -81,6 +85,15 @@ const units = [
   { id: 'A4', rooms: 4, m2: '96,1', status: 'Müüdud' },
 ];
 const badge = (s: string) => (s === 'Vaba' ? 'free' : s === 'Müüdud' ? 'sold' : 'held');
+const d: Demo = demo ?? {
+  host: 'atelier-nord.ee',
+  name: 'Atelier Nord',
+  nav: [L('Menüü'), L('Broneeri')],
+  tag: L('Restoran · Kalamaja'),
+  title: L('Põhjamaine köök, aeglaselt tehtud.'),
+  cta: L('Broneeri laud'),
+  form: [[L('Kuupäev'), L('R, 17. okt')], [L('Kell'), '19:30'], [L('Inimesi'), '4']],
+};
 ---
 
 <div class="vis">
@@ -94,12 +107,12 @@ const badge = (s: string) => (s === 'Vaba' ? 'free' : s === 'Müüdud' ? 'sold' 
                 </div>
                 <div class="view is-active" data-view="desktop">
                   <div class="browser">
-                    <div class="browser-bar"><i></i><i></i><i></i><span>atelier-nord.ee</span></div>
+                    <div class="browser-bar"><i></i><i></i><i></i><span>{d.host}</span></div>
                     <div class="nord">
-                      <div class="nord-nav"><b>Atelier Nord</b><span>{L('Menüü')}</span><span>{L('Broneeri')}</span></div>
+                      <div class="nord-nav"><b>{d.name}</b><span>{d.nav[0]}</span><span>{d.nav[1]}</span></div>
                       <div class="nord-hero">
-                        <div><small>{L('Restoran · Kalamaja')}</small><p class="mh">{L('Põhjamaine köök, aeglaselt tehtud.')}</p><span class="mini-btn">{L('Broneeri laud')}</span></div>
-                        <div class="plate"><i></i><i></i><i></i></div>
+                        <div><small>{d.tag}</small><p class="mh">{d.title}</p><span class="mini-btn">{d.cta}</span></div>
+                        {demo ? <div class="demo-pic" aria-hidden="true"><i /><i /></div> : <div class="plate"><i></i><i></i><i></i></div>}
                       </div>
                     </div>
                   </div>
@@ -107,10 +120,10 @@ const badge = (s: string) => (s === 'Vaba' ? 'free' : s === 'Müüdud' ? 'sold' 
                 <div class="view" data-view="mobile">
                   <div class="phones">
                     <div class="phone sm">
-                      <div class="nord-m"><b>Atelier Nord</b><div class="plate sm"><i></i><i></i><i></i></div><p class="mh">{L('Põhjamaine köök, aeglaselt tehtud.')}</p><span class="mini-btn">{L('Broneeri laud')}</span></div>
+                      <div class="nord-m"><b>{d.name}</b>{demo ? <div class="demo-pic sm" aria-hidden="true"><i /><i /></div> : <div class="plate sm"><i></i><i></i><i></i></div>}<p class="mh">{d.title}</p><span class="mini-btn">{d.cta}</span></div>
                     </div>
                     <div class="phone sm">
-                      <div class="nord-m"><b>{L('Broneeri')}</b><div class="field"><small>{L('Kuupäev')}</small>{L('R, 17. okt')}</div><div class="field"><small>{L('Kell')}</small>19:30</div><div class="field"><small>{L('Inimesi')}</small>4</div><span class="mini-btn full">{L('Kinnita')}</span></div>
+                      <div class="nord-m"><b>{d.cta}</b>{d.form.map(([k, v]) => <div class="field"><small>{k}</small>{v}</div>)}<span class="mini-btn full">{L('Kinnita')}</span></div>
                     </div>
                   </div>
                 </div>

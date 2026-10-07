@@ -296,7 +296,7 @@ export const PROJECTS: Project[] = [
     et: {
       slug: 'ai-leadide-generaator-inforegister-cv-keskus',
       type: 'Automatiseerimine (n8n)',
-      metaTitle: 'AI leadide generaator: Inforegister ja CV-Keskus | drealm tööd',
+      metaTitle: 'AI leadide generaator: Inforegister ja CV-Keskus | drealm',
       metaDescription: 'Automaatne müügileadide leidmine Inforegistrist, CV-Keskusest, Google Mapsist ja mujalt: AI leiab kontaktid, kirjutab isikliku e-kirja ja saadab selle ise.',
       h1: 'Uued kliendid leitakse ise, iga 15 minuti järel.',
       lead: 'n8n töövoog, mis otsib ettevõtteid Inforegistrist, CV-Keskusest ja teistest allikatest, leiab kontaktid ja saadab isikliku e-kirja.',

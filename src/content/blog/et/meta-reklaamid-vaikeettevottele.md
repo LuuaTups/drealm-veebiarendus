@@ -1,5 +1,6 @@
 ---
 title: "Facebooki ja Instagrami reklaamid väikeettevõttele: kust alustada"
+seoTitle: "Facebooki ja Instagrami reklaamid väikeettevõttele"
 description: "Kuidas alustada Meta reklaamidega nii, et need tooksid päringuid, mitte laike: eesmärk, eelarve, reklaamid, mõõtmine ja ausad numbrid."
 pubDate: 2026-10-06
 translationKey: "meta-ads"

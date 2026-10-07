@@ -1,5 +1,6 @@
 ---
 import V2 from '../../layouts/V2.astro';
+import { getImage } from 'astro:assets';
 import Icon from '../../components/mock/Icon.astro';
 import ProjectShot from '../../components/v2/ProjectShot.astro';
 import ProjectCard from '../../components/v2/ProjectCard.astro';
@@ -23,6 +24,13 @@ const others = PROJECTS.filter((x) => x.id !== p.id && !x.hideOnServices)
   .slice(0, 3);
 const alternates = { et: projHref(p, 'et'), en: projHref(p, 'en') };
 const url = new URL(projHref(p, lang), SITE_URL).href;
+// Share image: the project's own screenshot cropped to 1200×630, else the default og.png.
+const shotFiles = import.meta.glob<{ default: ImageMetadata }>('../../assets/projects/*.{jpg,png,webp}', { eager: true });
+const shotName = p.shots.desktop ?? p.shots.photo;
+const shot = shotName ? shotFiles[`../../assets/projects/${shotName}`]?.default : undefined;
+const ogImage = shot
+  ? { src: new URL((await getImage({ src: shot, width: 1200, height: 630, fit: 'cover', position: 'top', format: 'jpg' })).src, SITE_URL).href, alt: pName(p, lang) }
+  : undefined;
 const quoteHref = `${r('contact', lang)}?t=${services[0].id}`;
 const L = {
   et: { done: 'Mis sisaldub', doneH: 'Peamine, mis valmis sai.', svc: 'Teenused', tech: 'Tehnoloogia', year: 'Aasta', type: 'Tüüp', more: 'Veel töid', moreH: 'Vaata ka teisi.', cta: 'Tahad midagi sarnast?', ctaP: 'Kirjelda, mida vajad, ja saad ühe tööpäeva jooksul hinnapakkumise.' },
@@ -54,7 +62,7 @@ const jsonLd = [
 ];
 ---
 
-<V2 lang={lang} title={c.metaTitle} description={c.metaDescription} alternates={alternates} jsonLd={jsonLd} ogType="article">
+<V2 lang={lang} title={c.metaTitle} description={c.metaDescription} alternates={alternates} jsonLd={jsonLd} ogType="article" ogImage={ogImage}>
   <section class="stage">
     <div class="stage-card sv-card sub-card">
       <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>

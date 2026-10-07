@@ -1,5 +1,6 @@
 ---
 title: "Facebook and Instagram ads for small businesses: where to start"
+seoTitle: "Facebook and Instagram ads for small businesses"
 description: "How to start with Meta ads so they bring enquiries, not likes: goal, budget, creatives, tracking and honest numbers."
 pubDate: 2026-10-06
 translationKey: "meta-ads"

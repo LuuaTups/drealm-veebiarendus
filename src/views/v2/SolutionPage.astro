@@ -5,7 +5,9 @@ import ServiceMock from '../../components/v2/ServiceMock.astro';
 import { priceOffer, byId, serviceHref, type Lang, type Service } from '../../data/v2/services';
 import { SOLUTIONS, solHref, type Solution } from '../../data/v2/solutions';
 import { SITE_URL, UI, r } from '../../data/v2/ui';
-import { projectsForSolution } from '../../data/v2/projects';
+import { projectsForSolution, projectsForService } from '../../data/v2/projects';
+import { demoFor } from '../../data/v2/demos';
+import { SOL_DEEP } from '../../data/v2/solutions-deep';
 import ProjectCard from '../../components/v2/ProjectCard.astro';
 
 interface Props {
@@ -19,7 +21,12 @@ const services = sol.services.map((id) => byId(id, lang)).filter((x): x is Servi
 const main = services[0];
 const alternates = { et: solHref(sol, 'et'), en: solHref(sol, 'en') };
 const url = new URL(solHref(sol, lang), SITE_URL).href;
-const projs = projectsForSolution(sol.id);
+// Always show at least one related piece of work: the solution's own projects, else the primary service's.
+const ownProjs = projectsForSolution(sol.id);
+// Priority pages carry extra industry-specific depth; the rest stay noindex until written (see noindex.json).
+const deep = SOL_DEEP[sol.id]?.[lang];
+const faqs = deep ? [...c.faqs, ...deep.faqs] : c.faqs;
+const projs = ownProjs.length ? ownProjs : (sol.services.map((id) => projectsForService(id)).find((x) => x.length) ?? []).slice(0, 2);
 const quoteHref = `${r('contact', lang)}?t=${main.id}`;
 // Related: same primary service first, then solutions sharing any service.
 const score = (x: Solution) => (x.services[0] === sol.services[0] ? 2 : 0) + (x.services.some((id) => sol.services.includes(id)) ? 1 : 0);
@@ -51,7 +58,7 @@ const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: c.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   },
   {
     '@context': 'https://schema.org',
@@ -65,7 +72,7 @@ const jsonLd = [
 ];
 ---
 
-<V2 lang={lang} title={c.metaTitle} description={c.metaDescription} alternates={alternates} jsonLd={jsonLd}>
+<V2 lang={lang} title={c.metaTitle} description={c.metaDescription} alternates={alternates} jsonLd={jsonLd} noindex={!deep}>
   <section class="stage">
     <div class="stage-card sv-card sub-card">
       <canvas class="stage-gl sv-gl" data-gl aria-hidden="true"></canvas>
@@ -88,7 +95,7 @@ const jsonLd = [
           </dl>
         </div>
         <div class="sv-visual">
-          <ServiceMock id={main.id} lang={lang} />
+          <ServiceMock id={main.id} lang={lang} demo={demoFor(sol.id, lang)} />
         </div>
       </div>
     </div>
@@ -98,6 +105,7 @@ const jsonLd = [
     <div class="wrap sub-layout">
       <div class="prose sub-prose">
         {c.intro.map((p) => <p>{p}</p>)}
+        {deep?.body.map((p) => <p>{p}</p>)}
       </div>
       <aside class="incl-card" data-glow>
         <p class="chip">{L.svc}</p>
@@ -145,12 +153,43 @@ const jsonLd = [
     </div>
   </section>
 
+  {
+    deep && (
+      <section class="sv-sec">
+        <div class="wrap sub-layout">
+          <div class="prose sub-prose">
+            <p class="chip">{lang === 'et' ? 'Näide' : 'Example'}</p>
+            <h2 class="h-md">{deep.example.title}</h2>
+            <p>{deep.example.text}</p>
+            <ul class="deep-scope">
+              {deep.example.scope.map((x) => <li>{x}</li>)}
+            </ul>
+            <h2 class="h-md deep-h">{lang === 'et' ? 'Millest hind sõltub' : 'What drives the price'}</h2>
+            {deep.pricing.map((p) => <p>{p}</p>)}
+          </div>
+          <aside class="incl-card" data-glow>
+            <p class="chip">{lang === 'et' ? 'Kuidas töö käib' : 'How it works'}</p>
+            <ol class="deep-steps">
+              {deep.process.map((x) => (
+                <li>
+                  <b>{x.t}</b>
+                  <span>{x.d}</span>
+                </li>
+              ))}
+            </ol>
+            <a class="btn btn-dark" href={quoteHref}><span>{t.askPrice}</span><Icon name="arrow" size={18} /></a>
+          </aside>
+        </div>
+      </section>
+    )
+  }
+
   <section class="sv-sec">
     <div class="wrap">
       <div class="faq faq-wide">
         <p class="chip">{t.faq}</p>
         {
-          c.faqs.map((f, i) => (
+          faqs.map((f, i) => (
             <details open={i === 0}>
               <summary>
                 {f.q}
@@ -173,7 +212,7 @@ const jsonLd = [
           <div class="sec-head">
             <div>
               <p class="chip">{t.work}</p>
-              <h2 class="h-md">{lang === 'et' ? 'Päris näide sellest lahendusest.' : 'A real example of this solution.'}</h2>
+              <h2 class="h-md">{ownProjs.length ? (lang === 'et' ? 'Päris näide sellest lahendusest.' : 'A real example of this solution.') : lang === 'et' ? 'Sarnased tehtud tööd.' : 'Related work we’ve done.'}</h2>
             </div>
             <a class="link-arrow" href={r('work', lang)}>{t.allWork} <Icon name="arrow" size={16} /></a>
           </div>
