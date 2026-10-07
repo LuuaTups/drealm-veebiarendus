@@ -7,11 +7,15 @@ export const GA_ID = 'G-B42TX6G2GQ';
 
 /** Legal entity details. Empty values are simply not rendered (footer, About page, Organization schema). */
 export const COMPANY = {
-  legalName: '',
-  regCode: '',
+  legalName: 'DREALM OÜ',
+  regCode: '16760865',
   vatNumber: '',
   /** public profiles of the company: Äriregister, Inforegister, LinkedIn, Google Business Profile, etc. */
-  sameAs: [] as string[],
+  sameAs: [
+    'https://ariregister.rik.ee/est/company/16760865',
+    'https://www.inforegister.ee/16760865-DREALM-OU/',
+    'https://www.google.com/search?kgmid=/g/11zz83q0qk',
+  ] as string[],
 };
 
 export const ROUTES = {
