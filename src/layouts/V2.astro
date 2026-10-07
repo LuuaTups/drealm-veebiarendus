@@ -34,7 +34,7 @@ const org = {
   '@type': 'ProfessionalService',
   '@id': `${SITE_URL}/#org`,
   name: BRAND,
-  alternateName: ['drealm', COMPANY.legalName],
+  alternateName: ['drealm', COMPANY.legalName, 'Drealm OÜ', 'DREALM OÜ'],
   ...(COMPANY.legalName ? { legalName: COMPANY.legalName } : {}),
   ...(COMPANY.regCode ? { identifier: { '@type': 'PropertyValue', propertyID: 'Äriregistri kood', value: COMPANY.regCode } } : {}),
   ...(COMPANY.vatNumber ? { vatID: COMPANY.vatNumber } : {}),
