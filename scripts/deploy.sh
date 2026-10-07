@@ -13,3 +13,4 @@ SSH_KEY="${ZONE_SSH_KEY:-$HOME/.ssh/drealm_zone}"
 npm run build
 rsync -az --delete --exclude 'api/config.php' -e "ssh -i $SSH_KEY" dist/ "$ZONE_SSH:$ZONE_PATH/"
 echo "✓ Üleval: https://drealm.ee"
+node scripts/indexnow.mjs || true

@@ -8,3 +8,4 @@ dist
 .DS_Store
 public/api/config.php
 .env.deploy
+.indexnow-manifest.json
