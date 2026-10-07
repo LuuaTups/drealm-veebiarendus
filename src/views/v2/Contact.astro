@@ -4,12 +4,14 @@ import Icon from '../../components/mock/Icon.astro';
 import InquiryForm from '../../components/v2/InquiryForm.astro';
 import { type Lang } from '../../data/v2/services';
 import { EMAIL, ROUTES, UI, r } from '../../data/v2/ui';
+import { quoteTopics } from '../../data/v2/quote';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 const t = UI[lang];
+const topics = quoteTopics(lang);
 const c = {
   et: {
     title: 'Küsi hinda | drealm',
@@ -45,8 +47,23 @@ const c = {
         <div>
           <nav class="crumbs" aria-label="Breadcrumb"><a href={r('home', lang)}>{t.home}</a><span>/</span><span aria-current="page">{t.contact}</span></nav>
           <p class="chip on-dark">{c.chip}</p>
-          <h1 class="sv-h1">{c.h1}</h1>
-          <p class="sv-lead">{c.lead}</p>
+          <h1 class="sv-h1" data-q-h1>{c.h1}</h1>
+          <p class="sv-lead" data-q-lead>{c.lead}</p>
+          <ul class="q-facts" data-q-facts hidden></ul>
+          <script is:inline type="application/json" id="q-topics" set:html={JSON.stringify(topics)} />
+          <script is:inline>
+            // Ads land on /kontakt?t=<topic>: swap in the service-specific heading, lead and facts before paint.
+            (function () {
+              var key = new URLSearchParams(location.search).get('t');
+              var q = key && JSON.parse(document.getElementById('q-topics').textContent)[key];
+              if (!q) return;
+              document.querySelector('[data-q-h1]').textContent = q.h1;
+              if (q.lead) document.querySelector('[data-q-lead]').textContent = q.lead;
+              var ul = document.querySelector('[data-q-facts]');
+              q.facts.forEach(function (f) { var li = document.createElement('li'); li.textContent = f; ul.appendChild(li); });
+              ul.hidden = !q.facts.length;
+            })();
+          </script>
         </div>
         <div class="contact-list">
           <a href={`mailto:${EMAIL}`} class="contact-item"><span class="ibox"><Icon name="mail" size={18} /></span><span><small>{c.email}</small>{EMAIL}</span></a>

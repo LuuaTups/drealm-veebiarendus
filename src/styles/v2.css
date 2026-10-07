@@ -4656,3 +4656,21 @@ dd {
   margin: 0;
   color: var(--ink-2);
 }
+
+/* Küsi hinda: service-specific facts under the lead (/kontakt?t=<topic>) */
+.q-facts {
+  list-style: none;
+  padding: 0;
+  margin: -0.6rem 0 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.q-facts li {
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 228, 214, 0.22);
+  background: rgba(255, 244, 238, 0.06);
+  color: var(--on-dark);
+  font-size: 0.92rem;
+}

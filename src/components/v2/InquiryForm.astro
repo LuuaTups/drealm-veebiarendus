@@ -208,6 +208,7 @@ const T = {
 </div>
 
 <script>
+  import { TOPIC_SVC } from '../../data/v2/quote-topics';
   document.querySelectorAll<HTMLElement>('[data-inq]').forEach((root) => {
     const form = root.querySelector('form')!;
     const steps = [...root.querySelectorAll<HTMLElement>('[data-step]')];
@@ -261,7 +262,8 @@ const T = {
       root.querySelector('[data-sum-budget]')!.textContent = val('budget');
       root.querySelector('[data-sum-when]')!.textContent = val('timeline');
     };
-    const pre = new URLSearchParams(location.search).get('t');
+    const t = new URLSearchParams(location.search).get('t');
+    const pre = t && (TOPIC_SVC[t] ?? t);
     const preBox = pre && form.querySelector<HTMLInputElement>(`input[data-id="${CSS.escape(pre)}"]`);
     if (preBox) preBox.checked = true;
     form.addEventListener('change', sync);
