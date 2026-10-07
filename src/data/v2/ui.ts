@@ -22,6 +22,7 @@ export const COMPANY = {
     'https://ariregister.rik.ee/est/company/16760865',
     'https://www.inforegister.ee/16760865-DREALM-OU/',
     'https://www.google.com/search?kgmid=/g/11zz83q0qk',
+    'https://www.sortlist.com/agency/drealm-ou',
   ] as string[],
 };
 
