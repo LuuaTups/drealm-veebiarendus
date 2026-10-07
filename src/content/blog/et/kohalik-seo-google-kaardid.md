@@ -1,6 +1,6 @@
 ---
-title: "Kohalik SEO: kuidas jõuda Google'i kaartidel konkurentidest ette"
-description: "Praktiline juhend väikeettevõttele: kuidas täita Google'i ettevõtteprofiil, koguda arvustusi ja teha kodulehest kohaliku otsingu jaoks tugev."
+title: "Kohalik SEO: kuidas jõuda Google’i kaartidel konkurentidest ette"
+description: "Praktiline juhend väikeettevõttele: kuidas täita Google’i ettevõtteprofiil, koguda arvustusi ja teha kodulehest kohaliku otsingu jaoks tugev."
 pubDate: 2026-10-06
 translationKey: "local-seo"
 service: "local-seo"

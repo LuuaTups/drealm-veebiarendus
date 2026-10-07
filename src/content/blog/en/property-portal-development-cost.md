@@ -1,6 +1,6 @@
 ---
 title: "Real estate portal development: what drives the cost"
-description: "What a property portal needs, where its cost comes from, and how to start so the first version reaches users quickly and doesn't become a bottleneck later."
+description: "What a property portal needs, where its cost comes from, and how to start so the first version reaches users quickly and doesn’t become a bottleneck later."
 pubDate: 2026-10-06
 translationKey: "property-portal"
 service: "development"
