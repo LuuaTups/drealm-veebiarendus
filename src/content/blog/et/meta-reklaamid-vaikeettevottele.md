@@ -2,6 +2,7 @@
 title: "Facebooki ja Instagrami reklaamid väikeettevõttele: kust alustada"
 seoTitle: "Facebooki ja Instagrami reklaamid väikeettevõttele"
 description: "Kuidas alustada Meta reklaamidega nii, et need tooksid päringuid, mitte laike: eesmärk, eelarve, reklaamid, mõõtmine ja ausad numbrid."
+summary: "Meta reklaamidega tasub alustada sellest, et arvutad välja, kui palju võib üks päring või ost maksta, valid ühe selge eesmärgi ja seadistad enne esimest reklaami mõõtmise. Proovi mitut reklaamivarianti sama sõnumiga ja hinda tulemust kord kuus päringute järgi, mitte laikide järgi."
 pubDate: 2026-10-06
 translationKey: "meta-ads"
 service: "meta-ads"
@@ -46,3 +47,8 @@ Vaata kord kuus kolme numbrit: kulutatud raha, päringute arv ja hind päringu k
 ## Kokkuvõtteks
 
 Meta reklaamid töötavad väikeettevõttele hästi, kui eesmärk on selge, mõõtmine paigas ja tulemust hinnatakse päringute järgi. Kui soovid, et teeksime reklaamid ja mõõtmise sinu eest, [küsi pakkumist](/kontakt?t=meta) või vaata lähemalt [Facebooki reklaamid](/teenused/meta-reklaamid/facebooki-reklaamid) ja [Instagrami reklaamid](/teenused/meta-reklaamid/instagrami-reklaamid).
+
+## Allikad
+
+- [Meta for Developers: Meta Pixel](https://developers.facebook.com/docs/meta-pixel) — kuidas Meta piksel jälgib tegevusi veebilehel ja mõõdab reklaamide tulemust.
+- [Meta for Developers: Conversions API](https://developers.facebook.com/docs/marketing-api/conversions-api) — kuidas saata sündmusi Metale serveri poolt.

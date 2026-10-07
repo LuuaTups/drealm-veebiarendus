@@ -1,6 +1,7 @@
 ---
 title: "Kodulehe vahetus ilma SEO kaotuseta: kontrollnimekiri"
 description: "Uue kodulehe käivitamine on levinuim viis SEO-d kaotada. Kontrollnimekiri: aadressid, 301-suunamised, sisu, tehniline kontroll ja jälgimine."
+summary: "Kodulehe vahetamisel ei kao Google’i nähtavus, kui kaardistad enne käivitamist kõik olulised vanad aadressid, suunad igaühe 301-suunamisega sisult lähimale uuele lehele ja kannad väärtusliku sisu üle. Kontrolli ka pealkirju, sisekaarti, canonical-silte, robots.txt-d ja noindexit ning jälgi esimesed 30 päeva Search Console’is. Domeeni vahetusel kasuta lisaks Search Console’i aadressimuutmise tööriista."
 pubDate: 2026-10-06
 translationKey: "migration-seo"
 service: "seo"
@@ -68,3 +69,9 @@ Domeeni vahetus on kõige riskantsem variant, sest muutuvad kõik aadressid korr
 Uue kodulehe käivitamine ei pea tähendama Google’i nähtavuse kaotamist. Kaardista olulised aadressid, suuna igaüks 301-ga uuele vastele, kanna väärtuslik sisu üle, kontrolli tehnilisi seadeid ja jälgi esimesed 30 päeva Search Console’is.
 
 Kui teeme uue lehe, teeme selle töö alati ära. Kui uue lehe teeb keegi teine, saame aidata ainult kolimise SEO-poolega. Vaata meie lahendust [kodulehe kolimine ilma SEO kaotuseta](/lahendused/kodulehe-kolimine-ilma-seo-kaotuseta) või [kodulehe uuendamise](/teenused/veebilehed/kodulehe-uuendamine) teenust. Kui oled vahetust plaanimas, [küsi hinda](/kontakt?t=seo).
+
+## Allikad
+
+- [Google Search Central: How to move a site with URL changes](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes) — Google’i juhend aadresside kaardistamiseks, püsivateks suunamisteks ja kolimise jälgimiseks.
+- [Google Search Central: Redirects and Google Search](https://developers.google.com/search/docs/crawling-indexing/301-redirects) — 301-suunamine annab Google’ile märku, et leht on jäädavalt uuele aadressile kolinud.
+- [Search Console Help: Change of Address tool](https://support.google.com/webmasters/answer/9370220?hl=en) — tööriist, mida kasutada ühelt domeenilt teisele kolimisel.

@@ -2,6 +2,7 @@
 title: "Real estate portal development: what drives the cost"
 seoTitle: "Real estate portal development: what drives the cost"
 description: "What a property portal needs, where its cost comes from, and how to start so the first version reaches users quickly and doesn’t become a bottleneck later."
+summary: "The cost of a real estate portal depends most on who adds listings and where they come from, whether listings are paid, how many languages you need and how big the portal will grow. A portal succeeds when search is fast, adding listings is easy and every listing is findable on Google. Start with the smallest working version and grow it based on real users."
 pubDate: 2026-10-06
 translationKey: "property-portal"
 service: "development"
@@ -68,3 +69,8 @@ A sold or removed listing page shouldn’t just disappear. Redirect it to simila
 A property portal succeeds when search is fast, adding listings is easy and every listing is findable on Google. Price is driven mostly by who adds listings, where they come from, whether they’re paid, how many languages you need and how big the portal will grow. Start with the smallest working version and grow it based on real users.
 
 See our [real estate portal solution](/en/solutions/real-estate-portal-development) or how we build [estate agency portals](/en/solutions/estate-agency-portal). If you have a portal idea, [get a quote](/en/contact?t=platvormid) and we’ll define the first version together.
+
+## Sources
+
+- [Google Search Central: SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide) — descriptive URLs and a unique title for every page.
+- [Google Search Central: Introduction to structured data markup](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) — structured data helps Google understand what a page is about.

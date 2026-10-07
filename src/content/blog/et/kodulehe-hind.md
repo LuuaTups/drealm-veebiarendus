@@ -1,6 +1,7 @@
 ---
 title: "Kui palju maksab koduleht 2026. aastal?"
 description: "Kodulehe hind sõltub sellest, kes ja kuidas selle teeb. Võrdleme kodulehe tegemise hindu Eestis, püsikulusid ning ohumärke, mida pakkumises jälgida."
+summary: "Drealmis algab ettevõtte koduleht kuni kuue lehega 900 eurost, arendusprojekti leht korterivalikuga 2 500 eurost ja ühe tööprotsessi automatiseerimine 800 eurost. Kodulehe hinda mõjutavad kõige rohkem see, kas tekstid ja pildid on olemas, kas disain on mall või kohandatud, mitu keelt on vaja, milliseid funktsioone (broneerimine, e-pood, liidestused) lisatakse, kas sisu hallatakse ise ning kui hoolikalt on tehtud tehniline SEO ja kiirus. Lisaks tuleb arvestada püsikuludega nagu domeen, majutus ja hooldus."
 pubDate: 2026-10-05
 translationKey: "price"
 service: "website"
@@ -64,3 +65,7 @@ Odav pakkumine ei ole automaatselt halb ja kallis pole automaatselt hea. Mõned 
 Kõige kiiremini jõuab realistliku hinnani, kui pakkuja teab vastuseid paarile küsimusele: mis on lehe peamine eesmärk, mitu keelt on vaja, kas sisu on olemas, millised funktsioonid on hädavajalikud ja millised oleks lihtsalt toredad. Mida selgem on lähteülesanne, seda täpsem on pakkumine ja seda väiksem on oht, et hind poole projekti pealt kasvama hakkab.
 
 Kui mõtled uue kodulehe peale ja tahad teada, mis sinu olukorras mõistlik oleks, [kirjuta meile](/kontakt?t=veebilehed) paar lauset oma ettevõttest ja eesmärgist. Hinnad ja sisu leiad ka lehtedelt [kodulehe tegemine](/teenused/veebilehed/kodulehe-tegemine) ja [e-poe tegemine](/teenused/veebilehed/e-poe-tegemine). Anname ausa hinnangu, ka siis, kui selgub, et alustuseks piisab ise tehtud lehest.
+
+## Allikad
+
+- [Google Search Central: Managing multi-regional and multilingual sites](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites) — Google soovitab iga keeleversiooni jaoks eraldi aadresse, mistõttu iga lisakeel lisab tööd.

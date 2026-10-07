@@ -1,6 +1,7 @@
 ---
 title: "Wix või tellitud koduleht: kumb sobib ettevõttele?"
 description: "Wix ja teised lehetegijad on kiired ja odavad. Millal neist piisab, millal tasub tellida koduleht ja mida võrrelda, et otsus oleks ka hiljem õige."
+summary: "Wixist või muust lehetegijast piisab, kui leht on visiitkaart ja kliendid tulevad soovitustest või sotsiaalmeediast, mitte Google’ist. Tellitud koduleht tasub ära, kui kliente otsitakse Google’ist, leht peab müüma, vajad erilahendusi või tahad brändiga eristuda. Drealmis algab tellitud ettevõtte koduleht kuni kuue lehega 900 eurost ning võrrelda tasub koguhinda kolme aasta peale, omandit, kiirust ja hooldust."
 pubDate: 2026-10-07
 translationKey: "wix-vs-custom"
 service: "website"

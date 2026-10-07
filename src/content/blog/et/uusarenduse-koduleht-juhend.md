@@ -1,6 +1,7 @@
 ---
 title: "Uusarenduse koduleht: mida see peab sisaldama"
 description: "Mida peab sisaldama hea uusarenduse koduleht: korterivalik, plaanid, staatused, visuaalid, asukoht, mitmekeelsus, päringute liikumine ja õige avamise aeg."
+summary: "Uusarenduse koduleht peab sisaldama telefonis töötavat korterivalikut, iga korteri eraldi lehte plaaniga, alati õigeid staatusi, visuaale, asukoha infot, vajadusel mitut keelt ja päringute selget liikumist müügimeeskonnani. Drealmis algab arendusprojekti leht korterivalikuga 2 500 eurost."
 pubDate: 2026-10-05
 translationKey: "development"
 service: "development"
@@ -78,3 +79,7 @@ Kuna ehitame lehed kaasaegse staatilise tehnoloogiaga, saab eellehe kiiresti pü
 ## Kokkuvõtteks
 
 Hea uusarenduse koduleht aitab ostjal korterit valida, hoiab info ajakohasena ja toob müügimeeskonnale selgeid päringuid. Kui plaanid uut arendust või tahad olemasolevat lehte paremaks teha, [kirjuta meile](/kontakt?t=platvormid) projekti mahust ja ajakavast. Vaata ka, kuidas näeb välja meie [kinnisvaraarenduse koduleht](/teenused/platvormid/kinnisvaraarenduse-koduleht) ja [arenduse videod](/teenused/ai-videoreklaamid/kinnisvara-videod). Arutame, millal ja millises järjekorras on mõistlik leht valmis teha.
+
+## Allikad
+
+- [Google Search Central: Managing multi-regional and multilingual sites](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites) — iga keeleversioon vajab eraldi aadressi, et leht oleks igas keeles otsingus leitav.

@@ -1,6 +1,7 @@
 ---
 title: "Kas AI chatbot sobib minu ettevõttele?"
 description: "Millal AI chatbot kodulehel tasub ära, millal mitte, mida see oskab, kuidas vältida valesid vastuseid ja kust alustada."
+summary: "AI chatbot tasub ära, kui kliendid küsivad pidevalt samu küsimusi, ka väljaspool tööaega, ning vastused on kirjas olemas. Ei tasu, kui küsimusi on vähe, iga juhtum on erinev või infot keegi ei uuenda. Hea chatbot vastab ainult ettevõtte enda infost, ütleb ausalt, kui ei tea, ja annab keerulised küsimused inimesele edasi."
 pubDate: 2026-10-07
 translationKey: "ai-chatbot-fit"
 service: "company-ai"
@@ -49,3 +50,8 @@ Kõige suurem hirm on, et AI ütleb kliendile midagi valet. Selle vastu aitavad 
 AI chatbot tasub ära, kui kliendid küsivad pidevalt samu asju, ka väljaspool tööaega, ning info on olemas. Hea bot vastab ainult sinu infost, ütleb ausalt, kui ei tea, ja annab keerulised küsimused inimesele.
 
 Vaata lähemalt [AI klienditeenindaja](/teenused/ettevotte-ai/ai-klienditeenindaja) teenust või lahendust [AI chatbot e-poele](/lahendused/ai-chatbot-e-poele). Kui tahad teada, kas see sobib sinu ettevõttele, [küsi hinda](/kontakt?t=ettevotte-ai).
+
+## Allikad
+
+- [Euroopa Komisjon: tehisintellekti käsitlev õigusakt](https://digital-strategy.ec.europa.eu/et/policies/regulatory-framework-ai) — juturoboti kasutamisel tuleb inimesi teavitada, et nad suhtlevad masinaga.
+- [Andmekaitse Inspektsioon: tehisintellekti määrus](https://www.aki.ee/tehisaru/tehisaru-ja-andmekaitse/tehisintellekti-maarus) — Andmekaitse Inspektsiooni selgitus tehisintellekti määruse läbipaistvusnõuete kohta.

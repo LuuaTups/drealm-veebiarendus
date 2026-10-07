@@ -2,6 +2,7 @@
 title: "AI-automatiseerimine väikeettevõttele: kust alustada"
 seoTitle: "AI-automatiseerimine väikeettevõttele: kust alustada"
 description: "Praktiline juhend väikeettevõttele: milliseid töid tasub AI abil esimesena automatiseerida, kuidas alustada väikselt ning hoida riskid ja GDPR kontrolli all."
+summary: "Väikeettevõttel tasub AI-automatiseerimist alustada ühest sagedasest, korduvast ja selgelt piiritletud tööst, näiteks päringute sorteerimisest, vastuste mustanditest või andmete välja võtmisest arvetelt. Kliendile minevad vastused ning rahaliste või juriidiliste tagajärgedega otsused jäävad inimese kinnitada ja isikuandmete puhul kehtivad samad GDPR-i reeglid nagu igal muul töötlemisel. Drealmis algab ühe tööprotsessi audit ja automatiseerimine 800 eurost."
 pubDate: 2026-10-05
 translationKey: "ai"
 service: "ai-automation"
@@ -72,3 +73,8 @@ See kõlab bürokraatlikult, kuid hästi läbimõeldud lahendus on enamasti ka l
 AI-automatiseerimine ei pea olema suur ega kallis projekt. Alusta ühest korduvast ja selgelt piiritletud tööst, hoia inimene protsessis, mõõda tulemust ja laienda alles siis, kui esimene samm on end õigustanud.
 
 Kui sul on mõni töö, mis tundub automatiseerimiseks sobiv, [kirjelda see meile](/kontakt?t=automatiseerimine) paari lausega. Näiteid leiad lehtedelt [e-kirjade automatiseerimine](/teenused/ai-automatiseerimine/e-kirjade-automatiseerimine), [pakkumiste automatiseerimine](/teenused/ai-automatiseerimine/pakkumiste-automatiseerimine) ja [arvete töötlus](/teenused/ai-automatiseerimine/arvete-tootlus). Vaatame koos, kas ja kuidas seda mõistlikult teha saab, ning ütleme ausalt ka siis, kui praegu pole see veel mõttekas.
+
+## Allikad
+
+- [Andmekaitse Inspektsioon: tehisaru ja isikuandmete kaitse](https://www.aki.ee/tehisaru/tehisaru-ja-andmekaitse/isikuandmete-kaitse) — isikuandmete kaitse reeglid kehtivad ka siis, kui andmeid töödeldakse tehisaru abil.
+- [Euroopa Komisjon: tehisintellekti käsitlev õigusakt](https://digital-strategy.ec.europa.eu/et/policies/regulatory-framework-ai) — ELi tehisintellekti määruse ülevaade ja kohaldamise ajakava.

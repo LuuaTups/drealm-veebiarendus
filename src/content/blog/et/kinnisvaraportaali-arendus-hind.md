@@ -1,6 +1,7 @@
 ---
 title: "Kinnisvaraportaali arendus: millest sõltub hind"
 description: "Mida kinnisvaraportaal peab sisaldama, millest selle hind tekib ja kuidas alustada nii, et esimene versioon jõuab kasutajateni kiiresti."
+summary: "Kinnisvaraportaali hinda mõjutavad kõige rohkem see, kes objekte lisab ja kust need tulevad, kas kuulutused on tasulised, mitu keelt on vaja ja kui suureks portaal kasvab. Portaal õnnestub, kui otsing on kiire, objekti lisamine lihtne ja iga kuulutus Google’is leitav. Mõistlik on alustada väikseimast toimivast versioonist ja kasvatada seda päris kasutajate põhjal."
 pubDate: 2026-10-06
 translationKey: "property-portal"
 service: "development"
@@ -67,3 +68,8 @@ Müüdud või eemaldatud objekti leht ei tohiks lihtsalt kaduda. See tuleks suun
 Kinnisvaraportaal õnnestub, kui otsing on kiire, objekti lisamine lihtne ja iga objekt Google’is leitav. Hinda mõjutavad kõige rohkem see, kes objekte lisab, kust need tulevad, kas kuulutused on tasulised, mitu keelt on vaja ja kui suureks portaal kasvab. Alusta väikseimast toimivast versioonist ja kasvata seda päris kasutajate põhjal.
 
 Vaata lähemalt meie [kinnisvaraportaali lahendust](/lahendused/kinnisvaraportaali-arendus) või seda, kuidas ehitame [maakleribüroo portaale](/lahendused/maakleriburoo-portaal). Kui sul on portaali idee, [küsi hinda](/kontakt?t=platvormid) ja paneme esimese versiooni ulatuse koos paika.
+
+## Allikad
+
+- [Google Search Central: SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide) — kirjeldavad aadressid ja igale lehele unikaalne pealkiri.
+- [Google Search Central: Introduction to structured data markup](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) — struktureeritud andmed aitavad Google’il lehe sisu mõista.

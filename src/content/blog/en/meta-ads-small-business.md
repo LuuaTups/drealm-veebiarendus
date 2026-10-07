@@ -2,6 +2,7 @@
 title: "Facebook and Instagram ads for small businesses: where to start"
 seoTitle: "Facebook and Instagram ads for small businesses"
 description: "How to start with Meta ads so they bring enquiries, not likes: goal, budget, creatives, tracking and honest numbers."
+summary: "Start Meta ads by working out what one enquiry or sale can cost you, choosing one clear goal and setting up tracking before the first ad runs. Test several ad variants with one message and judge results once a month by enquiries, not likes."
 pubDate: 2026-10-06
 translationKey: "meta-ads"
 service: "meta-ads"
@@ -46,3 +47,8 @@ Once a month, look at three numbers: money spent, number of enquiries and cost p
 ## In short
 
 Meta ads work well for small businesses when the goal is clear, tracking is in place and results are judged by enquiries. If you’d like us to handle the ads and tracking for you, [get a quote](/en/contact?t=meta) or read more on [Facebook ads](/en/services/meta-ads/facebook-ads) and [Instagram ads](/en/services/meta-ads/instagram-ads).
+
+## Sources
+
+- [Meta for Developers: Meta Pixel](https://developers.facebook.com/docs/meta-pixel) — how the Meta Pixel tracks website actions and measures ad results.
+- [Meta for Developers: Conversions API](https://developers.facebook.com/docs/marketing-api/conversions-api) — how to send events to Meta from your server.

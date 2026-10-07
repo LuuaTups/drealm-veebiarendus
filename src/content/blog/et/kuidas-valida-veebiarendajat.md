@@ -1,6 +1,7 @@
 ---
 title: "Kuidas valida veebiarendajat: 10 küsimust enne lepingut"
 description: "Enne kodulehe tellimist küsi need 10 küsimust: kellele kuulub leht, mis hind sisaldab, kes teeb tekstid, kuidas käib SEO ja mis juhtub pärast käivitamist."
+summary: "Veebiarendajat valides küsi enne lepingut, kellele kuulub valmis leht, mis täpselt on hinna sees ja kas hind on fikseeritud, kes kirjutab tekstid, kuidas käib SEO ja mis juhtub pärast käivitamist. Võrdle pakkumisi sisu, mitte ainult hinna järgi. Kui arendaja vastab neile küsimustele selgelt ja kirjalikult, on koostöö tõenäoliselt hea."
 pubDate: 2026-10-07
 translationKey: "choose-developer"
 service: "website"
@@ -53,3 +54,7 @@ Väiksemas stuudios suhtled tavaliselt otse inimesega, kes tööd teeb. Suuremas
 Võrdle pakkumisi sisu, mitte ainult hinna järgi. Kõige olulisemad on omand, hinna sisu, tekstide tegija, SEO ja see, mis juhtub pärast käivitamist. Kui arendaja vastab neile küsimustele selgelt ja kirjalikult, on koostöö tõenäoliselt hea.
 
 Meie vastused leiad [KKK lehelt](/kkk). Kui tahad konkreetset pakkumist, [küsi hinda](/kontakt?t=veebilehed) ja saad selle kirjalikult ühe tööpäeva jooksul.
+
+## Allikad
+
+- [Google Search Central: Do you need an SEO?](https://developers.google.com/search/docs/fundamentals/do-i-need-seo) — Google’i nõuanded, mida küsida SEO-tegijalt, ja hoiatus esikoha garanteerijate eest.

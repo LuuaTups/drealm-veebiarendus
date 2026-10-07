@@ -2,6 +2,7 @@
 title: "Rendiplatvormi tegemine: miks tavaline e-pood rendiks ei sobi"
 seoTitle: "Rendiplatvormi tegemine: miks e-pood rendiks ei sobi"
 description: "Rendiäri vajab saadavust kuupäevade kaupa, hooldusaega ja tagatisraha. Mida rendiplatvorm peab sisaldama ja mida õppisime Rebelle puhul."
+summary: "Tavaline e-pood ei sobi rendiäriks, sest rendis müüakse sama eset korduvalt ajas ja süsteem peab teadma iga eseme saadavust kuupäevade kaupa. Rendiplatvorm vajab kalendripõhist saadavust, hooldusaega rentide vahel, tagatisraha ja kahesuunalist tarnet. Kui need on platvormi sisse ehitatud, kaovad topeltbroneeringud ja käsitsi kalendrite pidamine."
 pubDate: 2026-10-06
 translationKey: "rental-platform"
 service: "development"

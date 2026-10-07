@@ -1,6 +1,7 @@
 ---
 title: "B2B ordering portal vs Excel and email: when to switch"
 description: "When business customers order by email and spreadsheets, sales time goes into retyping. When a B2B ordering portal pays off and what it needs."
+summary: "It’s time to switch to a B2B ordering portal when orders are retyped by hand from email and spreadsheets, customers keep asking about prices and stock, and price lists live in files. In a portal the business customer logs in, sees their own prices and stock and orders by themselves. The key is integration with your inventory system so orders flow without manual work."
 pubDate: 2026-10-06
 translationKey: "b2b-ordering"
 service: "development"

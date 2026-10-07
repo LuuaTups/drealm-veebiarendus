@@ -1,6 +1,7 @@
 ---
 title: "Is an AI chatbot right for my business?"
 description: "When an AI chatbot on your website pays off, when it doesn’t, what it can do, how to avoid wrong answers and where to start so customers actually benefit."
+summary: "An AI chatbot pays off when customers keep asking the same questions, including outside office hours, and the answers already exist in writing. It doesn’t pay off when there are few questions, every case is unique or nobody keeps the information up to date. A good chatbot answers only from the business’s own information, says honestly when it doesn’t know and hands complex questions to a person."
 pubDate: 2026-10-07
 translationKey: "ai-chatbot-fit"
 service: "company-ai"
@@ -49,3 +50,7 @@ The biggest fear is that AI tells a customer something wrong. Three things help:
 An AI chatbot pays off when customers keep asking the same things, also outside office hours, and the information exists. A good bot answers only from your information, says honestly when it doesn’t know and hands complex questions to a person.
 
 See our [AI customer assistant](/en/services/company-ai/ai-customer-assistant) service or the [AI chatbot for online stores](/en/solutions/ai-chatbot-for-ecommerce) solution. To find out whether it suits your business, [get a quote](/en/contact?t=ettevotte-ai).
+
+## Sources
+
+- [European Commission: AI Act](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) — when people use AI systems such as chatbots, they should be made aware that they are interacting with a machine.

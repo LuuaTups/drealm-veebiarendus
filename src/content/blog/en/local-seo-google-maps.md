@@ -1,6 +1,7 @@
 ---
 title: "Local SEO: how to get ahead of competitors on Google Maps"
 description: "A practical guide for small businesses: completing your Google Business Profile, collecting reviews and making your website strong for local search."
+summary: "To get ahead of competitors on Google Maps, complete your Google Business Profile, collect reviews systematically and make sure your website clearly says what you offer and where. Google ranks local results by relevance, distance and prominence. You can’t change distance, but you can improve relevance and prominence."
 pubDate: 2026-10-06
 translationKey: "local-seo"
 service: "local-seo"
@@ -54,3 +55,7 @@ Your Business Profile shows how many calls, direction requests and website visit
 ## In short
 
 Local SEO isn’t a quick trick but solid groundwork: a complete profile, steady reviews and a website that clearly says what you offer and where. If you’d like us to look at your profile and website, [ask us about local SEO](/en/contact?t=seo) or read more on [local SEO and Google Maps](/en/services/seo/local-seo).
+
+## Sources
+
+- [Google Business Profile Help: Tips to improve your local ranking on Google](https://support.google.com/business/answer/7091?hl=en) — local results are based mainly on relevance, distance and prominence; complete info and reviews help.

@@ -1,6 +1,7 @@
 ---
 title: "How to choose a web developer: 10 questions to ask first"
 description: "Before ordering a website, ask these 10 questions: who owns it, what the price includes, who writes copy, how SEO works and what happens after launch."
+summary: "Before signing with a web developer, ask who owns the finished site, what exactly the price includes and whether it is fixed, who writes the copy, how SEO is handled and what happens after launch. Compare quotes on content, not just price. If a developer answers these questions clearly and in writing, the collaboration is likely to go well."
 pubDate: 2026-10-07
 translationKey: "choose-developer"
 service: "website"
@@ -53,3 +54,7 @@ In a smaller studio you usually talk directly to the person doing the work. A la
 Compare quotes on content, not just price. The most important points are ownership, what the price includes, who writes the copy, SEO and what happens after launch. If a developer answers these clearly and in writing, the collaboration is likely to go well.
 
 You’ll find our answers on the [FAQ page](/en/faq). For a specific quote, [get a quote](/en/contact?t=veebilehed) and receive it in writing within one working day.
+
+## Sources
+
+- [Google Search Central: Do you need an SEO?](https://developers.google.com/search/docs/fundamentals/do-i-need-seo) — Google’s advice on what to ask an SEO and a warning about anyone guaranteeing top rankings.

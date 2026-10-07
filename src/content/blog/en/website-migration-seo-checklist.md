@@ -1,6 +1,7 @@
 ---
 title: "A new website without losing Google rankings: a checklist"
 description: "Launching a new website is the most common way to lose SEO. A checklist: URL mapping, 301 redirects, content, technical checks and monitoring after launch."
+summary: "You keep your Google visibility through a website switch by mapping every important old URL before launch, 301-redirecting each one to its closest new match and carrying over valuable content. Also check titles, the sitemap, canonical tags, robots.txt and noindex, then monitor Search Console for the first 30 days. For a domain change, also use Search Console’s Change of Address tool."
 pubDate: 2026-10-06
 translationKey: "migration-seo"
 service: "seo"
@@ -68,3 +69,9 @@ A domain change is the riskiest option, because every URL changes at once. It’
 Launching a new website doesn’t have to mean losing Google visibility. Map important URLs, 301-redirect each to its new match, carry over valuable content, check technical settings and monitor Search Console for the first 30 days.
 
 When we build a new site, we always do this work. If someone else is building it, we can help with just the SEO side of the migration. See our solution [website migration without losing SEO](/en/solutions/website-migration-seo) or our [website redesign](/en/services/website-development/website-redesign) service. If you’re planning a switch, [get a quote](/en/contact?t=seo).
+
+## Sources
+
+- [Google Search Central: How to move a site with URL changes](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes) — Google’s guide to URL mapping, permanent redirects and monitoring a site move.
+- [Google Search Central: Redirects and Google Search](https://developers.google.com/search/docs/crawling-indexing/301-redirects) — a 301 tells Google a page has permanently moved to a new location.
+- [Search Console Help: Change of Address tool](https://support.google.com/webmasters/answer/9370220?hl=en) — the tool to use when moving from one domain to another.

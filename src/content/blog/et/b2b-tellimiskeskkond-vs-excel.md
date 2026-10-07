@@ -1,6 +1,7 @@
 ---
 title: "B2B tellimiskeskkond vs Excel: millal on aeg vahetada"
 description: "Kui ärikliendid tellivad e-kirja ja Exceliga, kulub müügi aeg ümberkirjutamisele. Millal tasub B2B tellimiskeskkond ära ja mida see sisaldab."
+summary: "B2B tellimiskeskkonnale tasub üle minna, kui tellimusi kirjutatakse e-kirjast ja Excelist käsitsi ümber, kliendid küsivad pidevalt hindu ja laoseisu ning hinnakirjad elavad failides. Tellimiskeskkonnas logib äriklient sisse, näeb oma hindu ja laoseisu ning tellib ise. Kõige olulisem on liides laotarkvaraga, et tellimused liiguksid ilma käsitööta."
 pubDate: 2026-10-06
 translationKey: "b2b-ordering"
 service: "development"

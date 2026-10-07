@@ -1,6 +1,7 @@
 ---
 title: "How Much Does a Website Cost in 2026?"
 description: "What a website really costs in Estonia in 2026: typical price ranges for DIY builders, freelancers, studios and agencies, running costs and red flags."
+summary: "At Drealm a business website of up to six pages starts from €900, a property development website with an apartment selector from €2,500 and automating one work process from €800. The price depends mostly on whether copy and photos already exist, template versus custom design, the number of languages, features such as booking, a shop or integrations, whether you edit content yourself, and how well technical SEO and speed are handled. On top of that come running costs such as the domain, hosting and maintenance."
 pubDate: 2026-10-05
 translationKey: "price"
 service: "website"
@@ -64,3 +65,7 @@ A cheap quote isn’t automatically bad and an expensive one isn’t automatical
 The fastest way to a realistic number is to answer a few questions up front: what is the main goal of the site, how many languages do you need, is the content ready, and which features are essential versus nice to have? The clearer the brief, the more accurate the quote, and the lower the risk of the price creeping up halfway through.
 
 If you’re thinking about a new website and want to know what makes sense in your situation, [send us a few lines](/en/contact?t=veebilehed) about your business and your goals. You’ll also find prices and scope on our [business websites](/en/services/website-development/business-websites) and [online stores](/en/services/website-development/online-stores) pages. We’ll give you an honest view, even if it turns out a DIY site is all you need for now.
+
+## Sources
+
+- [Google Search Central: Managing multi-regional and multilingual sites](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites) — Google recommends separate URLs for each language version, which is why every extra language adds work.

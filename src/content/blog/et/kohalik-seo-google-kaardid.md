@@ -2,6 +2,7 @@
 title: "Kohalik SEO: kuidas jõuda Google’i kaartidel konkurentidest ette"
 seoTitle: "Kohalik SEO: kuidas olla Google’i kaartidel eespool"
 description: "Praktiline juhend väikeettevõttele: kuidas täita Google’i ettevõtteprofiil, koguda arvustusi ja teha kodulehest kohaliku otsingu jaoks tugev."
+summary: "Google’i kaartidel konkurentidest ette jõudmiseks tuleb täita Google’i ettevõtteprofiil täielikult, koguda süsteemselt arvustusi ja teha koduleht, mis ütleb selgelt, mida ja kus pakud. Google järjestab kohalikke tulemusi asjakohasuse, kauguse ja tuntuse järgi. Kaugust muuta ei saa, aga asjakohasust ja tuntust saab."
 pubDate: 2026-10-06
 translationKey: "local-seo"
 service: "local-seo"
@@ -55,3 +56,7 @@ Ettevõtteprofiil näitab, mitu kõnet, teekonna päringut ja kodulehe külastus
 ## Kokkuvõtteks
 
 Kohalik SEO ei ole kiire trikk, vaid korralik põhitöö: täielik profiil, pidev arvustuste kogumine ja koduleht, mis räägib selgelt, mida ja kus pakud. Kui tahad, et vaataksime sinu profiili ja kodulehe üle, [küsi meilt kohaliku SEO kohta](/kontakt?t=seo) või loe lähemalt lehelt [kohalik SEO ja Google'i kaardid](/teenused/seo/kohalik-seo).
+
+## Allikad
+
+- [Google’i ettevõtteprofiili abi: nõuanded asetuse parandamiseks Google’i lähiotsingu tulemustes](https://support.google.com/business/answer/7091?hl=et) — kohalikud tulemused põhinevad asjakohasusel, kaugusel ja olulisusel; täielik info ja arvustused aitavad.

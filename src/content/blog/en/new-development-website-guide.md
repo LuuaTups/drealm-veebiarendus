@@ -1,6 +1,7 @@
 ---
 title: "New Development Website: What It Must Include"
 description: "What a new development website needs: an apartment selector, floor plans, live statuses, visuals, location, multiple languages, lead flow and launch timing."
+summary: "A new development website needs an apartment selector that works on a phone, a separate page with a floor plan for every apartment, statuses that are always accurate, visuals, location information, multiple languages where relevant and a clear lead flow to the sales team. At Drealm a development project website with an apartment selector starts from €2,500."
 pubDate: 2026-10-05
 translationKey: "development"
 service: "development"
@@ -78,3 +79,7 @@ Because we build sites with modern static technology, a teaser page can go live 
 ## In short
 
 A good new development website helps buyers choose, keeps information current and delivers clear enquiries to your sales team. If you’re planning a new project or want to improve an existing site, [tell us](/en/contact?t=platvormid) about its size and timeline. See also our [property development websites](/en/services/platforms/property-development-websites) and [real estate videos](/en/services/ai-video-ads/real-estate-videos). We’ll talk through when and in what order it makes sense to build the website.
+
+## Sources
+
+- [Google Search Central: Managing multi-regional and multilingual sites](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites) — each language version needs its own URL so the site can be found in searches in every language.

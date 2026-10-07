@@ -1,6 +1,7 @@
 ---
 title: "AI Automation for Small Businesses: Where to Start"
 description: "A practical guide for small businesses: which tasks to automate with AI first, how to start small, and how to keep risks, human oversight and GDPR in check."
+summary: "A small business should start AI automation with one frequent, repetitive and well-defined task, such as triaging enquiries, drafting replies or extracting data from invoices. Anything sent to customers and any decision with financial or legal consequences should stay with a person, and personal data falls under the same GDPR rules as any other processing. At Drealm, auditing and automating one work process starts from €800."
 pubDate: 2026-10-05
 translationKey: "ai"
 service: "ai-automation"
@@ -71,3 +72,8 @@ It sounds bureaucratic, but a well-designed setup is usually simpler and safer a
 AI automation doesn’t have to be a big or expensive project. Start with one repetitive, well-defined task, keep a person in the loop, measure the result and expand only once the first step has proven its worth.
 
 If there’s a task in your business that feels ripe for automation, [describe it to us](/en/contact?t=automatiseerimine) in a few sentences. For examples, see [email automation](/en/services/ai-automation/email-automation), [quote automation](/en/services/ai-automation/quote-automation) and [invoice processing](/en/services/ai-automation/invoice-processing). We’ll look at whether and how it can sensibly be done, and we’ll tell you honestly if it isn’t worth it yet.
+
+## Sources
+
+- [European Commission: Data protection explained](https://commission.europa.eu/law/law-topic/data-protection/data-protection-explained_en) — the GDPR basics: personal data, controllers and processors, and principles such as data minimisation.
+- [European Commission: AI Act](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) — an overview of the EU AI Act and when its rules apply.

@@ -1,6 +1,7 @@
 ---
 title: "Wix or a custom website: which suits your business?"
 description: "Wix and other site builders are quick and cheap. When they’re enough, when a custom website pays off, and what to compare before you decide."
+summary: "Wix or another site builder is enough when the site is a business card and customers come from referrals or social media rather than Google. A custom website pays off when customers search on Google, the site has to sell, you need custom features or want your brand to stand out. At Drealm a custom business website of up to six pages starts from €900, and it’s worth comparing total cost over three years, ownership, speed and maintenance."
 pubDate: 2026-10-07
 translationKey: "wix-vs-custom"
 service: "website"

@@ -1,6 +1,7 @@
 ---
 title: "Building a rental platform: why an online store won’t do"
 description: "A rental business needs availability by date, servicing time and deposits. What a rental platform needs and what we learned building Rebelle."
+summary: "A regular online store doesn’t suit a rental business, because the same item is rented again and again over time and the system has to know each item’s availability by date. A rental platform needs date-based availability, servicing time between rentals, deposits and two-way delivery. When these are built in, double bookings and manual calendar keeping disappear."
 pubDate: 2026-10-06
 translationKey: "rental-platform"
 service: "development"
