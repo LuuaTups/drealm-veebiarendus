@@ -23,6 +23,9 @@ export const COMPANY = {
     'https://www.inforegister.ee/16760865-DREALM-OU/',
     'https://www.google.com/search?kgmid=/g/11zz83q0qk',
     'https://www.sortlist.com/agency/drealm-ou',
+    'https://clutch.co/profile/drealm-o',
+    'https://www.goodfirms.co/company/drealm',
+    'https://www.linkedin.com/company/drealm-o%C3%BC',
   ] as string[],
 };
 
