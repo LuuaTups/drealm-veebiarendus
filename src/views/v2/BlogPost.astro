@@ -28,12 +28,24 @@ const ld = {
   datePublished: post.data.pubDate.toISOString(),
   inLanguage: lang,
   mainEntityOfPage: new URL(postUrl(post), SITE_URL).href,
-  author: { '@id': `${SITE_URL}/#org` },
+  author: {
+    '@type': 'Person',
+    '@id': `${SITE_URL}/meist#robin`,
+    name: 'Robin Rattasep',
+    url: new URL(`${r('about', lang)}#robin`, SITE_URL).href,
+    jobTitle: lang === 'et' ? 'Asutaja, arendaja ja disainer' : 'Founder, developer and designer',
+    worksFor: { '@id': `${SITE_URL}/#org` },
+  },
+  ...(post.data.summary ? { abstract: post.data.summary } : {}),
   publisher: { '@id': `${SITE_URL}/#org` },
 };
 const c = {
   et: { min: 'min lugemist', related: 'Seotud teenus', back: 'Kõik postitused' },
   en: { min: 'min read', related: 'Related service', back: 'All posts' },
+}[lang];
+const A = {
+  et: { short: 'Lühidalt', by: 'Kirjutas', bio: 'Robin Rattasep on Drealmi asutaja. Ta disainib ja ehitab veebilehti ning veebirakendusi algusest lõpuni ja viib ettevõtetes läbi AI-töötubasid.', more: 'Loe meist' },
+  en: { short: 'In short', by: 'Written by', bio: 'Robin Rattasep is the founder of Drealm. He designs and builds websites and web apps end to end and runs AI workshops for companies.', more: 'About us' },
 }[lang];
 ---
 
@@ -53,7 +65,21 @@ const c = {
 
   <section class="sv-sec sv-last">
     <div class="wrap post-layout">
-      <article class="prose"><Content /></article>
+      <article class="prose">
+        {
+          post.data.summary && (
+            <div class="post-summary">
+              <p class="chip">{A.short}</p>
+              <p>{post.data.summary}</p>
+            </div>
+          )
+        }
+        <Content />
+        <div class="post-author">
+          <p class="chip">{A.by}</p>
+          <p><a href={`${r('about', lang)}#robin`}><b>Robin Rattasep</b></a>. {A.bio}</p>
+        </div>
+      </article>
       <aside class="post-aside">
         {
           service && (

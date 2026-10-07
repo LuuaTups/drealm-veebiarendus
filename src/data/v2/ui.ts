@@ -3,6 +3,13 @@ import type { Lang } from './services';
 
 export const SITE_URL = 'https://drealm.ee';
 export const EMAIL = 'info@drealm.ee';
+/** Phone numbers: Estonian main line first. `tel` is the dialable form. */
+export const PHONES = [
+  { tel: '+37253340098', label: '+372 5334 0098' },
+  { tel: '+61409183278', label: '+61 409 183 278' },
+];
+/** One spelling of the brand everywhere (schema, directories, Google profile). */
+export const BRAND = 'Drealm';
 export const GA_ID = 'G-B42TX6G2GQ';
 
 /** Legal entity details. Empty values are simply not rendered (footer, About page, Organization schema). */

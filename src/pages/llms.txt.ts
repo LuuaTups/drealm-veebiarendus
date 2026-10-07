@@ -4,7 +4,7 @@ import { SERVICES, serviceHref } from '../data/v2/services';
 import { subHref, subsOf } from '../data/v2/subservices';
 import { postUrl } from '../data/v2/blog';
 import { SOLUTIONS, solHref } from '../data/v2/solutions';
-import { EMAIL, SITE_URL } from '../data/v2/ui';
+import { EMAIL, PHONES, SITE_URL } from '../data/v2/ui';
 import { getCollection } from 'astro:content';
 
 const u = (p: string) => new URL(p, SITE_URL).href;
@@ -16,7 +16,7 @@ export const GET: APIRoute = async () => {
     '',
     '> drealm builds websites, online stores and web platforms, brings clients through SEO and Meta ads, creates ad visuals and AI video ads, automates business processes with AI and trains teams to use AI. Estonian and English. Fixed prices in writing.',
     '',
-    `Contact: ${EMAIL} · Quote form: ${u('/kontakt')} · English site: ${u('/en')}`,
+    `Contact: ${EMAIL} · Phone: ${PHONES.map((p) => p.label).join(', ')} · Quote form: ${u('/kontakt')} · English site: ${u('/en')}`,
     '',
     '## Services',
     ...SERVICES.map((s) => `- [${s.name}](${u(serviceHref(s, 'et'))}): ${s.short}${s.priceFrom ? ` Alates ${s.priceFrom}.` : ''}`),

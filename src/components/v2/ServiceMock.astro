@@ -96,14 +96,14 @@ const d: Demo = demo ?? {
 };
 ---
 
-<div class="vis">
+<div class="vis" aria-hidden="true" data-nosnippet>
   {
     id === 'veebilehed' && (
       <Fragment>
                 <div class="seg" role="tablist" aria-label={L('Disaini vaated')}>
-                  <button role="tab" aria-selected="true" data-view="desktop">{L('Arvuti')}</button>
-                  <button role="tab" aria-selected="false" data-view="mobile">{L('Mobiil')}</button>
-                  <button role="tab" aria-selected="false" data-view="system">{L('Stiil')}</button>
+                  <button tabindex="-1" role="tab" aria-selected="true" data-view="desktop">{L('Arvuti')}</button>
+                  <button tabindex="-1" role="tab" aria-selected="false" data-view="mobile">{L('Mobiil')}</button>
+                  <button tabindex="-1" role="tab" aria-selected="false" data-view="system">{L('Stiil')}</button>
                 </div>
                 <div class="view is-active" data-view="desktop">
                   <div class="browser">

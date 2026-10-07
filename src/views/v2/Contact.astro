@@ -3,7 +3,7 @@ import V2 from '../../layouts/V2.astro';
 import Icon from '../../components/mock/Icon.astro';
 import InquiryForm from '../../components/v2/InquiryForm.astro';
 import { type Lang } from '../../data/v2/services';
-import { EMAIL, ROUTES, UI, r } from '../../data/v2/ui';
+import { EMAIL, PHONES, ROUTES, UI, r } from '../../data/v2/ui';
 import { quoteTopics } from '../../data/v2/quote';
 
 interface Props {
@@ -20,6 +20,7 @@ const c = {
     h1: 'Küsi hinda.',
     lead: 'Kirjelda paari lausega, mida vajad. Vastame ühe tööpäeva jooksul konkreetse pakkumise või paari täpsustava küsimusega. Kohustusi pole.',
     email: 'E-post',
+    phone: 'Telefon',
     reply: 'Vastame',
     replyV: 'ühe tööpäeva jooksul',
     formChip: 'Kolm lühikest sammu',
@@ -31,6 +32,7 @@ const c = {
     h1: 'Get a quote.',
     lead: 'Describe in a couple of sentences what you need. We reply within one working day with a concrete quote or a few clarifying questions. No obligation.',
     email: 'Email',
+    phone: 'Phone',
     reply: 'We reply',
     replyV: 'within one working day',
     formChip: 'Three short steps',
@@ -67,6 +69,7 @@ const c = {
         </div>
         <div class="contact-list">
           <a href={`mailto:${EMAIL}`} class="contact-item"><span class="ibox"><Icon name="mail" size={18} /></span><span><small>{c.email}</small>{EMAIL}</span></a>
+          <div class="contact-item"><span class="ibox"><Icon name="chat" size={18} /></span><span><small>{c.phone}</small>{PHONES.map((p, i) => <>{i > 0 && <br />}<a href={`tel:${p.tel}`}>{p.label}</a></>)}</span></div>
           <div class="contact-item"><span class="ibox"><Icon name="bell" size={18} /></span><span><small>{c.reply}</small>{c.replyV}</span></div>
         </div>
       </div>

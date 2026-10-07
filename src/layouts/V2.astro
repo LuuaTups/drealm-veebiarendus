@@ -5,7 +5,7 @@ import Logo from '../components/Logo.astro';
 import Icon from '../components/mock/Icon.astro';
 import AuditForm from '../components/AuditForm.astro';
 import { GROUP_LABEL, servicesFor, serviceHref, type Lang } from '../data/v2/services';
-import { COMPANY, EMAIL, GA_ID, SITE_URL, UI, r } from '../data/v2/ui';
+import { BRAND, COMPANY, EMAIL, GA_ID, PHONES, SITE_URL, UI, r } from '../data/v2/ui';
 import sansUrl from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 
 interface Props {
@@ -33,20 +33,23 @@ const org = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
   '@id': `${SITE_URL}/#org`,
-  name: 'drealm',
+  name: BRAND,
+  alternateName: ['drealm', COMPANY.legalName],
   ...(COMPANY.legalName ? { legalName: COMPANY.legalName } : {}),
   ...(COMPANY.regCode ? { identifier: { '@type': 'PropertyValue', propertyID: 'Äriregistri kood', value: COMPANY.regCode } } : {}),
   ...(COMPANY.vatNumber ? { vatID: COMPANY.vatNumber } : {}),
   ...(COMPANY.sameAs.length ? { sameAs: COMPANY.sameAs } : {}),
   url: SITE_URL,
   email: EMAIL,
+  telephone: PHONES[0].label,
+  contactPoint: PHONES.map((p) => ({ '@type': 'ContactPoint', contactType: 'sales', telephone: p.label, email: EMAIL, availableLanguage: ['et', 'en'] })),
   logo: `${SITE_URL}/logo.png`,
   image: `${SITE_URL}/og.png`,
   areaServed: { '@type': 'Country', name: 'Estonia' },
   knowsLanguage: ['et', 'en'],
   priceRange: '€€',
   founder: [
-    { '@type': 'Person', name: 'Robin Rattasep', jobTitle: lang === 'et' ? 'Asutaja, arendaja ja disainer' : 'Founder, developer and designer' },
+    { '@type': 'Person', '@id': `${SITE_URL}/meist#robin`, name: 'Robin Rattasep', url: new URL(r('about', lang), SITE_URL).href, jobTitle: lang === 'et' ? 'Asutaja, arendaja ja disainer' : 'Founder, developer and designer' },
     { '@type': 'Person', name: 'Karlos Rattasep', jobTitle: lang === 'et' ? 'Turundus ja äriarendus' : 'Marketing and business development' },
   ],
   knowsAbout: services.map((s) => s.name),
@@ -63,7 +66,7 @@ const website = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': `${SITE_URL}/#website`,
-  name: 'drealm',
+  name: BRAND,
   url: SITE_URL,
   inLanguage: ['et', 'en'],
   publisher: { '@id': `${SITE_URL}/#org` },
@@ -207,6 +210,7 @@ const website = {
             <h2>{t.footH}</h2>
             <p class="foot-sub">{t.footSub}</p>
             <p class="foot-mail">{t.footMail} <a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+            <p class="foot-mail foot-tel">{PHONES.map((p, i) => <>{i > 0 && ' · '}<a href={`tel:${p.tel}`}>{p.label}</a></>)}</p>
           </div>
           <div class="glass-form">
             <AuditForm dark lang={lang} page={`${path}#footer`} />

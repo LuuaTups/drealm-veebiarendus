@@ -4704,3 +4704,10 @@ dd {
 .demo-pic i:first-child { bottom: 26%; right: 30%; }
 .demo-pic i:last-child { bottom: 12%; right: 50%; background: rgba(255, 244, 238, 0.4); }
 .demo-pic.sm { aspect-ratio: 1.6; margin: 0.5rem 0; }
+
+/* Blog: direct answer box at the top + author note at the end */
+.post-summary { margin: 0 0 2rem; padding: 1.2rem 1.4rem; border-radius: var(--r-m); background: var(--card); border: 1px solid var(--line); }
+.post-summary p:last-child { margin: 0.4rem 0 0; font-size: 1.05rem; }
+.post-author { margin-top: 2.6rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+.post-author p:last-child { margin: 0.4rem 0 0; color: var(--ink-2); }
+.foot-tel { margin-top: 0.3rem; }

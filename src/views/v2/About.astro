@@ -103,6 +103,7 @@ const jsonLd = [
   ...c.people.map((p) => ({
     '@context': 'https://schema.org',
     '@type': 'Person',
+    '@id': `${SITE_URL}/meist#${p.name.split(' ')[0].toLowerCase()}`,
     name: p.name,
     jobTitle: p.role,
     worksFor: { '@id': `${SITE_URL}/#org` },
@@ -160,7 +161,7 @@ const jsonLd = [
       <div class="people">
         {
           c.people.map((p, i) => (
-            <article class:list={['person', { dark: i === 1 }]} data-glow>
+            <article class:list={['person', { dark: i === 1 }]} id={p.name.split(' ')[0].toLowerCase()} data-glow>
               <header>
                 <span class="ibox">
                   <Icon name={p.icon as 'web' | 'target'} size={20} />
