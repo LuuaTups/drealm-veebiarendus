@@ -59,6 +59,12 @@ export const TOPICS_ET: Record<string, QuoteTopic> = {
     lead: 'Kirjelda üht protsessi, mis võtab praegu liiga palju käsitööd. Saad ühe tööpäeva jooksul pakkumise.',
     facts: ['Alates 800 €', 'Valmis 2–4 nädalaga', 'Ühendub sinu tööriistadega'],
   },
+  koolitus: {
+    svc: 'koolitused',
+    h1: 'Küsi AI-koolituse hinda.',
+    lead: 'Kirjelda, millega teie tiim iga päev tegeleb ja kui palju inimesi osaleks. Saad ühe tööpäeva jooksul töötoa kava ja hinna.',
+    facts: ['Teie oma tööülesannetega', 'Pool päeva kuni kaks päeva', 'Kontoris või veebis'],
+  },
 };
 
 /** topic → service id, for preselecting the form */
